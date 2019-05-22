@@ -1,0 +1,541 @@
+/*
+SQLyog Ultimate v8.32 
+MySQL - 5.0.24-community-nt : Database - oawork
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`oawork` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `oawork`;
+
+/*Table structure for table `attachment_list` */
+
+DROP TABLE IF EXISTS `attachment_list`;
+
+CREATE TABLE `attachment_list` (
+  `pk_Attachment` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  `FileName` varchar(20) default NULL COMMENT '原始档名',
+  `FilePath` varchar(20) default NULL COMMENT '文件路径',
+  `FileType` varchar(20) default NULL COMMENT '后缀名',
+  `FileSize` double default NULL COMMENT '文件大小',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Attachment`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `attachment_list` */
+
+/*Table structure for table `attendance_list` */
+
+DROP TABLE IF EXISTS `attendance_list`;
+
+CREATE TABLE `attendance_list` (
+  `pk_Attendance` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Description` varchar(30) default NULL COMMENT '描述',
+  `shangbantime` datetime default NULL COMMENT '上班时间',
+  `xaibantime` datetime default NULL COMMENT '下班时间',
+  `month` date default NULL COMMENT '考勤月份',
+  PRIMARY KEY  (`pk_Attendance`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `attendance_list` */
+
+/*Table structure for table `calendar_list` */
+
+DROP TABLE IF EXISTS `calendar_list`;
+
+CREATE TABLE `calendar_list` (
+  `pk_Calendar` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `UserList` varchar(20) default NULL COMMENT '相关用户',
+  `DepartmentList` varchar(20) default NULL COMMENT '相关部门',
+  `StartDate` datetime default NULL COMMENT '开始时间',
+  `EndDate` datetime default NULL COMMENT '结束时间',
+  `IsRemind` int(11) default NULL COMMENT '是否提醒',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Calendar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `calendar_list` */
+
+/*Table structure for table `car_list` */
+
+DROP TABLE IF EXISTS `car_list`;
+
+CREATE TABLE `car_list` (
+  `pk_Car` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `fk_Set` int(11) default NULL COMMENT '车辆ID',
+  `NumberID` varchar(20) default NULL COMMENT '单号',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(30) default NULL COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  `IsCheck` int(11) default NULL COMMENT '是否审核',
+  `CheckUser` int(11) default NULL COMMENT '审核人ID',
+  `CheckDate` datetime default NULL COMMENT '审核时间',
+  `CheckDepartment` int(11) default NULL COMMENT '审核部门',
+  `StartDate` datetime default NULL COMMENT '开始时间',
+  `EndDate` datetime default NULL COMMENT '结束时间',
+  `Driver` varchar(30) default NULL COMMENT '司机',
+  `Passengers` varchar(30) default NULL COMMENT '乘客',
+  `Destination` varchar(30) default NULL COMMENT '目的地',
+  `Mileage` varchar(30) default NULL COMMENT '里程数',
+  `IsBack` int(11) default NULL COMMENT '是否归还',
+  `BackDate` datetime default NULL COMMENT '归还时间',
+  PRIMARY KEY  (`pk_Car`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `car_list` */
+
+/*Table structure for table `car_set` */
+
+DROP TABLE IF EXISTS `car_set`;
+
+CREATE TABLE `car_set` (
+  `pk_Set` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(20) default NULL COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `BuyDate` datetime default NULL COMMENT '购买时间',
+  `IsUse` int(11) default NULL COMMENT '是否使用',
+  `Mileage` varchar(20) default NULL COMMENT '里程数',
+  `LastMaintenance` datetime default NULL COMMENT '上次保养时间',
+  PRIMARY KEY  (`pk_Set`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `car_set` */
+
+/*Table structure for table `finance_account` */
+
+DROP TABLE IF EXISTS `finance_account`;
+
+CREATE TABLE `finance_account` (
+  `pk_Account` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `AccountName` varchar(30) default NULL COMMENT '账号',
+  `Owner` varchar(20) default NULL COMMENT '开户人',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Account`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `finance_account` */
+
+/*Table structure for table `finance_list` */
+
+DROP TABLE IF EXISTS `finance_list`;
+
+CREATE TABLE `finance_list` (
+  `pk_Finance` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `fk_Account` int(11) default NULL COMMENT '账号ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  `HandleName` varchar(20) default NULL COMMENT '经手人',
+  `HandleDate` datetime default NULL COMMENT '经手时间',
+  `Amount` double default NULL COMMENT '金额',
+  PRIMARY KEY  (`pk_Finance`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `finance_list` */
+
+/*Table structure for table `mail_list` */
+
+DROP TABLE IF EXISTS `mail_list`;
+
+CREATE TABLE `mail_list` (
+  `pk_Mail` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_Account` int(11) default NULL COMMENT '账号ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `MailType` int(11) default NULL COMMENT '邮件类型（0-收件箱 1-发件箱 2-草稿箱 3-垃圾箱 4-回收站）',
+  `MailFrom` varchar(20) default NULL COMMENT '发件人',
+  `MailTo` varchar(20) default NULL COMMENT '收件人',
+  `Subject` varchar(20) default NULL COMMENT '主题',
+  `Body` text COMMENT '主体内容',
+  `IsSent` int(11) default NULL COMMENT '是否已送',
+  `SentDate` datetime default NULL COMMENT '发送时间',
+  `IsAttachment` int(11) default NULL COMMENT '是否有附件',
+  `AttachmentList` varchar(20) default NULL COMMENT '附件地址',
+  `IsRead` int(11) default NULL COMMENT '是否已读',
+  `ReadDate` datetime default NULL COMMENT '读取时间',
+  `Priority` int(11) default NULL COMMENT '优先级别',
+  `IsReply` int(11) default NULL COMMENT '是否回复',
+  `ReplyDate` datetime default NULL COMMENT '回复时间',
+  PRIMARY KEY  (`pk_Mail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `mail_list` */
+
+/*Table structure for table `memo_list` */
+
+DROP TABLE IF EXISTS `memo_list`;
+
+CREATE TABLE `memo_list` (
+  `pk_Memo` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` text COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `FilePath` varchar(20) default NULL COMMENT '附件地址',
+  `IsStar` int(11) default NULL COMMENT '是否星标',
+  `Tags` varchar(20) default NULL COMMENT '标签',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Memo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `memo_list` */
+
+/*Table structure for table `notice_list` */
+
+DROP TABLE IF EXISTS `notice_list`;
+
+CREATE TABLE `notice_list` (
+  `pk_Notice` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID\r\n',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` text COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `FilePath` varchar(20) default NULL COMMENT '附件地址',
+  `UserList` varchar(20) default NULL COMMENT '相关用户',
+  `DepartmentList` varchar(20) default NULL COMMENT '相关部门',
+  `RoleList` varchar(20) default NULL COMMENT '相关权限',
+  `Url` varchar(20) default NULL COMMENT '链接地址',
+  `StartDate` datetime default NULL COMMENT '开始时间',
+  `EndDate` datetime default NULL COMMENT '结束时间',
+  `IsTop` int(11) default NULL COMMENT '是否置顶',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  `IsRead` int(11) default NULL COMMENT '是否已读',
+  `ReadDate` datetime default NULL COMMENT '已读时间',
+  PRIMARY KEY  (`pk_Notice`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `notice_list` */
+
+/*Table structure for table `process_list` */
+
+DROP TABLE IF EXISTS `process_list`;
+
+CREATE TABLE `process_list` (
+  `pk_process` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `ProcessName` varchar(20) default NULL COMMENT '流程定义名称',
+  `RoleList` varchar(20) default NULL COMMENT '相关权限',
+  `MattersName` varchar(20) default NULL COMMENT '事项名称',
+  `Visible` int(11) default NULL COMMENT '是否显示',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_process`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `process_list` */
+
+/*Table structure for table `role_list` */
+
+DROP TABLE IF EXISTS `role_list`;
+
+CREATE TABLE `role_list` (
+  `pk_Role` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_RoleName` int(11) default NULL COMMENT '权限名称ID',
+  `fk_Menu` int(11) default NULL COMMENT '菜单ID',
+  `IsUse` int(11) default NULL COMMENT '是否使用',
+  `IsAdmin` int(11) default NULL COMMENT '是否管理员模式',
+  `PowerList` int(11) default NULL COMMENT '相关权限值',
+  PRIMARY KEY  (`pk_Role`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `role_list` */
+
+/*Table structure for table `role_name` */
+
+DROP TABLE IF EXISTS `role_name`;
+
+CREATE TABLE `role_name` (
+  `pk_Name` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `RoleName_CHS` varchar(30) default NULL COMMENT '中文名称',
+  `RoleName_EN` varchar(30) default NULL COMMENT '英文名称',
+  `PowerValue` int(11) default NULL COMMENT '权限值',
+  PRIMARY KEY  (`pk_Name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `role_name` */
+
+/*Table structure for table `sys_menu` */
+
+DROP TABLE IF EXISTS `sys_menu`;
+
+CREATE TABLE `sys_menu` (
+  `pk_Menu` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `ParentID` varchar(20) default NULL COMMENT '父ID',
+  `Name_CHS` varchar(20) default NULL COMMENT '中文名称',
+  `Name_EN` varchar(20) default NULL COMMENT '英文名称（预留）',
+  `Url` varchar(20) default NULL COMMENT '链接地址',
+  `Icon` varchar(20) default NULL COMMENT '图标',
+  `SortID` int(11) default NULL COMMENT '排序ID',
+  `LevelID` int(11) default NULL COMMENT '层级ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `Visible` int(11) default NULL COMMENT '是否显示',
+  `Tag_CHS` varchar(20) default NULL COMMENT '中文标签',
+  `Tag_EN` varchar(20) default NULL COMMENT '英文标签（预留）',
+  PRIMARY KEY  (`pk_Menu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sys_menu` */
+
+/*Table structure for table `sys_statusid` */
+
+DROP TABLE IF EXISTS `sys_statusid`;
+
+CREATE TABLE `sys_statusid` (
+  `pk_StatusID` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `StatusName` varchar(20) default NULL COMMENT '名称',
+  `ID` int(11) default NULL COMMENT 'ID',
+  `Visual` varchar(20) default NULL COMMENT '显示颜色',
+  `TableName` varchar(20) default NULL COMMENT '表名',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  PRIMARY KEY  (`pk_StatusID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sys_statusid` */
+
+/*Table structure for table `sys_typeid` */
+
+DROP TABLE IF EXISTS `sys_typeid`;
+
+CREATE TABLE `sys_typeid` (
+  `pk_TypeID` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `TypeName` varchar(20) default NULL COMMENT '名称',
+  `ID` int(11) default NULL COMMENT 'ID',
+  `Visual` varchar(20) default NULL COMMENT '显示颜色',
+  `TableName` varchar(20) default NULL COMMENT '表名',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  PRIMARY KEY  (`pk_TypeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `sys_typeid` */
+
+/*Table structure for table `task_list` */
+
+DROP TABLE IF EXISTS `task_list`;
+
+CREATE TABLE `task_list` (
+  `pk_Task` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` text COMMENT '描述',
+  `ImagePath` varchar(20) default NULL COMMENT '图片地址',
+  `FilePath` varchar(20) default NULL COMMENT '附件地址',
+  `UserList` varchar(20) default NULL COMMENT '相关用户',
+  `DepartmentList` varchar(20) default NULL COMMENT '相关部门',
+  `RoleList` varchar(20) default NULL COMMENT '相关权限',
+  `Url` varchar(20) default NULL COMMENT '链接地址',
+  `StartDate` datetime default NULL COMMENT '开始时间',
+  `EndDate` datetime default NULL COMMENT '结束时间',
+  `IsComplete` int(11) default NULL COMMENT '是否完成',
+  `CompleteDate` datetime default NULL COMMENT '完成时间',
+  `IsCancel` int(11) default NULL COMMENT '是否取消',
+  `CancelDate` datetime default NULL COMMENT '取消时间',
+  `IsTop` int(11) default NULL COMMENT '是否置顶',
+  `IsDistribution` int(11) default NULL COMMENT '是否分配',
+  `Feedback` text COMMENT '反馈信息',
+  PRIMARY KEY  (`pk_Task`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `task_list` */
+
+/*Table structure for table `task_receiver` */
+
+DROP TABLE IF EXISTS `task_receiver`;
+
+CREATE TABLE `task_receiver` (
+  `pk_Receiver` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_Task` int(11) default NULL COMMENT '任务ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `IsRead` int(11) default NULL COMMENT '是否已读',
+  `ReadDate` datetime default NULL COMMENT '读取时间',
+  `IsReceive` int(11) default NULL COMMENT '是否接收',
+  `ReceiveDate` datetime default NULL COMMENT '接收时间',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  PRIMARY KEY  (`pk_Receiver`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `task_receiver` */
+
+/*Table structure for table `user_department` */
+
+DROP TABLE IF EXISTS `user_department`;
+
+CREATE TABLE `user_department` (
+  `pk_Department` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `DepartmentName` varchar(20) default NULL COMMENT '部门名称',
+  `Phone` varchar(11) default NULL COMMENT '电话',
+  `Email` varchar(30) default NULL COMMENT '邮件',
+  `Address` varchar(20) default NULL COMMENT '地址',
+  `ParentID` int(11) default NULL COMMENT '父ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `Manager` int(11) default NULL COMMENT '部门经理',
+  `LevelID` int(11) default NULL COMMENT '层级ID',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  `Monday` datetime default NULL COMMENT '周一考勤时间',
+  `Tuesday` datetime default NULL COMMENT '周二考勤时间',
+  `Wednesday` datetime default NULL COMMENT '周三考勤时间',
+  `Thursday` datetime default NULL COMMENT '周四考勤时间',
+  `Friday` datetime default NULL COMMENT '周五考勤时间',
+  `Saturday` datetime default NULL COMMENT '周六考勤时间',
+  `Sunday` datetime default NULL COMMENT '周日考勤时间',
+  PRIMARY KEY  (`pk_Department`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_department` */
+
+/*Table structure for table `user_list` */
+
+DROP TABLE IF EXISTS `user_list`;
+
+CREATE TABLE `user_list` (
+  `pk_user` int(11) NOT NULL auto_increment COMMENT '自增id',
+  `userName` varchar(20) default NULL COMMENT '用户名',
+  `password` varchar(50) default NULL COMMENT '密码',
+  `typeId` int(11) default NULL COMMENT '类型id',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `RoleValue` int(11) default NULL COMMENT '权限ID',
+  `RoleList` varchar(30) default NULL COMMENT '相关权限',
+  `Position` int(11) default NULL COMMENT '职位ID',
+  `Number` varchar(20) default NULL COMMENT '员工号',
+  `IsLock` int(11) default NULL COMMENT '是否锁定',
+  `LastLoginTime` datetime default NULL COMMENT '最后登录时间',
+  `FullName` varchar(11) default NULL COMMENT '真实姓名',
+  `Phone` varchar(20) default NULL COMMENT '电话',
+  `Email` varchar(20) default NULL COMMENT '邮件',
+  `Wechat` varchar(20) default NULL COMMENT '微信',
+  `QQ` varchar(15) default NULL COMMENT 'QQ',
+  `ZipCode` varchar(10) default NULL COMMENT '邮编',
+  `Place` varchar(20) default NULL COMMENT '所在城市',
+  `Address` varchar(30) default NULL COMMENT '家庭地址',
+  `Sex` int(11) default NULL COMMENT '性别（0-男 1-女）',
+  `Height` int(11) default NULL COMMENT '身高',
+  `Weight` int(11) default NULL COMMENT '体重',
+  `Birthday` datetime default NULL COMMENT '生日',
+  `Education` varchar(20) default NULL COMMENT '教育程度',
+  `School` varchar(20) default NULL COMMENT '毕业院校',
+  `ImagePath1` varchar(20) default NULL COMMENT '图片',
+  `IDCardPath` varchar(20) default NULL COMMENT '身份证图片',
+  `ResumePath` varchar(20) default NULL COMMENT '简历文档',
+  `Wages` bigint(20) default NULL COMMENT '工资',
+  `BankAccount` varchar(20) default NULL COMMENT '银行账户',
+  `IDNumber` varchar(20) default NULL COMMENT '身份证号',
+  `Remark` varchar(30) default NULL COMMENT '备注',
+  `EntryTime` datetime default NULL COMMENT '入职时间',
+  `IsQuit` int(11) default NULL COMMENT '是否离职',
+  `QuitTime` datetime default NULL COMMENT '离职时间',
+  PRIMARY KEY  (`pk_user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_list` */
+
+insert  into `user_list`(`pk_user`,`userName`,`password`,`typeId`,`fk_Department`,`RoleValue`,`RoleList`,`Position`,`Number`,`IsLock`,`LastLoginTime`,`FullName`,`Phone`,`Email`,`Wechat`,`QQ`,`ZipCode`,`Place`,`Address`,`Sex`,`Height`,`Weight`,`Birthday`,`Education`,`School`,`ImagePath1`,`IDCardPath`,`ResumePath`,`Wages`,`BankAccount`,`IDNumber`,`Remark`,`EntryTime`,`IsQuit`,`QuitTime`) values (1,'张三','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,NULL,NULL,NULL,NULL,'10000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'陈磊','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,NULL,NULL,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+/*Table structure for table `user_position` */
+
+DROP TABLE IF EXISTS `user_position`;
+
+CREATE TABLE `user_position` (
+  `pk_Position` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `PositionName` varchar(20) default NULL COMMENT '职位名称',
+  `ParentID` int(11) default NULL COMMENT '父ID',
+  `LevelID` int(11) default NULL COMMENT '层级ID',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Position`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_position` */
+
+/*Table structure for table `workflow_list` */
+
+DROP TABLE IF EXISTS `workflow_list`;
+
+CREATE TABLE `workflow_list` (
+  `pk_Workflow` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `fk_process` int(11) default NULL COMMENT '流程定义ID',
+  `TypeID` int(11) default NULL COMMENT '类型ID',
+  `StatusID` int(11) default NULL COMMENT '状态ID',
+  `CurrentStepID` varchar(20) default NULL COMMENT '当前步骤',
+  `NextStepID` varchar(20) default NULL COMMENT '下一步骤',
+  `Number` varchar(50) default NULL COMMENT '流水编号',
+  `Title` varchar(20) default NULL COMMENT '标题',
+  `Description` varchar(50) default NULL COMMENT '描述',
+  `StartDate` datetime default NULL COMMENT '开始时间',
+  `EndDate` datetime default NULL COMMENT '结束时间',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Workflow`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `workflow_list` */
+
+/*Table structure for table `workflow_receiver` */
+
+DROP TABLE IF EXISTS `workflow_receiver`;
+
+CREATE TABLE `workflow_receiver` (
+  `pk_Receiver` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `fk_Workflow` int(11) default NULL COMMENT '工作流ID',
+  `fk_process` int(11) default NULL COMMENT '流程定义ID',
+  `fk_User` int(11) default NULL COMMENT '用户ID',
+  `fk_Department` int(11) default NULL COMMENT '部门ID',
+  `IsCheck` int(11) default NULL COMMENT '是否审核',
+  `CheckDate` datetime default NULL COMMENT '审核时间',
+  `Note` varchar(50) default NULL COMMENT '审批意见',
+  `CreateDate` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`pk_Receiver`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `workflow_receiver` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

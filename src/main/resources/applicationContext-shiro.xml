@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- shiro配置 -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器 -->
+		<property name="securityManager" ref="securityManager"/>
+		<!-- 未认证跳转 -->
+		<property name="loginUrl" value="/login.do"/>
+		<!-- 认证成功跳转 -->
+		<property name="successUrl" value="/index.jsp"/>
+		<!-- 未授权跳转 -->
+		<!--<property name="unauthorizedUrl" value="/unauthorized.jsp"/>-->
+		<property name="filterChainDefinitions">
+			<value>
+				/css/** = anon
+				/fonts/** = anon
+				/images/** = anon
+				/js/** = anon
+				/layui/** = anon
+				/logout.do=logout
+				/** = authc
+			</value>
+		</property>
+		<!-- 自定义FormAuthenticationFilter  -->
+		<property name="filters">
+			<map>
+				<!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中-->
+				<entry key="authc" value-ref="formAuthenticationFilter" />
+			</map>
+		</property>
+	</bean>
+	<!-- 配置安全管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!-- 如果你有多个领域，使用“realms”属性来代替 -->
+		<property name="realm" ref="myRealm" />
+		<!--指定，使用的缓存管理器-->
+		<property name="cacheManager" ref="cacheManager"/>
+	</bean>
+	<bean id="myRealm" class="org.java.realm.LoginRealm">
+		<property name="credentialsMatcher" ref="credentialsMatcher"/>
+	</bean>
+	<!--配置密码匹配器-->
+	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<!--指定加密方式-->
+		<property name="hashAlgorithmName" value="md5"/>
+		<!--加密次数-->
+		<property name="hashIterations" value="3"/>
+	</bean>
+
+	<bean id="formAuthenticationFilter" class="org.java.util.MyFormAuthenticationFilter">
+		<!-- 表单中账号的input名称 -->
+		<property name="usernameParam" value="username" />
+		<!-- 表单中密码的input名称 -->
+		<property name="passwordParam" value="password" />
+	</bean>
+	<!--配置缓存-->
+	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:shiro-ehcache.xml"/>
+	</bean>
+</beans>

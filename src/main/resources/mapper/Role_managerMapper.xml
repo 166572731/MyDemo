@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.Role_managerMapper">
+    <select id="selectMenus" resultType="map">
+        SELECT * FROM sys_menu WHERE pk_Menu IN
+        <foreach collection="idList" item="item" index="" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <select id="loadRole" resultType="map">
+        SELECT role_name.*,user_department.DepartmentName FROM role_name,user_department
+        WHERE role_name.pk_Department=user_department.pk_Department
+    </select>
+    <select id="loadDepartment" resultType="map">
+        SELECT * FROM user_department
+    </select>
+    <insert id="addDepartmentRole">
+        INSERT INTO `oawork`.`role_name`
+            (`pk_Name`,
+            `RoleName_CHS`,
+            `RoleName_EN`,
+            `pk_Department`
+            )
+            VALUES
+            (null,
+            #{roleName},
+            null,
+            #{departmentID}
+            );
+    </insert>
+    <update id="updateDepartmentRole">
+        UPDATE `oawork`.`role_name`
+        SET
+        `RoleName_CHS` = #{roleName}
+        WHERE
+        `pk_Name` = #{pk_Name};
+    </update>
+    <delete id="deleteDepartmentRole">
+        DELETE FROM `oawork`.`role_name`
+	    WHERE
+	    `pk_Name` = #{pk_Name};
+    </delete>
+    <select id="loadRoleName" resultType="map">
+        SELECT * FROM role_list WHERE pk_Department=#{pk_department} AND fk_RoleName=#{pk_name};
+    </select>
+    <select id="selectRolejurisdiction" resultType="map">
+        SELECT * FROM role_list WHERE pk_Department=#{pk_department} AND fk_RoleName=#{pk_name} and fk_Menu=#{pk_menu};
+    </select>
+    <insert id="addRolejurisdiction">
+            INSERT INTO `oawork`.`role_list`
+            (`pk_Role`,
+            `pk_Department`,
+            `fk_RoleName`,
+            `fk_Menu`,
+            `role_name`
+            )
+            VALUES
+            (null,
+             #{pk_department},
+             #{pk_name},
+             #{pk_menu},
+             #{roleNameString}
+            );
+    </insert>
+    <update id="updateRolejurisdiction">
+            UPDATE `oawork`.`role_list`
+            SET
+            `role_name` = #{roleNameString}
+            WHERE
+            pk_Role=#{pk_Role};
+    </update>
+    <delete id="deleteRolejurisdiction">
+        delete from role_list where pk_Role=#{pk_Role};
+    </delete>
+</mapper>

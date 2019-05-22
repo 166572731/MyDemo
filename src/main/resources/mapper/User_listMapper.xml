@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.User_listMapper">
+  <!--<resultMap id="BaseResultMap" type="userlist">
+    <id column="pk_user" jdbcType="INTEGER" property="pkUser" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="typeId" jdbcType="INTEGER" property="typeid" />
+    <result column="fk_Department" jdbcType="INTEGER" property="fkDepartment" />
+    <result column="RoleValue" jdbcType="INTEGER" property="rolevalue" />
+    <result column="RoleList" jdbcType="VARCHAR" property="rolelist" />
+    <result column="Position" jdbcType="INTEGER" property="position" />
+    <result column="Number" jdbcType="VARCHAR" property="number" />
+    <result column="IsLock" jdbcType="INTEGER" property="islock" />
+    <result column="LastLoginTime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="FullName" jdbcType="VARCHAR" property="fullname" />
+    <result column="Phone" jdbcType="VARCHAR" property="phone" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="Wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="ZipCode" jdbcType="VARCHAR" property="zipcode" />
+    <result column="Place" jdbcType="VARCHAR" property="place" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="Sex" jdbcType="INTEGER" property="sex" />
+    <result column="Height" jdbcType="INTEGER" property="height" />
+    <result column="Weight" jdbcType="INTEGER" property="weight" />
+    <result column="Birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="Education" jdbcType="VARCHAR" property="education" />
+    <result column="School" jdbcType="VARCHAR" property="school" />
+    <result column="ImagePath1" jdbcType="VARCHAR" property="imagepath1" />
+    <result column="IDCardPath" jdbcType="VARCHAR" property="idcardpath" />
+    <result column="ResumePath" jdbcType="VARCHAR" property="resumepath" />
+    <result column="Wages" jdbcType="BIGINT" property="wages" />
+    <result column="BankAccount" jdbcType="VARCHAR" property="bankaccount" />
+    <result column="IDNumber" jdbcType="VARCHAR" property="idnumber" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+    <result column="EntryTime" jdbcType="TIMESTAMP" property="entrytime" />
+    <result column="IsQuit" jdbcType="INTEGER" property="isquit" />
+    <result column="QuitTime" jdbcType="TIMESTAMP" property="quittime" />
+  </resultMap>-->
+    <select id="login" resultType="map">
+       SELECT * FROM user_list WHERE userName=#{username};
+    </select>
+</mapper>

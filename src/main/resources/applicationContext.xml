@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<context:component-scan base-package="org.java"/>
+	<context:property-placeholder location="classpath:db.properties"/>
+	<!-- 创建数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.username}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	<!-- 配置sqlsessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="typeAliasesPackage" value="java.util"/>
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml"></property>
+		<!--&lt;!&ndash; 指定mybatis的主配置文件 &ndash;&gt;
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>-->
+	</bean>
+
+	<!-- 配置MapperScan -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="org.java.dao"/>
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+	<!-- 配置事务驱动 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+	<!--&lt;!&ndash; 工作流引擎配置bean &ndash;&gt;
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		&lt;!&ndash; 数据源 &ndash;&gt;
+		<property name="dataSource" ref="dataSource" />
+		&lt;!&ndash; 使用spring事务管理器 &ndash;&gt;
+		<property name="transactionManager" ref="transactionManager" />
+		&lt;!&ndash; 数据库策略 &ndash;&gt;
+		<property name="databaseSchemaUpdate" value="true" />
+		&lt;!&ndash; activiti的定时任务关闭 &ndash;&gt;
+		<property name="jobExecutorActivate" value="false" />
+
+	</bean>
+
+	&lt;!&ndash; 流程引擎 &ndash;&gt;
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	&lt;!&ndash; 资源服务service &ndash;&gt;
+	<bean id="repositoryService" factory-bean="processEngine"
+		  factory-method="getRepositoryService" />
+	&lt;!&ndash; 流程运行service &ndash;&gt;
+	<bean id="runtimeService" factory-bean="processEngine"
+		  factory-method="getRuntimeService" />
+	&lt;!&ndash; 任务管理service &ndash;&gt;
+	<bean id="taskService" factory-bean="processEngine"
+		  factory-method="getTaskService" />
+	&lt;!&ndash; 历史管理service &ndash;&gt;
+	<bean id="historyService" factory-bean="processEngine"
+		  factory-method="getHistoryService" />
+	&lt;!&ndash; 用户管理service &ndash;&gt;
+	<bean id="identityService" factory-bean="processEngine"
+		  factory-method="getIdentityService" />
+	&lt;!&ndash; 引擎管理service &ndash;&gt;
+	<bean id="managementService" factory-bean="processEngine"
+		  factory-method="getManagementService" />-->
+
+</beans>
