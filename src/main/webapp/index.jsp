@@ -332,7 +332,6 @@
         <!--footer section start-->
         <footer class="sticky-footer text-center"> 2014 &copy;
             AdminEx by ThemeBucket
-            aaaaaaaaaaaaaaaa
         </footer>
         <!--footer section end-->
     </div>
