@@ -2,7 +2,7 @@
 SQLyog Ultimate v8.32 
 MySQL - 5.0.24-community-nt : Database - oawork
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -274,15 +274,16 @@ DROP TABLE IF EXISTS `role_list`;
 
 CREATE TABLE `role_list` (
   `pk_Role` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `pk_Department` int(11) default NULL COMMENT '部门编号ID',
   `fk_RoleName` int(11) default NULL COMMENT '权限名称ID',
-  `fk_Menu` int(11) default NULL COMMENT '菜单ID',
-  `IsUse` int(11) default NULL COMMENT '是否使用',
-  `IsAdmin` int(11) default NULL COMMENT '是否管理员模式',
-  `PowerList` int(11) default NULL COMMENT '相关权限值',
+  `fk_Menu` int(50) default NULL COMMENT '菜单ID',
+  `role_name` varchar(50) default NULL COMMENT '权限字段',
   PRIMARY KEY  (`pk_Role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `role_list` */
+
+insert  into `role_list`(`pk_Role`,`pk_Department`,`fk_RoleName`,`fk_Menu`,`role_name`) values (1,1000,3,33,'role:add,role:delete,role:query,role:update,'),(9,1000,1,2,'role:add,role:delete,role:update,role:query,'),(11,1000,3,34,'role:add,role:delete,role:update,role:query,'),(12,1000,3,35,'role:query,role:update,role:delete,role:add,'),(13,1000,3,36,'role:add,role:delete,role:update,role:query,'),(14,1001,4,25,'role:query,'),(15,1001,4,24,'role:query,'),(16,1001,4,23,'role:query,role:update,role:delete,role:add,'),(18,1001,4,4,'role:query,'),(21,1000,3,3,'role:delete,role:query,'),(22,1000,2,2,'role:update,'),(23,1000,3,2,'role:query,'),(24,1001,5,4,'role:query,');
 
 /*Table structure for table `role_name` */
 
@@ -292,11 +293,13 @@ CREATE TABLE `role_name` (
   `pk_Name` int(11) NOT NULL auto_increment COMMENT '自增ID',
   `RoleName_CHS` varchar(30) default NULL COMMENT '中文名称',
   `RoleName_EN` varchar(30) default NULL COMMENT '英文名称',
-  `PowerValue` int(11) default NULL COMMENT '权限值',
+  `pk_Department` int(11) default NULL COMMENT '部门ID',
   PRIMARY KEY  (`pk_Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `role_name` */
+
+insert  into `role_name`(`pk_Name`,`RoleName_CHS`,`RoleName_EN`,`pk_Department`) values (1,'总经理','CEO',1000),(2,'助理','ASSISTANT',1000),(3,'超级管理员','ADMIN',1000),(4,'经理','MANAGER',1001),(5,'会计','ACCOUNTANT',1001),(6,'经理','MANAGER',1002),(7,'主管','DIRECTOR',1002),(8,'文员','CLERTK',1002),(9,'经理',NULL,1003),(10,'文员',NULL,1003),(11,'经理',NULL,1004),(17,'组长',NULL,1004);
 
 /*Table structure for table `sys_menu` */
 
@@ -311,14 +314,12 @@ CREATE TABLE `sys_menu` (
   `Icon` varchar(20) default NULL COMMENT '图标',
   `SortID` int(11) default NULL COMMENT '排序ID',
   `LevelID` int(11) default NULL COMMENT '层级ID',
-  `TypeID` int(11) default NULL COMMENT '类型ID',
-  `Visible` int(11) default NULL COMMENT '是否显示',
-  `Tag_CHS` varchar(20) default NULL COMMENT '中文标签',
-  `Tag_EN` varchar(20) default NULL COMMENT '英文标签（预留）',
   PRIMARY KEY  (`pk_Menu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_menu` */
+
+insert  into `sys_menu`(`pk_Menu`,`ParentID`,`Name_CHS`,`Name_EN`,`Url`,`Icon`,`SortID`,`LevelID`) values (1,'0','考勤管理','main',NULL,'fa-laptop',1,1001),(2,'1001','考勤管理','child','kaoqin_manager','fa-laptop',NULL,NULL),(3,'1001','考勤周报表','child','kaoqin_weekchart','fa-laptop',NULL,NULL),(4,'1001','考勤月报表','child','kaoqin_monthchart','fa-laptop',NULL,NULL),(5,'0','用户管理','main',NULL,'fa-book',2,1002),(6,'1002','部门管理','child','user_bumen_manager','fa-book',NULL,NULL),(7,'1002','职位管理','child','user_zhiwei_manager','fa-book',NULL,NULL),(8,'1002','用户管理','child','user_yonghu_manager','fa-book',NULL,NULL),(9,'0','公告通知','main',NULL,'fa-cogs',3,1003),(10,'1003','通知管理','child','gonggao_manager','fa-cogs',NULL,NULL),(11,'1003','通知列表','child','gonggao_list','fa-cogs',NULL,NULL),(12,'0','角色管理','main','admin','fa-bullhorn',4,1004),(13,'0','邮件管理','main',NULL,'fa-envelope',5,1005),(14,'1005','邮件管理','child','mail_mymail','fa-envelope',NULL,NULL),(15,'1005','发送邮件','child','mail_sendmail','fa-envelope',NULL,NULL),(16,'0','任务管理','main',NULL,'fa-tasks',6,1006),(17,'1006','任务管理','child','task_manager','fa-tasks',NULL,NULL),(18,'1006','我的任务','child','task_mytask','fa-tasks',NULL,NULL),(19,'0','车辆管理','main',NULL,'fa-bar-chart-o',7,1007),(20,'1007','用车管理','child','car_usemanager','fa-bar-chart-o',NULL,NULL),(21,'1007','车辆管理','child','car_manager','fa-bar-chart-o',NULL,NULL),(22,'0','财务管理','main',NULL,'fa-th-list',8,1008),(23,'1008','账号管理','child','caiwu_numbermanager','fa-th-list',NULL,NULL),(24,'1008','财务管理','child','caiwu_manager','fa-th-list',NULL,NULL),(25,'1008','财务报表','child','caiwu_chart','fa-th-list',NULL,NULL),(26,'0','流程管理','main',NULL,'fa-th-list',9,1009),(27,'1009','流程汇总','child','flow_list','fa-th-list',NULL,NULL),(28,'1009','流程审核','child','flow_shenhe','fa-th-list',NULL,NULL),(29,'0','通讯录','main','phone_number','fa-bullhorn',10,1010),(30,'0','工作流','main',NULL,'fa-file-text',11,1011),(31,'1011','步骤管理','child','workflow_manager','fa-file-text',NULL,NULL),(32,'1011','我的工作','child','workflow_mywork','fa-file-text',NULL,NULL),(33,'0','菜单管理','main','role/role_meun','fa-cogs',12,1012),(34,'0','类型管理','main','role/role_type','fa-cogs',13,1013),(35,'0','状态管理','main','role/role_stauts','fa-cogs',14,1014),(36,'0','权限管理','main','role/role_manager','fa-cogs',15,1015);
 
 /*Table structure for table `sys_statusid` */
 
@@ -430,6 +431,8 @@ CREATE TABLE `user_department` (
 
 /*Data for the table `user_department` */
 
+insert  into `user_department`(`pk_Department`,`DepartmentName`,`Phone`,`Email`,`Address`,`ParentID`,`TypeID`,`Manager`,`LevelID`,`CreateDate`,`Monday`,`Tuesday`,`Wednesday`,`Thursday`,`Friday`,`Saturday`,`Sunday`) values (1000,'总经办','0712-666666',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1001,'财务部','0712-666999',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1002,'行政部','0712-666888',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1003,'人力资源部','0712-666777',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1004,'销售部','0712-666222',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1005,'市场部','0712-666111',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1006,'营销部','0712-666555',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
 /*Table structure for table `user_list` */
 
 DROP TABLE IF EXISTS `user_list`;
@@ -475,7 +478,7 @@ CREATE TABLE `user_list` (
 
 /*Data for the table `user_list` */
 
-insert  into `user_list`(`pk_user`,`userName`,`password`,`typeId`,`fk_Department`,`RoleValue`,`RoleList`,`Position`,`Number`,`IsLock`,`LastLoginTime`,`FullName`,`Phone`,`Email`,`Wechat`,`QQ`,`ZipCode`,`Place`,`Address`,`Sex`,`Height`,`Weight`,`Birthday`,`Education`,`School`,`ImagePath1`,`IDCardPath`,`ResumePath`,`Wages`,`BankAccount`,`IDNumber`,`Remark`,`EntryTime`,`IsQuit`,`QuitTime`) values (1,'张三','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,NULL,NULL,NULL,NULL,'10000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'陈磊','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,NULL,NULL,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `user_list`(`pk_user`,`userName`,`password`,`typeId`,`fk_Department`,`RoleValue`,`RoleList`,`Position`,`Number`,`IsLock`,`LastLoginTime`,`FullName`,`Phone`,`Email`,`Wechat`,`QQ`,`ZipCode`,`Place`,`Address`,`Sex`,`Height`,`Weight`,`Birthday`,`Education`,`School`,`ImagePath1`,`IDCardPath`,`ResumePath`,`Wages`,`BankAccount`,`IDNumber`,`Remark`,`EntryTime`,`IsQuit`,`QuitTime`) values (1,'张三','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1002,3,NULL,NULL,'10000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'陈磊','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1000,3,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `user_position` */
 
