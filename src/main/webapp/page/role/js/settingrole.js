@@ -2,7 +2,6 @@ var pk_name = sessionStorage.getItem('pk_name');
 var pk_department = sessionStorage.getItem('pk_department');
 layui.use(['layer', 'form'], function () {
     var layer = layui.layer, form = layui.form;
-
     $.post("../../loadMenus.do", function (data) {
         var menushtml = "";
         var onlymenus = '<div class="col-sm-6">\n' +
