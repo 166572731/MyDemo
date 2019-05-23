@@ -7,11 +7,6 @@ import java.util.Map;
 
 public interface Role_managerMapper {
     /**
-     * 加载菜单
-     * */
-    List<Map> selectMenus(@Param("idList") List<Integer> idList);
-
-    /**
      * 加载权限角色列表
      * */
     List<Map> loadRole();

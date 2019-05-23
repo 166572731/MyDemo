@@ -6,8 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 public interface RolemanagerService {
-    Map selectRole(Integer departmentID, Integer roleID);
-    List<Map> selectMenus(List<Integer> idList);
+    /**
+     * 获取用户权限
+     * @param departmentID
+     * @param roleID
+     * @return
+     */
+    List<Map> selectRole(Integer departmentID, Integer roleID);
+
     Map loadRole();
     Integer addDepartmentRole(String roleNname,Integer departmentID);
     /**

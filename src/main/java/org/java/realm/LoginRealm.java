@@ -10,11 +10,13 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.java.service.MenusService;
 import org.java.service.RolemanagerService;
 import org.java.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,18 +25,23 @@ public class LoginRealm extends AuthorizingRealm {
     UserService userService;
     @Autowired
     RolemanagerService rolemanagerService;
-    Map role=null;
+    @Autowired
+    MenusService menusService;
+    List<Map> role=null;
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         System.out.println("#######################################正在进行授权,从数据库中读取用户访问权限 ");
+       /* for (Map map:role) {
+
+        }
         String role_name= (String) role.get("role_name");
-        List<String> list=null;
+        Map map=new HashMap();
         for (String i: role_name.split(",")) {
             list.add(i);
         }
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //添加访问权限
-        info.addStringPermissions(list);
+        info.addStringPermissions(list);*/
         return null;
     }
 
@@ -48,20 +55,25 @@ public class LoginRealm extends AuthorizingRealm {
         if (userList == null) {
             return null;
         }
+        //加载用户所有可查看页面
         role=rolemanagerService.selectRole((Integer) userList.get("fk_Department"), (Integer) userList.get("RoleValue"));
-        /*String menuString= (String) role.get("fk_Menu");
         List<Integer> idList=new ArrayList<>();
-        for (String i:
-             menuString.split(",")) {
-            idList.add(Integer.parseInt(i));
-        }*/
-        List<Integer> idList=new ArrayList<>();
-        idList.add(33);
-        idList.add(34);
-        idList.add(35);
-        idList.add(36);
-        List<Map> menus=rolemanagerService.selectMenus(idList);
-        userList.put("menus", menus);
+        for (Map map: role) {
+            Integer pk_menu= (Integer) map.get("fk_Menu");
+            idList.add(pk_menu);
+        }
+        List<Map> menus=menusService.selectMenus(idList);
+        List<Map> mainMenus=new ArrayList<>();
+        List<Map> childMenus=new ArrayList<>();
+        for (Map menu: menus) {
+            if (menu.get("Name_EN").equals("main")){
+                mainMenus.add(menu);
+            }else {
+                childMenus.add(menu);
+            }
+        }
+        userList.put("childMenus", childMenus);
+        userList.put("mainMenus", mainMenus);
         //用户存在，得到该用户的正确密码
         String pwd = (String) userList.get("password");
         //盐

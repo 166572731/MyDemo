@@ -117,60 +117,80 @@ layui.use(['laydate', 'layer'], function () {
             }
         }
     });
-    $.post("loadnav.do",function (data) {
-        /**
-         * 动态加载左侧导航
-         * */
-        var lihtml='';
-        $.each(data.menus,function (index,menu) {
-            lihtml+=' <li class="menu-one"><a href="#" id="'+menu.Url+'"><i class="fa '+menu.Icon+'"></i>'
-                +'<span>'+menu.Name_CHS+'</span></a></li>';
-        })
-        $(".nav-stacked").append(lihtml);
-        $.getScript("js/scripts.js");  //重新载入js文件
-        /**
-         * 页面切换
-         * */
-        $(".menu-one").each(function () {
-            $(this).find("a").click(function () {
-                title = $(this).find("span").text();
-                parentTitle = $(this).find("span").text();
-                url = $(this).attr("id");
-                pagechange();
-            })
-        });
-        $(".menu-list").each(function () {
-            $(this).find("a").each(function (index) {
-                $(this).click(function () {
-                    if (index === 0) {
-                        parentTitle = $(this).text();
-                    } else {
-                        title = $(this).text();
-                        url = $(this).attr("id");
-                        pagechange();
-                    }
-                })
-            })
-        });
-        function pagechange() {
-            headhtml = '<h3 class="pull-right"  style="margin-top: -5px;">' + title + '</h3>\n' +
-                '<a href="#" class="returnpage hide"><span style="color: #4db14d; margin-right: 20px;" class="pull-right">\n' +
-                '     返回上一级 <i class="fa fa-share"></i>\n' +
-                '</span></a>' +
-                '<ul class="breadcrumb">\n' +
-                       '<li><a href="index.jsp"><i class="fa fa-home"> </i> 首页</a></li>\n' +
-                       '<li class="active">' + parentTitle + '</li>\n' +
-                '</ul>';
-            $(".page-heading").html(headhtml);
-            if (url == "") {
-                location.href = "index.jsp";
-                return false;
-            }
-            $("#frame").attr("src", "page/" + url + ".jsp");
-        }
-    },"json");
 });
-
+/**
+ * 动态加载左侧导航
+ * */
+$.post("loadnav.do",function (data) {
+    var lihtml='';
+    var listhtml='';
+    $.each(data.mainMenus,function (index,mainmenu) {
+        if (mainmenu.Url!=undefined){
+            lihtml+=' <li class="menu-one"><a href="#" id="'+mainmenu.Url+'"><i class="fa '+mainmenu.Icon+'"></i>'
+                +'<span>'+mainmenu.Name_CHS+'</span></a></li>';
+        }else {
+            listhtml+='<li class="menu-list"><a href=""><i\n' +
+            '                        class="fa fa-file-text"></i> <span>'+mainmenu.Name_CHS+'</span></a>\n' +
+            '                    <ul class="sub-menu-list">\n';
+            $.each(data.childMenus,function(index,childmenu){
+                if (mainmenu.LevelID==childmenu.ParentID){
+                    listhtml+='<li><a href="javascript:;" id="'+childmenu.Url+'">'+childmenu.Name_CHS+'</a></li>';
+                }
+            });
+            listhtml+= '</ul></li>';
+        }
+    })
+    if (listhtml!=''){
+        $(".nav-stacked").append(listhtml);
+    }
+    if (lihtml!=''){
+        $(".nav-stacked").append(lihtml);
+    }
+    $.getScript("js/scripts.js");  //重新载入js文件
+    /**
+     * 页面切换
+     * */
+    $(".menu-one").each(function () {
+        $(this).find("a").click(function () {
+            title = $(this).find("span").text();
+            parentTitle = $(this).find("span").text();
+            url = $(this).attr("id");
+            pagechange();
+        })
+    });
+    $(".menu-list").each(function () {
+        $(this).find("a").each(function (index) {
+            $(this).click(function () {
+                if (index === 0) {
+                    parentTitle = $(this).text();
+                } else {
+                    title = $(this).text();
+                    url = $(this).attr("id");
+                    pagechange();
+                }
+            })
+        })
+    });
+    function pagechange() {
+        headhtml = '<h3 class="pull-right"  style="margin-top: -5px;">' + title + '</h3>\n' +
+            '<a href="#" class="returnpage hide"><span style="color: #4db14d; margin-right: 20px;" class="pull-right">\n' +
+            '     返回上一级 <i class="fa fa-share"></i>\n' +
+            '</span></a>' +
+            '<ul class="breadcrumb">\n' +
+            '<li><a href="index.jsp"><i class="fa fa-home"> </i> 首页</a></li>\n' +
+            '<li class="active">' + parentTitle + '</li>\n' +
+            '</ul>';
+        $(".page-heading").html(headhtml);
+        if (url == "") {
+            location.href = "index.jsp";
+            return false;
+        }
+        $("#frame").attr("src", "page/" + url + ".jsp");
+    }
+},"json");
+/**
+ * 打开新的子页面
+ */
 function childPagechange(){
     var n=arguments.length;
         for (var i = 0; i < n ; i++) {

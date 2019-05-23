@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,5 +26,10 @@ public class MenusController {
         map.put("main", mainList);
         map.put("child", childList);
         return map;
+    }
+    @RequestMapping("loadnav")
+    public @ResponseBody Map loadNav(HttpSession session){
+        Map loginMan= (Map) session.getAttribute("loginMan");
+        return loginMan;
     }
 }

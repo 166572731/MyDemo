@@ -20,4 +20,10 @@ public class MenusServiceImpl implements MenusService {
     public List<Map> menusChild() {
         return menusMapper.menusChild();
     }
+
+    @Override
+    public List<Map> selectMenus(List<Integer> idList) {
+
+        return menusMapper.selectMenus(idList);
+    }
 }

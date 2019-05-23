@@ -7,4 +7,16 @@
     <select id="menusChild" resultType="map">
         SELECT * FROM sys_menu WHERE Name_EN='child';
     </select>
+    <select id="selectMenus" resultType="map">
+        SELECT * FROM sys_menu WHERE pk_Menu IN
+        <foreach collection="idList" item="item" index="" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        OR pk_Menu IN
+        (SELECT pk_Menu FROM sys_menu WHERE LevelID IN (SELECT ParentID FROM sys_menu WHERE pk_Menu IN
+        <foreach collection="idList" item="item" index="" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        ));
+    </select>
 </mapper>

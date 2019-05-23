@@ -6,4 +6,5 @@ import java.util.Map;
 public interface MenusService {
     List<Map> menusMain();
     List<Map> menusChild();
+    List<Map> selectMenus(List<Integer> idList);
 }

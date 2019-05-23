@@ -13,13 +13,8 @@ public class RolemanagerImpl implements RolemanagerService {
     @Autowired
     Role_managerMapper role_manager;
     @Override
-    public Map selectRole(Integer departmentID, Integer roleID) {
-        return role_manager.loadRoleName(roleID, departmentID).get(0);
-    }
-
-    @Override
-    public List<Map> selectMenus(List<Integer> idList) {
-        return role_manager.selectMenus(idList);
+    public List<Map> selectRole(Integer departmentID, Integer roleID) {
+        return role_manager.loadRoleName(roleID, departmentID);
     }
 
     @Override
