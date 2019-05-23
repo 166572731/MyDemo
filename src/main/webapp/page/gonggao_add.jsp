@@ -9,23 +9,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport"
-		  content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-	<meta name="keywords"
-		  content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
-	<meta name="description" content="">
-	<meta name="author" content="ThemeBucket">
-	<link rel="shortcut icon" href="#" type="../image/png">
-	<title>OA办公自动化系统</title>
-	<!--common-->
-	<link href="../layui/css/layui.css" rel="stylesheet">
-	<link href="../css/style.css" rel="stylesheet">
-	<link href="../css/style-responsive.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="keywords"
+          content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="shortcut icon" href="#" type="../image/png">
+    <title>OA办公自动化系统</title>
+    <!--common-->
+    <link href="../layui/css/layui.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 <!--body wrapper start-->
 <div>
-
 
 
 </div>

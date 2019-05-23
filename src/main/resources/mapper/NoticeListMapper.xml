@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.NoticeListMapper">
+    <insert id="addNotice" parameterType="org.java.entity.NoticeList">
+        insert into notice_list values (null,
+        #{fkUser},
+        #{fkDepartment},
+        #{typeId},
+        #{statusId},
+        #{title},
+        #{description},
+        #{imagePath},
+        #{filePath},
+        #{userList},
+        #{departmentList},
+        #{roleList},
+        #{url},
+        #{startDate},
+        #{endDate},
+        #{isTop},
+        #{createDate},
+        #{isRead},
+        #{readDate}
+        );
+    </insert>
+</mapper>
