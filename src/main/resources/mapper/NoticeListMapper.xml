@@ -23,4 +23,8 @@
         #{readDate}
         );
     </insert>
+
+    <select id="findByUser" parameterType="int" resultType="org.java.entity.NoticeList">
+        select * from SELECT * FROM notice_list WHERE fk_User=#{user}
+    </select>
 </mapper>

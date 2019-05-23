@@ -7,7 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class NoticeListServiceImpl implements NoticeListService {
     @Autowired
-    private NoticeListMapper mapper;
+    NoticeListMapper mapper;
+    @Override
+    public NoticeList findByUser(Integer user) {
+        return mapper.findByUser(user);
+    }
+
+    @Autowired
     @Override
     public void addNocice(NoticeList noticeList) {
         mapper.addNotice(noticeList);

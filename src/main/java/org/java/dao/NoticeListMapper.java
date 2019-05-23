@@ -4,4 +4,5 @@ import org.java.entity.NoticeList;
 
 public interface NoticeListMapper {
     void addNotice(NoticeList noticeList);
+    NoticeList findByUser(Integer user);
 }
