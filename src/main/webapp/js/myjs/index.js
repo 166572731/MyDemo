@@ -1,3 +1,7 @@
+var parentTitle = "桌面";
+var title = "首页";
+var url = "";
+var headhtml="";
 /**
  *创建wensocket连接
  * @type {null}
@@ -127,9 +131,6 @@ layui.use(['laydate', 'layer'], function () {
         /**
          * 页面切换
          * */
-        var parentTitle = "桌面";
-        var title = "首页";
-        var url = "";
         $(".menu-one").each(function () {
             $(this).find("a").click(function () {
                 title = $(this).find("span").text();
@@ -152,15 +153,13 @@ layui.use(['laydate', 'layer'], function () {
             })
         });
         function pagechange() {
-            alert();
-            var headhtml =
-                '<h3 class="pull-right"  style="margin-top: -5px;">' + title + '</h3>\n' +
-                '<a href="#" class="returnpage"><span style="color: #4db14d; margin-right: 20px;" class="pull-right">\n' +
+            headhtml = '<h3 class="pull-right"  style="margin-top: -5px;">' + title + '</h3>\n' +
+                '<a href="#" class="returnpage hide"><span style="color: #4db14d; margin-right: 20px;" class="pull-right">\n' +
                 '     返回上一级 <i class="fa fa-share"></i>\n' +
                 '</span></a>' +
                 '<ul class="breadcrumb">\n' +
-                '<li><a href="index.jsp"><i class="fa fa-home"> </i> 首页</a></li>\n' +
-                '<li class="active">' + parentTitle + '</li>\n' +
+                       '<li><a href="index.jsp"><i class="fa fa-home"> </i> 首页</a></li>\n' +
+                       '<li class="active">' + parentTitle + '</li>\n' +
                 '</ul>';
             $(".page-heading").html(headhtml);
             if (url == "") {
@@ -171,13 +170,16 @@ layui.use(['laydate', 'layer'], function () {
         }
     },"json");
 });
-function addtitle() {
+
+function childPagechange(){
     var n=arguments.length;
-    for (var i = 0; i < n; i++) {
-        $(".breadcrumb").append('<li class="active newtitle">'+arguments[i]+'</li>');
-    }
-}
-function removetitle() {
-    alert();
+        for (var i = 0; i < n ; i++) {
+            $(".breadcrumb").append('<li class="active">'+arguments[i]+'</li>');
+        }
+        $(".returnpage").click(function () {
+            $(".page-heading").html(headhtml);
+            $("#frame").attr("src", "page/" + url + ".jsp");
+        });
+        $(".returnpage").removeAttr("class","hide");
 }
 
