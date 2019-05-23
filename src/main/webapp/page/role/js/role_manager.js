@@ -106,7 +106,7 @@ layui.use(['layer'],function () {
                     success: function (layero, index) {
                         var body = layer.getChildFrame('body', index);
                         var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-                        top.window.parent.addtitle(dename,roname);
+                        top.window.parent.pagechange();
                     }
                 });
             });

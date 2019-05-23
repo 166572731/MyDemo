@@ -152,6 +152,7 @@ layui.use(['laydate', 'layer'], function () {
             })
         });
         function pagechange() {
+            alert();
             var headhtml =
                 '<h3 class="pull-right"  style="margin-top: -5px;">' + title + '</h3>\n' +
                 '<a href="#" class="returnpage"><span style="color: #4db14d; margin-right: 20px;" class="pull-right">\n' +
