@@ -224,7 +224,7 @@
         <!-- page heading end-->
         <!--body wrapper start-->
         <div class="wrapper">
-            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:62%;"></iframe>
+            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:75%;"></iframe>
         </div>
         <!--body wrapper end-->
         <!--footer section start-->
