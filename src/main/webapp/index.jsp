@@ -314,10 +314,6 @@
         <!-- page heading start-->
         <div class="page-heading">
             <h3 class="pull-right" style="margin-top: -5px;">首页</h3>
-            <a href="#" class="returnpage"><span style="color: #4db14d; margin-right: 20px;" class="pull-right">
-                返回上一级 <i class="fa fa-share"></i>
-                </span>
-            </a>
             <ul class="breadcrumb">
                 <li><a href="index.jsp"><i class="fa fa-home"> </i> 首页</a></li>
                 <li class="active">桌面</li>
