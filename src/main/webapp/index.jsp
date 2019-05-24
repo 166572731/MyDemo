@@ -246,6 +246,7 @@
 <script src="http://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <%--<script type="text/javascript" src="js/webchat/wechat.js"></script>--%>
 <script src="js/myjs/index.js"></script>
+<script src="js/scripts.js"></script>
 <!-- 信息提示框 -->
 <script type="text/javascript" src="js/info/layx.min.js"></script>
 </body>

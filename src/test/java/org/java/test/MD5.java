@@ -1,4 +1,4 @@
-package org.java.realm;
+package org.java.test;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 
