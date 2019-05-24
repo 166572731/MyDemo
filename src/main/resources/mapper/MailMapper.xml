@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.MailMapper">
+
+    <select id="ShowMailByMailTo" resultType="map">
+      SELECT * FROM mail_list WHERE MailTo=#{MailTo}
+    </select>
+    
+    <select id="ShowAddress" resultType="map">
+        SELECT * FROM address_list WHERE user_name=#{name}
+    </select>
+
+    <insert id="AddMail" parameterType="map">
+INSERT INTO `oawork`.`mail_list`
+	(`pk_Mail`,
+	`fk_Account`,
+	`fk_User`,
+	`fk_Department`,
+	`TypeID`,
+	`StatusID`,
+	`MailType`,
+	`MailFrom`,
+	`MailTo`,
+	`Subject`,
+	`Body`,
+	`IsSent`,
+	`SentDate`,
+	`IsAttachment`,
+	`AttachmentList`,
+	`IsRead`,
+	`ReadDate`,
+	`Priority`,
+	`IsReply`,
+	`ReplyDate`
+	)
+	VALUES
+	(null,
+	#{fk_Account},
+	#{fk_User},
+	null,
+	#{TypeID},
+	#{StatusID},
+	#{MailType},
+	null,
+	#{MailTo},
+	#{Subject},
+	#{Body},
+	null,
+	'2019-8-12 12:50:30',
+	null,
+	null,
+	null,
+	null,
+	null,
+	null,
+	null
+	)
+    </insert>
+
+</mapper>

@@ -24,74 +24,8 @@
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 <!--body wrapper start-->
-<div>
-
-	<div class="demoTable">
-		搜索ID：
-		<div class="layui-inline">
-			<input name="id" class="layui-input" id="demoReload" autocomplete="off">
-		</div>
-		<button class="layui-btn" data-type="reload">搜索</button>
-	</div>
-
-	<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table>
-
-
-
-	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-	<script>
-        layui.use('table', function(){
-            var table = layui.table;
-
-            //方法级渲染
-            table.render({
-                elem: '#LAY_table_user'
-                ,url: '/demo/table/user/'
-                ,cols: [[
-                    {checkbox: true, fixed: true}
-                    ,{field:'id', title: 'ID', width:80, sort: true, fixed: true}
-                    ,{field:'username', title: '用户名', width:80}
-                    ,{field:'sex', title: '性别', width:80, sort: true}
-                    ,{field:'city', title: '城市', width:80}
-                    ,{field:'sign', title: '签名'}
-                    ,{field:'experience', title: '积分', sort: true, width:80}
-                    ,{field:'score', title: '评分', sort: true, width:80}
-                    ,{field:'classify', title: '职业', width:80}
-                    ,{field:'wealth', title: '财富', sort: true, width:135}
-                ]]
-                ,id: 'testReload'
-                ,page: true
-                ,height: 315
-            });
-
-            var $ = layui.$, active = {
-                reload: function(){
-                    var demoReload = $('#demoReload');
-
-                    //执行重载
-                    table.reload('testReload', {
-                        page: {
-                            curr: 1 //重新从第 1 页开始
-                        }
-                        ,where: {
-                            key: {
-                                id: demoReload.val()
-                            }
-                        }
-                    });
-                }
-            };
-
-            $('.demoTable .layui-btn').on('click', function(){
-                var type = $(this).data('type');
-                active[type] ? active[type].call(this) : '';
-            });
-        });
-	</script>
-
-
-
-</div>
+<h1 style="font-size:35px;text-align:center;" class="layui-bg-cyan"  >收件箱</h1>
+<table id="demo" lay-filter="demo"></table>
 <!--body wrapper end-->
 <!-- 将js放在文档的末尾，以便页面加载速度更快。 -->
 <script src="../js/jquery-1.10.2.min.js"></script>
@@ -101,6 +35,90 @@
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
 <script src="../layui/layui.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+<script>
+    var table;
+    layui.use('table', function(){
+        table = layui.table;
+
+        //第一个实例
+        table.render({
+            elem: '#demo'
+            ,height: 430
+            ,url: '../showMail.do' //数据接口
+            ,page: true //开启分页
+            ,cols: [[ //表头
+                {field: 'TypeID', title: '类型', width:80,  fixed: 'left'}
+                ,{field: 'fk_Account', title: '发件人', width:80}
+                ,{field: 'Subject', title: '主题', width:120}
+                ,{field: 'SentDate', title: '时间', width:180,templet:function (d) {
+						return layui.util.toDateString(d.SentDate,'yyyy-MM-dd HH:mm:ss');
+                    }}
+                ,{field: 'StatusID', title: '状态', width: 80,templet:function (d) {
+						if(d.StatusID=='未读'){
+						    return '<span style="color: #cc0000;">'+d.StatusID+'</span>'
+						}
+                    }}
+                ,{field: 'wealth', title: '操作', width: 200,toolbar: '#barDemo'}
+            ]]
+        });
+
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+
+
+
+            } else if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+
+        });
+
+    });
+</script>
+
+<script id="barDemo" type="text/html">
+	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<%--<script>--%>
+<%--layui.use('table', function(){--%>
+<%--var table = layui.table;--%>
+<%--//监听工具条--%>
+
+
+<%--var $ = layui.$, active = {--%>
+<%--getCheckData: function(){ //获取选中数据--%>
+<%--var checkStatus = table.checkStatus('idTest')--%>
+<%--,data = checkStatus.data;--%>
+<%--layer.alert(JSON.stringify(data));--%>
+<%--}--%>
+<%--,getCheckLength: function(){ //获取选中数目--%>
+<%--var checkStatus = table.checkStatus('idTest')--%>
+<%--,data = checkStatus.data;--%>
+<%--layer.msg('选中了：'+ data.length + ' 个');--%>
+<%--}--%>
+<%--,isAll: function(){ //验证是否全选--%>
+<%--var checkStatus = table.checkStatus('idTest');--%>
+<%--layer.msg(checkStatus.isAll ? '全选': '未全选')--%>
+<%--}--%>
+<%--};--%>
+
+<%--$('.demoTable .layui-btn').on('click', function(){--%>
+<%--var type = $(this).data('type');--%>
+<%--active[type] ? active[type].call(this) : '';--%>
+<%--});--%>
+<%--});--%>
+<%--</script>--%>
+
 <!--所有页面的通用脚本-->
 <script src="../js/scripts.js"></script>
 <script type="text/javascript">
