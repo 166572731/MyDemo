@@ -50,12 +50,13 @@ layui.use(['laydate', 'layer'], function () {
     var laydate = layui.laydate, layer = layui.layer;
     $(".webchat").click(function () {
         layer.open({
-            area: ['862px', '675px'],
+            area: ['862px', '625px'],
             closeBtn: 1,
             title: "微聊 —— 畅享轻聊办公",
             type: 2,
             shade: 0,
             resize: false,
+            offset: '55px',
             content: 'page/webchat/webchat.jsp',
             id: "webchat",
             success: function (layero, index) {
@@ -66,23 +67,25 @@ layui.use(['laydate', 'layer'], function () {
                 var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
                 //发送消息
                 body.find('#send').click(function () {
-                    var chat = body.find('#chatbox');
                     var talk = body.find('#talkbox');
                     var inputText = body.find('.text').val();
+                    var office_text=body.find('.office_text');
                     if (inputText == '') {
                         return false;
                     } else {
                         websocket.send(inputText);
                         body.find('.text').val("");
-                        chat.scrollTop = chat.scrollHeight;
-                        talk.style.background = "#fff";
-                        body.find('.text')[0].style.background = "#fff";
+                        //接收到消息的回调方法
+                        websocket.onmessage = function (event) {
+                            var chat=body.find("#chatbox");
+                            var office_text=body.find("#office_text");
+                            $(chat).append(iframeWin.replyme(iframeWin.AnalyticEmotion(JSON.parse(event.data).message)));
+                            $(office_text).scrollTop($(office_text)[0].scrollHeight);
+                            talk.style.background = "#fff";
+                            body.find('.text')[0].style.background = "#fff";
+                        }
                     };
                 });
-                //接收到消息的回调方法
-                websocket.onmessage = function (event) {
-                    body.find("#chatbox").append(iframeWin.replyme(iframeWin.AnalyticEmotion(JSON.parse(event.data).message)));
-                }
             }
         });
     });
@@ -122,6 +125,9 @@ layui.use(['laydate', 'layer'], function () {
  * 动态加载左侧导航
  * */
 $.post("loadnav.do",function (data) {
+    sessionStorage.setItem("loginMan",JSON.stringify(data));
+    $(".headimg").attr("src","images/head/"+data.ImagePath1);
+    $(".loginname").text(data.userName);
     var lihtml='';
     var listhtml='';
     $.each(data.mainMenus,function (index,mainmenu) {
