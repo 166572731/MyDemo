@@ -5,7 +5,8 @@
   Time: 9:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt"  prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +24,9 @@
 	<link href="../css/style.css" rel="stylesheet">
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
+<c:if test="${list==null}">
+    <jsp:forward page="/findAll.do"/>
+</c:if>
 <!--body wrapper start-->
 <div>
     <!-- 内容 -->
@@ -40,7 +44,7 @@
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">
-                                    <a id="ctl00_cphMain_hlAdd" href="gonggao_add.jsp"><span class="label label-success"><i class="fa fa-plus"></i> 新增</span></a>
+                                    <a id="ctl00_cphMain_hlAdd" href="${pageContext.request.contextPath}/page/gonggao_add.jsp"><span class="label label-success"><i class="fa fa-plus"></i> 新增</span></a>
                                 </h3>
                                 <div class="box-tools">
                                     <div class="input-group" style="width: 150px;">
@@ -55,124 +59,79 @@
 
                                 <div>
                                     <table class="table table-hover" cellspacing="0" border="0" id="ctl00_cphMain_GridView1" style="border-width:0px;border-collapse:collapse;">
+
                                         <tr>
                                             <th class="sort" scope="col"><a href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1&#39;,&#39;Sort$pk_Notice&#39;)">ID</a><span><img src='/Images/desc.gif' /></span></th><th scope="col"><a href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1&#39;,&#39;Sort$TypeID&#39;)">类型</a></th><th scope="col">标题</th><th scope="col">发布时间</th><th scope="col">发布人</th><th scope="col">部门</th><th scope="col"><a href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1&#39;,&#39;Sort$StatusID&#39;)">状态</a></th><th scope="col">附件</th><th scope="col">置顶</th><th scope="col">操作</th>
-                                        </tr><tr>
-                                        <td class="id">
-                                            <span id="ctl00_cphMain_GridView1_ctl02_lblID">7</span>
-                                        </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblType">通知</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblTitle">有1个工作审批已通过</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblCreateDate">2019/3/9 0:36:53</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblCreateUser">盖茨</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblDepartmentName">总公司</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblStatus"><span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#00C0EF">一般</span></span>
-                                    </td><td class="mailbox-attachment">
-                                        <span id="ctl00_cphMain_GridView1_ctl02_lblAttachment"></span>
-                                    </td><td>
-                                        <span disabled="disabled"><input id="ctl00_cphMain_GridView1_ctl02_cbTop" type="checkbox" name="ctl00$cphMain$GridView1$ctl02$cbTop" disabled="disabled" /></span>
-                                    </td><td>
-                                        <a id="ctl00_cphMain_GridView1_ctl02_gvEdit" title="修改" href="Edit.aspx?id=XiRAJSMhKiY3&amp;active=34,35"><span class="label label-primary"><i class="fa fa-edit"></i> 修改</span></a>
-                                        <a onclick="{return confirm(&#39;删除该记录将不能恢复，确定删除吗？&#39;);};" id="ctl00_cphMain_GridView1_ctl02_gvDelete" title="删除" href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1$ctl02$gvDelete&#39;,&#39;&#39;)"><span class="label label-danger"><i class="fa fa-remove"></i> 删除</span></a>
-                                    </td>
-                                    </tr><tr>
-                                        <td class="id">
-                                            <span id="ctl00_cphMain_GridView1_ctl03_lblID">6</span>
-                                        </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblType">通知</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblTitle">有1个工作需要您审批</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblCreateDate">2019/3/9 0:36:11</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblCreateUser">盖茨</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblDepartmentName">总公司</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblStatus"><span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#DD4B39">紧急</span></span>
-                                    </td><td class="mailbox-attachment">
-                                        <span id="ctl00_cphMain_GridView1_ctl03_lblAttachment"></span>
-                                    </td><td>
-                                        <span disabled="disabled"><input id="ctl00_cphMain_GridView1_ctl03_cbTop" type="checkbox" name="ctl00$cphMain$GridView1$ctl03$cbTop" disabled="disabled" /></span>
-                                    </td><td>
-                                        <a id="ctl00_cphMain_GridView1_ctl03_gvEdit" title="修改" href="Edit.aspx?id=XiRAJSMhKiY2&amp;active=34,35"><span class="label label-primary"><i class="fa fa-edit"></i> 修改</span></a>
-                                        <a onclick="{return confirm(&#39;删除该记录将不能恢复，确定删除吗？&#39;);};" id="ctl00_cphMain_GridView1_ctl03_gvDelete" title="删除" href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1$ctl03$gvDelete&#39;,&#39;&#39;)"><span class="label label-danger"><i class="fa fa-remove"></i> 删除</span></a>
-                                    </td>
-                                    </tr><tr>
-                                        <td class="id">
-                                            <span id="ctl00_cphMain_GridView1_ctl04_lblID">3</span>
-                                        </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblType">通知</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblTitle">周一上午全体员工会议</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblCreateDate">2015/10/23 22:07:38</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblCreateUser">盖茨</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblDepartmentName">总公司</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblStatus"><span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#DD4B39">紧急</span></span>
-                                    </td><td class="mailbox-attachment">
-                                        <span id="ctl00_cphMain_GridView1_ctl04_lblAttachment"><a href="../Files.aspx?file=XiRAJSMhKiZEb2N1bWVudC8xLzIwMTYwNTI1MTQwNzE2NDM1NjU1OTgucGRm" target="_blank"><i class="fa fa-paperclip"></i></a></span>
-                                    </td><td>
-                                        <span disabled="disabled"><input id="ctl00_cphMain_GridView1_ctl04_cbTop" type="checkbox" name="ctl00$cphMain$GridView1$ctl04$cbTop" disabled="disabled" /></span>
-                                    </td><td>
-                                        <a id="ctl00_cphMain_GridView1_ctl04_gvEdit" title="修改" href="Edit.aspx?id=XiRAJSMhKiYz&amp;active=34,35"><span class="label label-primary"><i class="fa fa-edit"></i> 修改</span></a>
-                                        <a onclick="{return confirm(&#39;删除该记录将不能恢复，确定删除吗？&#39;);};" id="ctl00_cphMain_GridView1_ctl04_gvDelete" title="删除" href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1$ctl04$gvDelete&#39;,&#39;&#39;)"><span class="label label-danger"><i class="fa fa-remove"></i> 删除</span></a>
-                                    </td>
-                                    </tr><tr>
-                                        <td class="id">
-                                            <span id="ctl00_cphMain_GridView1_ctl05_lblID">2</span>
-                                        </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblType">通知</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblTitle">元旦放假3天</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblCreateDate">2015/10/22 22:06:10</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblCreateUser">盖茨</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblDepartmentName">总公司</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblStatus"><span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#00C0EF">一般</span></span>
-                                    </td><td class="mailbox-attachment">
-                                        <span id="ctl00_cphMain_GridView1_ctl05_lblAttachment"></span>
-                                    </td><td>
-                                        <span disabled="disabled"><input id="ctl00_cphMain_GridView1_ctl05_cbTop" type="checkbox" name="ctl00$cphMain$GridView1$ctl05$cbTop" disabled="disabled" /></span>
-                                    </td><td>
-                                        <a id="ctl00_cphMain_GridView1_ctl05_gvEdit" title="修改" href="Edit.aspx?id=XiRAJSMhKiYy&amp;active=34,35"><span class="label label-primary"><i class="fa fa-edit"></i> 修改</span></a>
-                                        <a onclick="{return confirm(&#39;删除该记录将不能恢复，确定删除吗？&#39;);};" id="ctl00_cphMain_GridView1_ctl05_gvDelete" title="删除" href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1$ctl05$gvDelete&#39;,&#39;&#39;)"><span class="label label-danger"><i class="fa fa-remove"></i> 删除</span></a>
-                                    </td>
-                                    </tr><tr>
-                                        <td class="id">
-                                            <span id="ctl00_cphMain_GridView1_ctl06_lblID">1</span>
-                                        </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblType">公告</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblTitle">关于年度总结报告</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblCreateDate">2015/10/21 23:54:54</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblCreateUser">盖茨</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblDepartmentName">总公司</span>
-                                    </td><td>
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblStatus"><span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#F39C12">重要</span></span>
-                                    </td><td class="mailbox-attachment">
-                                        <span id="ctl00_cphMain_GridView1_ctl06_lblAttachment"></span>
-                                    </td><td>
-                                        <span disabled="disabled"><input id="ctl00_cphMain_GridView1_ctl06_cbTop" type="checkbox" name="ctl00$cphMain$GridView1$ctl06$cbTop" disabled="disabled" /></span>
-                                    </td><td>
-                                        <a id="ctl00_cphMain_GridView1_ctl06_gvEdit" title="修改" href="Edit.aspx?id=XiRAJSMhKiYx&amp;active=34,35"><span class="label label-primary"><i class="fa fa-edit"></i> 修改</span></a>
-                                        <a onclick="{return confirm(&#39;删除该记录将不能恢复，确定删除吗？&#39;);};" id="ctl00_cphMain_GridView1_ctl06_gvDelete" title="删除" href="javascript:__doPostBack(&#39;ctl00$cphMain$GridView1$ctl06$gvDelete&#39;,&#39;&#39;)"><span class="label label-danger"><i class="fa fa-remove"></i> 删除</span></a>
-                                    </td>
-                                    </tr>
+                                        </tr>
+                                        <c:forEach items="${list}" var="n">
+                                            <tr>
+
+                                                <td class="id">
+                                                    <span id="ctl00_cphMain_GridView1_ctl02_lblID">${n.pk_Notice}</span>
+                                                </td><td>
+                                                <c:if test="${n.typeId==1}">
+                                                    <span id="ctl00_cphMain_GridView1_ctl02_lblType">公告</span>
+                                                </c:if>
+                                                <c:if test="${n.typeId==2}">
+                                                    <span id="ctl00_cphMain_GridView1_ctl02_lblType">通知</span>
+                                                </c:if>
+
+                                            </td><td>
+                                                <span id="ctl00_cphMain_GridView1_ctl02_lblTitle">${n.title}</span>
+                                            </td><td>
+                                                <span id="ctl00_cphMain_GridView1_ctl02_lblCreateDate">${n.startDate}</span>
+                                            </td><td>
+
+                                                <span id="ctl00_cphMain_GridView1_ctl02_lblCreateUser">${loginMan.userName}</span>
+                                            </td><td>
+                                                <span id="ctl00_cphMain_GridView1_ctl02_lblDepartmentName">
+                                                    <c:if test="${n.fk_Department==1000}">
+                                                        总经办
+                                                    </c:if>
+                                                    <c:if test="${n.fk_Department==1001}">
+                                                        财务部
+                                                    </c:if>
+                                                    <c:if test="${n.fk_Department==1002}">
+                                                        行政部
+                                                    </c:if>
+                                                    <c:if test="${n.fk_Department==1003}">
+                                                        人力资源部
+                                                    </c:if>
+                                                    <c:if test="${n.fk_Department==1004}">
+                                                        销售部
+                                                    </c:if>
+                                                    <c:if test="${n.fk_Department==1005}">
+                                                        市场部
+                                                    </c:if>
+                                                    <c:if test="${n.fk_Department==1006}">
+                                                        营销部
+                                                    </c:if>
+                                                </span>
+                                            </td><td>
+                                                <span id="ctl00_cphMain_GridView1_ctl02_lblStatus">
+                                                    <c:if test="${n.statusId==1}">
+                                                        <span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#00C0EF">一般</span>
+                                                    </c:if>
+                                                    <c:if test="${n.statusId==2}">
+                                                        <span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#F39C12">重要</span>
+                                                    </c:if>
+                                                    <c:if test="${n.statusId==3}">
+                                                        <span style="font-size:9pt; color:#fff; padding:2px 4px; border-radius:3px; background-color:#DD4B39">紧急</span>
+                                                    </c:if>
+                                                    </span>
+                                            </td><td class="mailbox-attachment">
+                                                <span id="ctl00_cphMain_GridView1_ctl02_lblAttachment"></span>
+                                            </td><td>
+                                                <span disabled="disabled"><input id="ctl00_cphMain_GridView1_ctl02_cbTop" type="checkbox" name="ctl00$cphMain$GridView1$ctl02$cbTop" disabled="disabled" /></span>
+                                            </td><td>
+                                                <a id="ctl00_cphMain_GridView1_ctl02_gvEdit" title="修改" href="Edit.aspx?id=XiRAJSMhKiY3&amp;active=34,35"><span class="label label-primary"><i class="fa fa-edit"></i> 修改</span></a>
+                                                <a onclick="{return confirm(&#39;删除该记录将不能恢复，确定删除吗？&#39;);};" id="ctl00_cphMain_GridView1_ctl02_gvDelete" title="删除" href="../delById/${n.pk_Notice}.do"><span class="label label-danger"><i class="fa fa-remove"></i> 删除</span></a>
+                                            </td>
+                                            </tr>
+
+
+                                        </c:forEach>
+
                                     </table>
                                 </div>
 

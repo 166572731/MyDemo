@@ -38,22 +38,15 @@
 
         </script>
 
+
         <div class="content-wrapper">
 
-            <section class="content-header">
-                <h1>
-                    通知管理
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="../"><i class="fa fa-home"></i> 首页</a></li>
-                    <li class="active">通知管理</li>
-                </ol>
-            </section>
 
             <section class="content">
 
-                <div id="ctl00_cphMain_AlertDiv"></div>
 
+                <div id="ctl00_cphMain_AlertDiv"></div>
+            <form method="post" action="../addNotice.do">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <h3 class="box-title">
@@ -62,58 +55,59 @@
                     </div>
 
                     <div class="box-body">
-                        <div class="row">
+                        <div class="row" >
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label1">类型</span></label>
-                                <select name="ctl00$cphMain$ddlType" id="ctl00_cphMain_ddlType" class="form-control select2">
-                                    <option value="0">公告</option>
-                                    <option value="1">通知</option>
-                                    <option value="2">投票</option>
-
+                                <select name="typeId" id="ctl00_cphMain_ddlType" class="form-control select2">
+                                    <option value="1">公告</option>
+                                    <option value="2">通知</option>
                                 </select>
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label5">状态</span></label>
-                                <select name="ctl00$cphMain$ddlStatus" id="ctl00_cphMain_ddlStatus" class="form-control select2">
-                                    <option value="0">一般</option>
-                                    <option value="1">重要</option>
-                                    <option value="2">紧急</option>
+                                <select name="statusId" id="ctl00_cphMain_ddlStatus" class="form-control select2">
+                                    <option value="1">一般</option>
+                                    <option value="2">重要</option>
+                                    <option value="3">紧急</option>
 
                                 </select>
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label14">开始日期</span></label>
-                                <input name="ctl00$cphMain$txtStartDate" type="text" value="2019-05-23" id="ctl00_cphMain_txtStartDate" class="form-control" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;})" />
+                                <input name="startDate" type="text" value="2019-05-23" id="ctl00_cphMain_txtStartDate" class="form-control"  />
                             </div>
+
+
+
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label4">结束日期</span></label>
-                                <input name="ctl00$cphMain$txtEndDate" type="text" value="2019-05-30" id="ctl00_cphMain_txtEndDate" class="form-control" onfocus="WdatePicker({dateFmt:&#39;yyyy-MM-dd&#39;})" />
+                                <input name="endDate" type="text" value="2019-05-30" id="ctl00_cphMain_txtEndDate" class="form-control" />
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label2">标题</span></label>
-                                <input name="ctl00$cphMain$txtTitle" type="text" id="ctl00_cphMain_txtTitle" class="form-control" />
+                                <input name="title" type="text" id="ctl00_cphMain_txtTitle" class="form-control" />
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label7">链接</span></label>
-                                <input name="ctl00$cphMain$txtUrl" type="text" id="ctl00_cphMain_txtUrl" class="form-control" />
+                                <input name="url" type="text" id="ctl00_cphMain_txtUrl" class="form-control" />
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label3">描述</span></label>
-                                <textarea name="ctl00$cphMain$txtDescription" rows="5" cols="20" id="ctl00_cphMain_txtDescription" class="form-control">
-</textarea>
+                                <textarea name="description" rows="5" cols="20" id="ctl00_cphMain_txtDescription" class="form-control">
+                                </textarea>
                             </div>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label6">置顶</span></label>
                                 <br />
-                                <input id="ctl00_cphMain_cbTop" type="checkbox" name="ctl00$cphMain$cbTop" />
+                                <input id="ctl00_cphMain_cbTop"  type="checkbox" name="isTop" />
                             </div>
 
                         </div>
@@ -122,32 +116,33 @@
 
                             <hr />
 
-                            <div class="col-md-6 form-group" style="position:relative;">
-                                <input name="ctl00$cphMain$txtFilePath" type="text" id="ctl00_cphMain_txtFilePath" class="form-control" onfocus="this.blur()" />
-                                <div style="position:absolute; top:5px; right:20px;">
-                                    <a href="javascript:void();" onclick="removeAtt();"><span class="label label-danger"><i class="fa fa-remove"></i> 移除</span></a>
-                                </div>
-                            </div>
+                            <%--<div class="col-md-6 form-group" style="position:relative;">--%>
+                                <%--<input name="ctl00$cphMain$txtFilePath" type="text" id="ctl00_cphMain_txtFilePath" class="form-control" onfocus="this.blur()" />--%>
+                                <%--<div style="position:absolute; top:5px; right:20px;">--%>
+                                    <%--<a href="javascript:void();" onclick="removeAtt();"><span class="label label-danger"><i class="fa fa-remove"></i> 移除</span></a>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
 
-                            <div class="col-md-6 form-group">
-                                <div class="btn btn-default btn-file">
-                                    <i class="fa fa-paperclip"></i> 增加附件
-                                    <input type="file" name="ctl00$cphMain$fuAttachment" id="ctl00_cphMain_fuAttachment" onchange="ChkUpload(this);" />
-                                    <span id="filepath"></span>
-                                </div>
-                                <p class="help-block">5MB以内</p>
-                            </div>
+                            <%--<div class="col-md-6 form-group">--%>
+                                <%--<div class="btn btn-default btn-file">--%>
+                                    <%--<i class="fa fa-paperclip"></i> 增加附件--%>
+                                    <%--<input type="file" name="ctl00$cphMain$fuAttachment" id="ctl00_cphMain_fuAttachment" onchange="ChkUpload(this);" />--%>
+                                    <%--<span id="filepath"></span>--%>
+                                <%--</div>--%>
+                                <%--<p class="help-block">5MB以内</p>--%>
+                            <%--</div>--%>
 
                         </div>
 
                     </div>
 
                     <div class="box-footer">
-                        <input type="submit" name="ctl00$cphMain$btnSave" value="保存" id="ctl00_cphMain_btnSave" class="btn btn-primary" />
-                        <input type="submit" name="ctl00$cphMain$btnCancel" value="取消" id="ctl00_cphMain_btnCancel" class="btn btn-default" />
+                        <input type="submit" name="ctl00$cphMain$btnSave" value="保存" id="ctl00_cphMain_btnSave"  />
+                        <input type="button" name="ctl00$cphMain$btnCancel" value="取消" id="ctl00_cphMain_btnCancel" class="btn btn-default" />
                     </div>
 
                 </div>
+            </form>
 
             </section>
 
@@ -168,6 +163,20 @@
 <script src="../layui/layui.js"></script>
 <!--所有页面的通用脚本-->
 <script src="../js/scripts.js"></script>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+
 <script type="text/javascript">
     layui.use(['layer'], function () {
         var layer = layui.layer;
