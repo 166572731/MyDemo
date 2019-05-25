@@ -46,7 +46,7 @@ INSERT INTO `oawork`.`mail_list`
 	#{Subject},
 	#{Body},
 	null,
-	'2019-8-12 12:50:30',
+	now(),
 	null,
 	null,
 	null,
@@ -56,5 +56,9 @@ INSERT INTO `oawork`.`mail_list`
 	null
 	)
     </insert>
+
+	<update id="yidu" parameterType="int">
+		UPDATE mail_list SET StatusID='已读' WHERE pk_Mail=#{meilId}
+	</update>
 
 </mapper>

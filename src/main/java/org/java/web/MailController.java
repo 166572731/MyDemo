@@ -60,19 +60,25 @@ public class MailController {
     @RequestMapping("addMail")
     public String addMail(@RequestParam Map<String,Object> map,HttpServletRequest request)
     {
-        System.out.println("33333333333333333333333333333");
         HttpSession session=request.getSession();
-        Map<String,Object> userName= (Map<String, Object>) session.getAttribute("loginMan");//获得登录的用户名
+        Map<String,Object> userName= (Map<String, Object>) session.getAttribute("loginMan");//获得登录的用户
         String name=userName.get("userName").toString();
         map.put("fk_Account", name);
         map.put("fk_User", name);
         map.put("StatusID", "未读");
         map.put("MailType", "1");
 
-        System.out.println(map);
         mailServiec.AddMail(map);
         return "page/ShowMeil";
     }
-
+    @RequestMapping("/yidu")
+    public @ResponseBody int yidua(HttpServletRequest request)
+    {
+        System.out.println("7777777777777777777777777777");
+        int mailId=Integer.parseInt(request.getParameter("meilid"));
+        System.out.println(mailId);
+        mailServiec.yidu(mailId);
+        return mailId;
+    }
 
 }

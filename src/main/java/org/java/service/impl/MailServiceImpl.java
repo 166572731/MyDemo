@@ -29,4 +29,9 @@ public class MailServiceImpl implements MailServiec {
     public void AddMail(Map<String,Object> map) {
         mailMapper.AddMail(map);
     }
+
+    @Override
+    public void yidu(int meil) {
+        mailMapper.yidu(meil);
+    }
 }

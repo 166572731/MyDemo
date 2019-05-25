@@ -13,4 +13,6 @@ public interface MailMapper {
 
   public void AddMail(Map<String, Object> map);
 
+  public void yidu(int meilId);
+
 }

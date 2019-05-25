@@ -23,6 +23,26 @@
 	<link href="../css/style.css" rel="stylesheet">
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
+
+<script id="yj" type="text/html" >
+    <h1 id="bt">标题</h1>
+    <%--<p id="sjr">发件人</p>--%>
+    <p id="sj">时间</p>
+    <p id="nr">内容</p>
+
+
+</script>
+<script id="xx" type="text/html" >
+    <h1 id="bt2">标题</h1>
+    <%--<p id="sjr">发件人</p>--%>
+    <p id="sj2">时间</p>
+    <p id="nr2">内容</p>
+
+    <div style="text-align:center;">
+    <button class="layui-btn " id="ok">好的</button>
+    </div>
+</script>
+
 <!--body wrapper start-->
 <h1 style="font-size:35px;text-align:center;" class="layui-bg-cyan"  >收件箱</h1>
 <table id="demo" lay-filter="demo"></table>
@@ -59,7 +79,9 @@
                 ,{field: 'StatusID', title: '状态', width: 80,templet:function (d) {
 						if(d.StatusID=='未读'){
 						    return '<span style="color: #cc0000;">'+d.StatusID+'</span>'
-						}
+						}else {
+                            return '<span style="color: rgb(59,81,13);">'+d.StatusID+'</span>'
+                        }
                     }}
                 ,{field: 'wealth', title: '操作', width: 200,toolbar: '#barDemo'}
             ]]
@@ -68,8 +90,46 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
+                if (data.TypeID==='邮件'){
+                    layer.open({
+                        title :'邮件',
+                        offset: '100px',
+                        area: ['500px', '450px'],
+                        type: 1,
+                        content: $('#yj').html(),
+                        success: function(){
+
+                        }
+                    });
+                    $('#bt').html('<h2 style=" text-align:center;">'+data.Subject+'</h2>');
+                    // $('#sjr').html('<p>发件人'+data.fk_Account+'</p>');
+                    $('#sj').html('<p >时间:'+layui.util.toDateString(data.SentDate,'yyyy-MM-dd HH:mm:ss')+'</p>');
+                    $('#nr').html('<p style=" text-align:center;">'+data.Body+'</p>');
+
+                } else{
 
 
+                  var index=layer.open({
+                        title :'消息',
+                        offset: '100px',
+                        area: ['500px', '300px'],
+                        type: 1,
+                        content: $('#xx').html()
+                    });
+                    $('#bt2').html('<h2 style=" text-align:center;">'+data.Subject+'</h2>');
+                    // $('#sjr').html('<p>发件人'+data.fk_Account+'</p>');
+                    $('#sj2').html('<p >时间:'+layui.util.toDateString(data.SentDate,'yyyy-MM-dd HH:mm:ss')+'</p>');
+                    $('#nr2').html('<p style=" text-align:center;">'+data.Body+'</p>');
+
+                    $.post('../yidu.do',{'meilid':data.pk_Mail}, function(str) {
+
+                    });
+
+                  $('#ok').click(function () {
+                      window.location.reload()
+                      layer.close(index);
+                  })
+                }
 
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
@@ -81,6 +141,7 @@
         });
 
     });
+
 </script>
 
 <script id="barDemo" type="text/html">

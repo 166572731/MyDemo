@@ -12,4 +12,7 @@ public interface MailServiec {
 
     //发邮件
     public void AddMail(Map<String, Object> map);
+
+    //改已读
+    public void yidu(int meil);
 }
