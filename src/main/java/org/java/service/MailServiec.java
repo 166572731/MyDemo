@@ -25,6 +25,10 @@ public interface MailServiec {
     //彻底删除邮件
     public void cdDelete(int meil);
 
+    //邮件恢复(删除后恢复)
     public  void hfu(int meil);
+
+    //邮件回复
+    public void  hfMail(Map<String,Object> map);
 
 }

@@ -23,4 +23,6 @@ public interface MailMapper {
 
   public void  hfu(int meilId);
 
+  public void hfMail(Map<String,Object> map);
+
 }

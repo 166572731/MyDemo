@@ -54,4 +54,9 @@ public class MailServiceImpl implements MailServiec {
     public void hfu(int meil) {
         mailMapper.hfu(meil);
     }
+
+    @Override
+    public void hfMail(Map<String, Object> map) {
+        mailMapper.hfMail(map);
+    }
 }

@@ -92,7 +92,7 @@ public class MailController {
     @RequestMapping("hsz")
     public  @ResponseBody Map<String,Object> hsz(HttpServletRequest request)
     {
-        System.out.println("**********************************************");
+
         HttpSession session=request.getSession();
         Map<String,Object> userName= (Map<String, Object>) session.getAttribute("loginMan");//获得登录的用户名
         String name=userName.get("userName").toString();
@@ -120,6 +120,20 @@ public class MailController {
         int mailId=Integer.parseInt(request.getParameter("meilid"));
         System.out.println(mailId);
         mailServiec.hfu(mailId);
+        return mailId;
+    }
+
+    @RequestMapping("/hfMail")
+    public  @ResponseBody int hfMail(HttpServletRequest request)
+    {
+        System.out.println("*****************//");
+        HttpSession session=request.getSession();
+        int mailId=Integer.parseInt(request.getParameter("meilid"));//邮件id
+        String nr=(String) request.getParameter("nr");//内容
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("pk_Mail", mailId);
+        map.put("nr",nr );
+        System.out.println(map);
         return mailId;
     }
 

@@ -29,8 +29,16 @@
     <%--<p id="sjr">发件人</p>--%>
     <p id="sj">时间</p>
     <p id="nr">内容</p>
-
-
+	<div class="layui-form-item layui-form-text">
+		<label class="layui-form-label">内容</label>
+		<div class="layui-input-block">
+			<textarea style="width: 400px;height: 200px" id="nrr" name="Body" placeholder="请输入内容" class="layui-textarea"></textarea>
+		</div>
+	</div>
+	<br>
+	<div style="text-align:center;">
+	<button class="layui-btn " id="hfu">回复</button>
+	</div>
 </script>
 <script id="xx" type="text/html" >
     <h1 id="bt2">标题</h1>
@@ -91,10 +99,10 @@
             var data = obj.data;
             if(obj.event === 'detail'){
                 if (data.TypeID==='邮件'){
-                    layer.open({
+                    var index= layer.open({
                         title :'邮件',
                         offset: '100px',
-                        area: ['500px', '450px'],
+                        area: ['600px', '450px'],
                         type: 1,
                         content: $('#yj').html(),
                         success: function(){
@@ -104,8 +112,19 @@
                     $('#bt').html('<h2 style=" text-align:center;">'+data.Subject+'</h2>');
                     // $('#sjr').html('<p>发件人'+data.fk_Account+'</p>');
                     $('#sj').html('<p >时间:'+layui.util.toDateString(data.SentDate,'yyyy-MM-dd HH:mm:ss')+'</p>');
-                    $('#nr').html('<p style=" text-align:center;">'+data.Body+'</p>');
+                    $('#nr').html('<p style=" text-align:center;font-size:18px;color:#000000">'+data.Body+'</p>');
 
+                    $('#hfu').click(function () {
+						var nr=$('#nrr').val();
+
+                        $.post('../hfMail.do',{'meilid':data.pk_Mail,'nr':nr}, function(str) {
+
+							alert("回复成功");
+                        });
+
+                        window.location.reload();//页面刷新
+                        layer.close(index);
+                    })
                 } else{
 
 
@@ -119,7 +138,7 @@
                     $('#bt2').html('<h2 style=" text-align:center;">'+data.Subject+'</h2>');
                     // $('#sjr').html('<p>发件人'+data.fk_Account+'</p>');
                     $('#sj2').html('<p >时间:'+layui.util.toDateString(data.SentDate,'yyyy-MM-dd HH:mm:ss')+'</p>');
-                    $('#nr2').html('<p style=" text-align:center;">'+data.Body+'</p>');
+                    $('#nr2').html('<p style=" text-align:center;font-size:18px;color:#c74937">'+data.Body+'</p>');
 
                     $.post('../yidu.do',{'meilid':data.pk_Mail}, function(str) {
 

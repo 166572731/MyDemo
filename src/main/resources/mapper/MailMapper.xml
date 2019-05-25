@@ -77,4 +77,19 @@ INSERT INTO `oawork`.`mail_list`
 		UPDATE mail_list SET MailType='1' WHERE pk_Mail=#{meilId}
 	</update>
 
+	<insert id="hfMail" parameterType="map">
+			INSERT INTO `oawork`.`reply_list`
+		(`replyId`,
+		`pk_Mail`,
+		`nr`,
+		`ReplyDate`
+		)
+		VALUES
+		(null ,
+		#{pk_Mail},
+		#{nr},
+		NOW()
+		)
+	</insert>
+
 </mapper>
