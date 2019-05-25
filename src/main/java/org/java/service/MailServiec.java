@@ -15,4 +15,16 @@ public interface MailServiec {
 
     //改已读
     public void yidu(int meil);
+
+    //删除（邮件修改状态为回收站）
+    public  void delete(int meil);
+
+    //查看回收站
+    public List<Map<String,Object>>  ShowDelete(String mailto);
+
+    //彻底删除邮件
+    public void cdDelete(int meil);
+
+    public  void hfu(int meil);
+
 }

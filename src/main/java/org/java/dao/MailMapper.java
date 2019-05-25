@@ -15,4 +15,12 @@ public interface MailMapper {
 
   public void yidu(int meilId);
 
+  public void delete(int meilId);
+
+  public List<Map<String,Object>> ShowDelete(@Param("MailTo") String mailto);
+
+  public void cdDelete(int meilId);
+
+  public void  hfu(int meilId);
+
 }

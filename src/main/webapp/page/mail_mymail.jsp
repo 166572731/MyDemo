@@ -40,7 +40,7 @@
 				<li class="active"><a href="#" onclick="myframe.src='put_mail.jsp'"> <i class="fa fa-inbox"></i> 收件箱  <span class="label label-danger pull-right inbox-notification">4</span></a></li>
 				<li><a href="#"> <i class="fa fa-envelope-o"></i> 草稿箱</a></li>
 				<li><a href="#"> <i class="fa fa-certificate"></i> 垃圾箱</a></li>
-				<li><a href="#"> <i class="fa fa-trash-o"></i> 回收站</a></li>
+				<li><a href="#" onclick="myframe.src='Del_Mail.jsp'" > <i class="fa fa-trash-o"></i> 回收站</a></li>
 			</ul>
 
 			<ul class="nav nav-pills nav-stacked labels-info ">

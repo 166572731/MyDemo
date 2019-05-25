@@ -34,4 +34,24 @@ public class MailServiceImpl implements MailServiec {
     public void yidu(int meil) {
         mailMapper.yidu(meil);
     }
+
+    @Override
+    public void delete(int meil) {
+        mailMapper.delete(meil);
+    }
+
+    @Override
+    public List<Map<String, Object>> ShowDelete(String mailto) {
+        return mailMapper.ShowDelete(mailto);
+    }
+
+    @Override
+    public void cdDelete(int meil) {
+        mailMapper.cdDelete(meil);
+    }
+
+    @Override
+    public void hfu(int meil) {
+        mailMapper.hfu(meil);
+    }
 }

@@ -74,11 +74,55 @@ public class MailController {
     @RequestMapping("/yidu")
     public @ResponseBody int yidua(HttpServletRequest request)
     {
-        System.out.println("7777777777777777777777777777");
+
         int mailId=Integer.parseInt(request.getParameter("meilid"));
         System.out.println(mailId);
         mailServiec.yidu(mailId);
         return mailId;
     }
+
+    @RequestMapping("del")
+    public @ResponseBody int delete(HttpServletRequest request)
+    {
+        int mailId=Integer.parseInt(request.getParameter("meilid"));
+        mailServiec.delete(mailId);
+        return mailId;
+    }
+
+    @RequestMapping("hsz")
+    public  @ResponseBody Map<String,Object> hsz(HttpServletRequest request)
+    {
+        System.out.println("**********************************************");
+        HttpSession session=request.getSession();
+        Map<String,Object> userName= (Map<String, Object>) session.getAttribute("loginMan");//获得登录的用户名
+        String name=userName.get("userName").toString();
+        List<Map<String,Object>> list=mailServiec.ShowDelete(name);
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("code", 0);		//必须规定的  返回数据的格式
+        map.put("msg", "");		//所返回的信息  可有可无
+        map.put("count",list.size());
+        map.put("data", list);
+        return map;
+    }
+
+    @RequestMapping("/cdDelete")
+    public @ResponseBody int cdDelete(HttpServletRequest request)
+    {
+        int mailId=Integer.parseInt(request.getParameter("meilid"));
+        mailServiec.cdDelete(mailId);
+        return mailId;
+    }
+
+    @RequestMapping("/hfu")
+    public  @ResponseBody int hfu(HttpServletRequest request)
+    {
+        int mailId=Integer.parseInt(request.getParameter("meilid"));
+        System.out.println(mailId);
+        mailServiec.hfu(mailId);
+        return mailId;
+    }
+
+
 
 }

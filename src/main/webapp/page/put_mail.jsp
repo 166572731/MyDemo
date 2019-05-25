@@ -126,7 +126,7 @@
                     });
 
                   $('#ok').click(function () {
-                      window.location.reload()
+                      window.location.reload();
                       layer.close(index);
                   })
                 }
@@ -135,6 +135,9 @@
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
                     layer.close(index);
+                    $.post('../del.do',{'meilid':data.pk_Mail}, function(str) {
+                        window.location.reload();
+                    });
                 });
             }
 

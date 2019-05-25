@@ -3,12 +3,16 @@
 <mapper namespace="org.java.dao.MailMapper">
 
     <select id="ShowMailByMailTo" resultType="map">
-      SELECT * FROM mail_list WHERE MailTo=#{MailTo}
+      SELECT * FROM mail_list WHERE MailTo=#{MailTo} and MailType=1
     </select>
     
     <select id="ShowAddress" resultType="map">
         SELECT * FROM address_list WHERE user_name=#{name}
     </select>
+
+	<select id="ShowDelete" resultType="map">
+		 SELECT * FROM mail_list WHERE MailTo=#{MailTo} and MailType=3
+	</select>
 
     <insert id="AddMail" parameterType="map">
 INSERT INTO `oawork`.`mail_list`
@@ -59,6 +63,18 @@ INSERT INTO `oawork`.`mail_list`
 
 	<update id="yidu" parameterType="int">
 		UPDATE mail_list SET StatusID='已读' WHERE pk_Mail=#{meilId}
+	</update>
+
+	<update id="delete" parameterType="int" >
+		UPDATE mail_list SET MailType='3' WHERE pk_Mail=#{meilId}
+	</update>
+
+	<update id="cdDelete" parameterType="int">
+		DELETE FROM mail_list WHERE pk_Mail=#{meilId}
+	</update>
+
+	<update id="hfu" parameterType="int">
+		UPDATE mail_list SET MailType='1' WHERE pk_Mail=#{meilId}
 	</update>
 
 </mapper>
