@@ -1,6 +1,7 @@
 package org.java.websocket;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.java.entity.UserList;
 
 import javax.servlet.http.HttpSession;
@@ -12,14 +13,19 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-@ServerEndpoint(value = "/websocket",configurator = GetHttpSessionConfigurator.class)
+@ServerEndpoint(value = "/websocket", configurator = GetHttpSessionConfigurator.class)
 public class WebscoketManager {
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
-
     //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
-    private static Map webSocketSet = new ConcurrentHashMap();
-    private static Map sessionManager=new ConcurrentHashMap();
+    private static CopyOnWriteArraySet<WebscoketManager> webSocketSet = new CopyOnWriteArraySet<>();
+    private Session session;    //与某个客户端的连接会话，需要通过它来给客户端发送数据
+    private String userid;      //用户名
+    private HttpSession httpSession;    //request的session
+
+    private static List list = new ArrayList<>();   //在线列表,记录用户名称
+    private static Map routetab = new HashMap<>();  //用户名和websocket的session绑定的路由表
+
     /**
      * 连接建立成功调用的方法
      *
@@ -27,21 +33,13 @@ public class WebscoketManager {
      */
     @OnOpen
     public void onOpen(Session session) {
-        Map loginUser=getLoginUser(session);
-        String userNumber= (String) loginUser.get("Number");
-        if (webSocketSet.size()>0){
-            if (webSocketSet.containsKey(userNumber)){
-                System.out.println("用户已在另一客户端登录");
-                List newSessionList= (List) sessionManager.get(userNumber);
-                newSessionList.add(session.getId());
-                sessionManager.put(userNumber, newSessionList);
-                return;
-            }
-        }
-        List sessionList=new Vector();
-        sessionList.add(session.getId());
-        sessionManager.put(userNumber, sessionList);
-        webSocketSet.put(userNumber, loginUser);//加入set中
+        this.session = session;
+        webSocketSet.add(this);     //加入set中
+        this.httpSession = getHttpSession(session);
+        Map loginUser = getLoginUser(session);
+        this.userid = (String) loginUser.get("Number");
+        list.add(userid);           //将用户名加入在线列表
+        routetab.put(userid, session);   //将用户名和session绑定到路由表
         addOnlineCount();
         //在线数加
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
@@ -52,41 +50,34 @@ public class WebscoketManager {
      */
     @OnClose
     public void onClose(Session session, CloseReason closeReason) {
-        Map loginUser=getLoginUser(session);
-        String userNumber= (String) loginUser.get("Number");
-        List sessionList= (List) sessionManager.get(userNumber);
-        sessionList.remove(session.getId());
-        if (sessionList.size()<=0){
-            System.out.println("用户退出了登录");
-            sessionManager.remove(userNumber);
-            webSocketSet.remove(userNumber);  //从set中删除
-            subOnlineCount(); //在线数减1
-            System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
-        }else {
-            System.out.println("用户已在某一个客户端下线");
-            sessionManager.put(userNumber, sessionList);
-        }
+        webSocketSet.remove(this);  //从set中删除
+        subOnlineCount();           //在线数减1
+        list.remove(userid);        //从在线列表移除这个用户
+        routetab.remove(userid);
+        String message = getMessage("[" + userid +"]离开了聊天室,当前在线人数为"+getOnlineCount()+"位", "notice", list);
+        broadcast(message);         //广播
     }
 
 
     /**
      * 收到客户端消息后调用的方法
      *
-     * @param message 客户端发送过来的消息
+     * @param _message 客户端发送过来的消息
      * @param session 可选的参数
      */
     @OnMessage
-    public void onMessage(String message, Session session) {
-        Map loginUser=getLoginUser(session);
-        System.out.println("来自客户端的消息:" + message);
-        //群发消息
-        Set<WebscoketManager> set = webSocketSet.keySet();
-        for (WebscoketManager item : set) {
-            try {
-                item.sendMessage(message);
-            } catch (Exception e) {
-                e.printStackTrace();
-                continue;
+    public void onMessage(String _message, Session session) {
+        JSONObject chat = JSON.parseObject(_message);
+        JSONObject message = JSON.parseObject(chat.get("message").toString());
+        if(message.get("to") == null || message.get("to").equals("")){      //如果to为空,则广播;如果不为空,则对指定的用户发送消息
+            broadcast(_message);
+        }else{
+            String [] userlist = message.get("to").toString().split(",");
+            singleSend(_message, (Session) routetab.get(message.get("from")));      //发送给自己,这个别忘了
+            for(String user : userlist){
+                if(!user.equals(message.get("from"))){
+                    singleSend(_message, (Session) routetab.get(user));     //分别发送给每个指定用户
+                }
             }
         }
     }
@@ -104,29 +95,64 @@ public class WebscoketManager {
     }
 
     /**
-     * 这个方法与上面几个方法不一样。没有用注解，是根据自己需要添加的方法。
-     *
+     * 广播消息
      * @param message
-     * @throws IOException
      */
-    public void sendMessage(String message) throws IOException {
-        //this.session.getBasicRemote().sendText(JSON.toJSONString(msg));
-        //this.session.getAsyncRemote().sendText(message);
+    public void broadcast(String message){
+        for(WebscoketManager chat: webSocketSet){
+            try {
+                chat.session.getBasicRemote().sendText(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+                continue;
+            }
+        }
     }
 
     /**
-     * 获取用户编号
+     * 对特定用户发送消息
+     * @param message
+     * @param session
+     */
+    public void singleSend(String message, Session session){
+        try {
+            session.getBasicRemote().sendText(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 组装返回给前台的消息
+     * @param message   交互信息
+     * @param type      信息类型
+     * @param list      在线列表
      * @return
      */
-    public Map getLoginUser(Session session){
+    public String getMessage(String message, String type, List list){
+        JSONObject member = new JSONObject();
+        member.put("message", message);
+        member.put("type", type);
+        member.put("list", list);
+        return member.toString();
+    }
+
+    /**
+     * 获取登录用户
+     *
+     * @return
+     */
+    public Map getLoginUser(Session session) {
         HttpSession httpSession = getHttpSession(session);
         //获取登录用户
-        Map loginUser= (Map) httpSession.getAttribute("loginMan");
+        Map loginUser = (Map) httpSession.getAttribute("loginMan");
         //获取登录用户编号
         return loginUser;
     }
+
     /**
-     *获取httpsesion
+     * 获取httpsesion
+     *
      * @return
      */
     public HttpSession getHttpSession(Session session) {
@@ -134,10 +160,9 @@ public class WebscoketManager {
     }
 
 
-
     public static synchronized int getOnlineCount() {
-        if (onlineCount<0){
-            onlineCount=0;
+        if (onlineCount < 0) {
+            onlineCount = 0;
         }
         return onlineCount;
     }

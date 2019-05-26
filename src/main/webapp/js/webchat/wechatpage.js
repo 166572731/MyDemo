@@ -28,6 +28,7 @@ window.onload = function() {
         var si2 = document.getElementById('si_2');
         var si3 = document.getElementById('si_3');
         var si4 = document.getElementById('si_4');
+        //消息列表
         si1.onclick = function() {
             $(si1).css({"color":"#00BA17"});
             $(si2).css({"color":"#C9C9C9"});
@@ -38,6 +39,7 @@ window.onload = function() {
             $(".si_3").removeClass("layui-show");
             $(".si_4").removeClass("layui-show");
         };
+        //好友列表
         si2.onclick = function() {
             $(si1).css({"color":"#C9C9C9"});
             $(si2).css({"color":"#00BA17"});
@@ -74,6 +76,7 @@ window.onload = function() {
             },"json");
 
         };
+        //群组列表
         si3.onclick = function() {
             $(si1).css({"color":"#C9C9C9"});
             $(si2).css({"color":"#C9C9C9"});
@@ -86,7 +89,7 @@ window.onload = function() {
             $.post("../../loadgroup.do",function (data) {
                 var grouphtml="";
                 $.each(data,function (index,group) {
-                    grouphtml+='<li>\n' +
+                    grouphtml+='<li class="group" id="'+group.pk_group+'">\n' +
                         '        <div class="friends_box">\n' +
                         '            <div class="user_head">\n' +
                         '                <img src="../../images/head/'+group.headUrl+'" />\n'+
@@ -99,8 +102,16 @@ window.onload = function() {
                         '       </li>';
                 })
                 $(".group_list li").html(grouphtml);
+                $(".group").each(function () {
+                    $(this).click(function () {
+                        $.post("../../loadGroupUser.do",{"fk_group":$(this).attr("id")},function (data) {
+
+                        });
+                    });
+                })
             },"json");
         };
+        //我的收藏
         si4.onclick = function() {
             $(si1).css({"color":"#C9C9C9"});
             $(si2).css({"color":"#C9C9C9"});

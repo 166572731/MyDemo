@@ -8,4 +8,10 @@
     <select id="loadfriend" resultType="map">
         SELECT user_list.*,user_department.DepartmentName FROM user_list,user_department WHERE user_department.pk_Department=user_list.fk_Department;
     </select>
+    <select id="loadGroupUser" resultType="map">
+        SELECT * FROM groupuser_list WHERE fk_group IN
+        <foreach collection="list" close=")" open="(" index="" item="item" separator=",">
+            #{item}
+        </foreach>
+    </select>
 </mapper>

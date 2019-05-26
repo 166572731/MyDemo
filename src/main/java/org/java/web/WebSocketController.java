@@ -16,6 +16,31 @@ import java.util.Map;
 public class WebSocketController {
     @Autowired
     WebSocketService webSocketService;
+
+    //加载群组所有人
+    @RequestMapping("loadGroupUser")
+    public String loadGroupUser(String pk_group) {
+        /*List<Integer> list1=new ArrayList();
+        for (Map group: list) {
+            Integer pk_group= (Integer) group.get("pk_group");
+            list1.add(pk_group);
+        }
+        List<Map> userList=webSocketService.loadGroupUser(list1);
+        for (Integer groupid: list1) {
+            Map groupUser=new HashMap();
+            List<Integer> list2=new ArrayList<>();
+            for (Map users: userList) {
+                Integer id= (Integer) users.get("fk_group");
+                if (groupid.equals(id)){
+                    list2.add((Integer) users.get("fk_user"));
+                }
+            }
+            groupUser.put(groupid, "a");
+        }*/
+        return null;
+    }
+
+    //加载所有群组
     @RequestMapping("loadgroup")
     public @ResponseBody List<Map> loadgroup(HttpSession httpSession){
         Map map= (Map) httpSession.getAttribute("loginMan");

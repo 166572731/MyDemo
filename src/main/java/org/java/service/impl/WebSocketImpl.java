@@ -20,4 +20,9 @@ public class WebSocketImpl implements WebSocketService {
     public List<Map> loadfriend() {
         return webSocketMapper.loadfriend();
     }
+
+    @Override
+    public List<Map> loadGroupUser(List list) {
+        return webSocketMapper.loadGroupUser(list);
+    }
 }

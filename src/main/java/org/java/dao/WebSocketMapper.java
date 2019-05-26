@@ -8,4 +8,5 @@ import java.util.Map;
 public interface WebSocketMapper {
     List<Map> loadgroup(@Param("fk_user") Integer fk_user);
     List<Map> loadfriend();
+    List<Map> loadGroupUser(@Param("list") List list);
 }

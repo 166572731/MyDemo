@@ -8,4 +8,5 @@ import java.util.Map;
 public interface WebSocketService {
     List<Map> loadgroup(Integer fk_user);
     List<Map> loadfriend();
+    List<Map> loadGroupUser(List list);
 }
