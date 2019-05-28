@@ -1,12 +1,13 @@
 layui.use(['laydate', 'layer'], function () {
     var laydate = layui.laydate, layer = layui.layer;
+
     laydate.render({
         elem: '#test2',
         position: 'static',
         change: function (value, date) { //监听日期被切换
             lay('#testView').jsp(value);
         },
-        showBottom: false,
+        showBottom: true,
         theme: '',
         mark: {
             '0-10-14': '生日',
@@ -28,4 +29,6 @@ layui.use(['laydate', 'layer'], function () {
             }
         }
     });
+
+
 });

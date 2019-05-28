@@ -51,6 +51,12 @@ public class MailServiceImpl implements MailServiec {
     }
 
     @Override
+    public int wdu(String mailto) {
+
+        return mailMapper.wdu(mailto);
+    }
+
+    @Override
     public void hfu(int meil) {
         mailMapper.hfu(meil);
     }

@@ -126,17 +126,27 @@ public class MailController {
     @RequestMapping("/hfMail")
     public  @ResponseBody int hfMail(HttpServletRequest request)
     {
-        System.out.println("*****************//");
         HttpSession session=request.getSession();
         int mailId=Integer.parseInt(request.getParameter("meilid"));//邮件id
         String nr=(String) request.getParameter("nr");//内容
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("pk_Mail", mailId);
         map.put("nr",nr );
-        System.out.println(map);
+        mailServiec.yidu(mailId);
+        mailServiec.hfMail(map);
         return mailId;
     }
 
+    @RequestMapping("/wdu")
+    public  @ResponseBody int wdu(HttpServletRequest request)
+    {
+        HttpSession session=request.getSession();
+        Map<String,Object> userName= (Map<String, Object>) session.getAttribute("loginMan");//获得登录的用户
+        String name=userName.get("userName").toString();
+        int count=mailServiec.wdu(name);
+        System.out.println(count);
+        return count;
+    }
 
 
 }

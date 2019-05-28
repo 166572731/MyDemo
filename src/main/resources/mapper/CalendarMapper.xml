@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.CalendarMapper">
+
+	<select id="showCalendar" resultType="map">
+		SELECT * FROM calendar_list WHERE fk_User=#{MailTo}
+	</select>
+
+	<update id="delete" parameterType="int">
+		DELETE FROM calendar_list WHERE pk_Calendar=#{id}
+	</update>
+
+	<insert id="addCalendar" parameterType="map">
+		INSERT INTO `oawork`.`calendar_list`
+	(`pk_Calendar`,
+	`fk_User`,
+	`fk_Department`,
+	`TypeID`,
+	`StatusID`,
+	`Title`,
+	`Description`,
+	`ImagePath`,
+	`UserList`,
+	`DepartmentList`,
+	`StartDate`,
+	`EndDate`,
+	`IsRemind`,
+	`CreateDate`
+	)
+	VALUES
+	(null,
+	#{fk_User},
+	'fk_Department',
+	#{TypeID},
+	#{StatusID},
+	#{Title},
+	#{Description},
+	'ImagePath',
+	'UserList',
+	'DepartmentList',
+	#{StartDate},
+	#{EndDate},
+	'IsRemind',
+	now()
+	);
+	</insert>
+
+
+
+</mapper>

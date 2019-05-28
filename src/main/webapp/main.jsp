@@ -25,6 +25,23 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;overflow-x: hidden;">
+
+<script id="ric" type="text/html" >
+    <h1 id="bt">标题</h1>
+    <%--<p id="sjr">发件人</p>--%>
+    <p id="sj">时间</p>
+    <p id="nr">内容</p>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">内容</label>
+        <div class="layui-input-block">
+            <textarea style="width: 400px;height: 200px" id="nrr" name="Body" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <br>
+    <div style="text-align:center;">
+        <button class="layui-btn " id="hfu">回复</button>
+    </div>
+</script>
 <!--body wrapper start-->
 <div class="row">
     <div class="col-md-6">
@@ -129,7 +146,7 @@
                         <i class="fa fa-eye"></i>
                     </div>
                     <div class="state-value">
-                        <div class="value">日程提醒</div>
+                        <div class="value">日程管理</div>
                         <div class="title">Schedule Reminder</div>
                     </div>
                 </div>
@@ -249,7 +266,7 @@
             <header class="panel-heading">
                 工作日历 <span class="tools pull-right"> <a
                     class="fa fa-chevron-down" href="javascript:;"></a> <a
-                    class="fa fa-times" href="javascript:;"></a>
+                    class="fa fa-times" href="javascript:;"></a><a class="fa fa-bars" href="javascript:;"></a>
 								</span>
             </header>
             <div class="panel-body">

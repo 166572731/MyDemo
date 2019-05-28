@@ -92,4 +92,8 @@ INSERT INTO `oawork`.`mail_list`
 		)
 	</insert>
 
+    <select id="wdu" resultType="int">
+        SELECT COUNT(*) FROM mail_list WHERE StatusID='未读' AND MailTo=#{mailto}
+    </select>
+
 </mapper>

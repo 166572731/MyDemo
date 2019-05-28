@@ -25,4 +25,6 @@ public interface MailMapper {
 
   public void hfMail(Map<String,Object> map);
 
+  public  int wdu(@Param("mailto") String mailto);
+
 }

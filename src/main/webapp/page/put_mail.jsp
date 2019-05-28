@@ -119,7 +119,6 @@
 
                         $.post('../hfMail.do',{'meilid':data.pk_Mail,'nr':nr}, function(str) {
 
-							alert("回复成功");
                         });
 
                         window.location.reload();//页面刷新
