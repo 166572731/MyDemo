@@ -46,7 +46,7 @@
 
 
                 <div id="ctl00_cphMain_AlertDiv"></div>
-            <form method="post" action="../addNotice.do">
+            <form method="post" action="../addNotice.do" enctype="multipart/form-data">
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <h3 class="box-title">
@@ -126,7 +126,7 @@
                             <%--<div class="col-md-6 form-group">--%>
                                 <%--<div class="btn btn-default btn-file">--%>
                                     <%--<i class="fa fa-paperclip"></i> 增加附件--%>
-                                    <%--<input type="file" name="ctl00$cphMain$fuAttachment" id="ctl00_cphMain_fuAttachment" onchange="ChkUpload(this);" />--%>
+                                    <%--<input type="file" name="filePath" id="ctl00_cphMain_fuAttachment" onchange="ChkUpload(this);" />--%>
                                     <%--<span id="filepath"></span>--%>
                                 <%--</div>--%>
                                 <%--<p class="help-block">5MB以内</p>--%>

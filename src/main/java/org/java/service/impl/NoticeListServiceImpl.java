@@ -19,9 +19,19 @@ public class NoticeListServiceImpl implements NoticeListService {
     }
 
     @Override
-    public List<NoticeList> findAll() {
+    public List<NoticeList> findMyNotice() {
+        return mapper.findMyNotice();
+    }
+
+    @Override
+    public NoticeList findById(Integer pk_Notice) {
+        return mapper.findById(pk_Notice);
+    }
+
+    @Override
+    public List<NoticeList> findAll(Integer fk_User) {
         System.out.println("impl");
-        return mapper.findAll();
+        return mapper.findAll(fk_User);
     }
 
     @Override
