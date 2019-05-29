@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.WebSocketMapper">
+    <select id="loadgroup" resultType="map">
+        SELECT * FROM group_list WHERE pk_group IN
+        (SELECT fk_group FROM `oawork`.`groupuser_list` WHERE fk_user=#{fk_user});
+    </select>
+    <select id="loadfriend" resultType="map">
+        SELECT user_list.*,user_department.DepartmentName FROM user_list,user_department WHERE user_department.pk_Department=user_list.fk_Department;
+    </select>
+    <select id="loadGroupUser" resultType="map">
+        SELECT * FROM groupuser_list WHERE fk_group IN
+        <foreach collection="list" close=")" open="(" index="" item="item" separator=",">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

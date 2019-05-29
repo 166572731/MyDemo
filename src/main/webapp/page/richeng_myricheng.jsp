@@ -24,8 +24,9 @@
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 <!--body wrapper start-->
-<div>
-	<p>内容随意</p>
+
+<div class="site-demo-laydate">
+	<div class="layui-form-item" id="test"  style="width: 80%;height: auto;margin-left: 20%;"></div>
 </div>
 <!--body wrapper end-->
 <!-- 将js放在文档的末尾，以便页面加载速度更快。 -->
@@ -42,6 +43,29 @@
     layui.use(['layer'], function () {
         var layer = layui.layer;
     });
+</script>
+<script type="text/javascript">
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+    //直接嵌套显示
+    laydate.render({
+        elem: '#test'
+        ,position: 'static'
+		,calender:true
+		,mark:{
+            '2019-05-24':'工资发放'
+			,'2019-06-20':'部门会议'
+			,'2019-05-15':'休息日'
+		}
+		,done:function(value,date){
+            if(date.year===2019&&date.month===5&&date.date===24){
+                layer.msg('今天天气真好!');
+			}
+		}
+    });
+    });
+
+
 </script>
 </body>
 </html>

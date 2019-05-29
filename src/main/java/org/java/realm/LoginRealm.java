@@ -57,23 +57,26 @@ public class LoginRealm extends AuthorizingRealm {
         }
         //加载用户所有可查看页面
         role=rolemanagerService.selectRole((Integer) userList.get("fk_Department"), (Integer) userList.get("RoleValue"));
-        List<Integer> idList=new ArrayList<>();
-        for (Map map: role) {
-            Integer pk_menu= (Integer) map.get("fk_Menu");
-            idList.add(pk_menu);
-        }
-        List<Map> menus=menusService.selectMenus(idList);
-        List<Map> mainMenus=new ArrayList<>();
-        List<Map> childMenus=new ArrayList<>();
-        for (Map menu: menus) {
-            if (menu.get("Name_EN").equals("main")){
-                mainMenus.add(menu);
-            }else {
-                childMenus.add(menu);
+        System.out.println(role);
+        if (role.size()>0){
+            List<Integer> idList=new ArrayList<>();
+            for (Map map: role) {
+                Integer pk_menu= (Integer) map.get("fk_Menu");
+                idList.add(pk_menu);
             }
+            List<Map> menus=menusService.selectMenus(idList);
+            List<Map> mainMenus=new ArrayList<>();
+            List<Map> childMenus=new ArrayList<>();
+            for (Map menu: menus) {
+                if (menu.get("Name_EN").equals("main")){
+                    mainMenus.add(menu);
+                }else {
+                    childMenus.add(menu);
+                }
+            }
+            userList.put("childMenus", childMenus);
+            userList.put("mainMenus", mainMenus);
         }
-        userList.put("childMenus", childMenus);
-        userList.put("mainMenus", mainMenus);
         //用户存在，得到该用户的正确密码
         String pwd = (String) userList.get("password");
         //盐
