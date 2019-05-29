@@ -23,6 +23,16 @@
 	<link href="../css/style.css" rel="stylesheet">
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #fafbff;">
+<script id="ck" type="text/html">
+<h2 id="bt" style="text-align:center;font-size:18px;color:#321912">标题</h2>
+<span id="ks" style="font-size:14px;color:#1e8815">开始时间</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="js" style="font-size:14px;color:#9d122f">结束时间</span>
+<p>&nbsp;</p>
+<p id="nr" style="text-align:center;font-size:18px;color:#000000">内容</p>
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+<div style="text-align:center;">
+<button class="layui-btn layui-btn-normal" id="hde">好的</button>
+</div>
+</script>
 
 <button class="layui-btn layui-btn-radius" id="addRc" onclick="add()">添加日程</button>
 <table id="demo" lay-filter="demo"></table>
@@ -50,12 +60,11 @@
             ,page: true //开启分页
             ,cols: [[ //表头
                 {field: 'TypeID', title: '类型', width:100,  fixed: 'left'}
-                ,{field: 'Title', title: '标题', width:80}
-                ,{field: 'Description', title: '描述', width:120}
-                ,{field: 'StartDate', title: '开始时间', width:180,templet:function (d) {
+                ,{field: 'Title', title: '标题', width:100}
+                ,{field: 'StartDate', title: '开始时间', width:170,templet:function (d) {
                         return layui.util.toDateString(d.SentDate,'yyyy-MM-dd HH:mm:ss');
                     }}
-                ,{field: 'EndDate', title: '结束时间', width:180,templet:function (d) {
+                ,{field: 'EndDate', title: '结束时间', width:170,templet:function (d) {
                         return layui.util.toDateString(d.SentDate,'yyyy-MM-dd HH:mm:ss');
                     }}
                 ,{field: 'StatusID', title: '状态', width: 80,templet:function (d) {
@@ -65,6 +74,13 @@
                             return '<span style="color: rgb(226,53,35);">'+d.StatusID+'</span>'
                         }
                     }}
+                ,{field: 'IsRemind', title: '是否提醒', width: 100,templet:function (d) {
+                        if(d.IsRemind==1){
+                            return '<span style="color: #b21b12;">提醒</span>'
+                        }else {
+                            return '<span style="color: rgb(92,226,36);">不提醒</span>'
+                        }
+                    }}
                 ,{field: 'wealth', title: '操作', width: 200,toolbar: '#barDemo'}
             ]]
         });
@@ -72,7 +88,19 @@
         table.on('tool(demo)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-
+               var index= layer.open({
+                    title :'查看',
+                    type: 1,
+                    area: ['500px', '350px'],
+                    content: $('#ck').html()
+                });
+                $("#ks").text('开始时间:'+layui.util.toDateString(data.StartDate,'yyyy-MM-dd HH:mm:ss'));
+                $("#js").text('结束时间:'+layui.util.toDateString(data.EndDate,'yyyy-MM-dd HH:mm:ss'));
+                $("#bt").text('标题:'+data.Title);
+                $("#nr").text(data.Description);
+                $("#hde").click(function () {
+                    layer.close(index);
+                })
             } else if(obj.event === 'del'){
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
@@ -99,7 +127,7 @@
         layer.open({
             title: '添加日程',
             offset: '0px',
-            area: ['950px', '680px'],
+            area: ['850px', '580px'],
             type: 2,
             content: 'Calendar_ADD.jsp'
         });
@@ -110,7 +138,7 @@
 
 
 <script id="barDemo" type="text/html">
-	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看详情</a>
 	<a class="layui-btn layui-btn-normal layui-btn-xs " lay-event="select">修改</a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>

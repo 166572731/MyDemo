@@ -52,10 +52,9 @@ public class CalendarController {
     }
 
     @RequestMapping("/addCalendar")
-    public  @ResponseBody int add(HttpServletRequest request, @RequestParam Map<String,Object> map)
+    public void add(HttpServletRequest request, @RequestParam Map<String,Object> map)
     {
-
-        return 11;
+        calendarService.addCalendar(map);
     }
 
 
