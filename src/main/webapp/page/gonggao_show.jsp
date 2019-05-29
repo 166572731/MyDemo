@@ -25,43 +25,21 @@
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 
-<!--body wrapper start-->
+
 <div>
-	<!-- 内容 -->
-	<div>
 
 
-		<div class="content-wrapper">
+	<div class="content-wrapper">
 
-			<%--<section class="content-header">--%>
-				<%--<h1>--%>
-					<%--通知查看--%>
-				<%--</h1>--%>
-				<%--<ol class="breadcrumb">--%>
-					<%--<li><a href="../"><i class="fa fa-home"></i> 首页</a></li>--%>
-					<%--<li class="active">通知查看</li>--%>
-				<%--</ol>--%>
-			<%--</section>--%>
 
-			<section class="content">
 
-				<div id="ctl00_cphMain_AlertDiv"></div>
+		<section class="content">
 
-				<div class="box box-default">
-					<div class="box-header with-border">
-						<%--<h3 class="box-title">--%>
-							<%--<a id="ctl00_cphMain_hlBack" href="ViewList.aspx?active=34,37"><span class="label label-back"><i class="fa fa-chevron-left"></i> 返回</span></a>--%>
-							<%--<a id="ctl00_cphMain_hlPrint" href="../showById/${n.pk_Notice}.do"><span class="label label-primary"><i class="fa fa-print"></i> 打印</span></a>--%>
-						<%--</h3>--%>
-					</div>
-
-					<div class="box-body">
-						<div class="row">
-
-							<div class="box-body">
-								<div class="mailbox-read-info">
-									<h3><span id="ctl00_cphMain_lblTitle">${notice.title}</span></h3>
-									<h5><span id="ctl00_cphMain_lblFrom" class="mailbox-read-time">发布：
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="mailbox-read-info">
+						<h3><span id="ctl00_cphMain_lblTitle">${notice.title}</span></h3>
+						<h5><span id="ctl00_cphMain_lblFrom" class="mailbox-read-time">发布：
 									 <c:if test="${notice.fk_Department==1000}">
 										 总经办
 									 </c:if>
@@ -84,32 +62,51 @@
 														营销部
 													</c:if>
 									</span><span id="ctl00_cphMain_lblDate" class="mailbox-read-time pull-right">${notice.createDate}</span></h5>
-								</div>
-								<div class="mailbox-read-message">
-									<span id="ctl00_cphMain_lblDescription">${notice.description}</span>
-								</div>
-							</div>
-
+						<div class="mailbox-read-message">
+							<span id="ctl00_cphMain_lblDescription">${notice.description}</span>
 						</div>
 					</div>
-
-					<div class="box-footer">
-						<input href="../" type="submit" name="ctl00$cphMain$btnBack" value="返回" id="ctl00_cphMain_btnBack" class="btn btn-default" />
-					</div>
-
 				</div>
+			</div>
+			<div class="box-footer">
+				<input type="submit" name="ctl00$cphMain$btnBack" value="返回" id="ctl00_cphMain_btnBack" class="btn btn-default" />
+			</div>
 
-			</section>
-
-		</div>
-
-
-
-
+		</section>
 
 	</div>
+
+
+</div>
+
+
+
+
+
+
+
+
 <!--body wrapper end-->
 <!-- 将js放在文档的末尾，以便页面加载速度更快。 -->
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".fancybox").fancybox({
+            parent: "form:first"
+        });
+
+        $('#history').hide();
+        $('#open-history').click(function () {
+            $('#history').toggle(600);
+        });
+
+        if ($(".iframe-css") != null) {
+            var height = $(window).height() - 350;
+            $(".iframe-css").attr("height", height);
+        }
+    });
+
+</script>
 <script src="../js/jquery-1.10.2.min.js"></script>
 <script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="../js/jquery-migrate-1.2.1.min.js"></script>
@@ -124,5 +121,6 @@
         var layer = layui.layer;
     });
 </script>
+
 </body>
 </html>

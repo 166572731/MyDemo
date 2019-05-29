@@ -49,13 +49,19 @@ INSERT INTO `oawork`.`notice_list`
     </insert>
 
     <select id="findByUser" parameterType="int" resultType="org.java.entity.NoticeList">
-        SELECT * FROM notice_list WHERE fk_User=#{user}
+        SELECT * FROM notice_list   order by CreateDate desc
     </select>
 
-    <select id="findAll" resultType="org.java.entity.NoticeList">
-        select *from notice_list
+    <select id="findAll" resultType="org.java.entity.NoticeList" parameterType="int">
+        select *from notice_list WHERE fk_User=#{fk_User} order by CreateDate desc
     </select>
     <delete id="delById" parameterType="int">
         delete from notice_list where pk_Notice=#{pk_Notice}
     </delete>
+	<select id="findMyNotice" resultType="org.java.entity.NoticeList">
+		SELECT * FROM notice_list   order by CreateDate desc
+	</select>
+	<select id="findById" parameterType="int" resultType="org.java.entity.NoticeList">
+		SELECT * FROM notice_list WHERE pk_Notice=#{pk_Notice}
+	</select>
 </mapper>
