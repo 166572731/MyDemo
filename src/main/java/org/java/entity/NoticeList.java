@@ -1,11 +1,13 @@
 package org.java.entity;
 
 
+import java.sql.Timestamp;
+
 public class NoticeList {
 
-  private long pkNotice;
-  private long fkUser;
-  private long fkDepartment;
+  private long pk_Notice;
+  private long fk_User;
+  private long fk_Department;
   private long typeId;
   private long statusId;
   private String title;
@@ -16,40 +18,61 @@ public class NoticeList {
   private String departmentList;
   private String roleList;
   private String url;
-  private java.sql.Timestamp startDate;
-  private java.sql.Timestamp endDate;
+  private Timestamp startDate;
+  private Timestamp endDate;
   private long isTop;
-  private java.sql.Timestamp createDate;
+  private Timestamp createDate;
   private long isRead;
-  private java.sql.Timestamp readDate;
+  private Timestamp readDate;
 
-
-  public long getPkNotice() {
-    return pkNotice;
+  @Override
+  public String toString() {
+    return "NoticeList{" +
+            "pk_Notice=" + pk_Notice +
+            ", fk_User=" + fk_User +
+            ", fk_Department=" + fk_Department +
+            ", typeId=" + typeId +
+            ", statusId=" + statusId +
+            ", title='" + title + '\'' +
+            ", description='" + description + '\'' +
+            ", imagePath='" + imagePath + '\'' +
+            ", filePath='" + filePath + '\'' +
+            ", userList='" + userList + '\'' +
+            ", departmentList='" + departmentList + '\'' +
+            ", roleList='" + roleList + '\'' +
+            ", url='" + url + '\'' +
+            ", startDate=" + startDate +
+            ", endDate=" + endDate +
+            ", isTop=" + isTop +
+            ", createDate=" + createDate +
+            ", isRead=" + isRead +
+            ", readDate=" + readDate +
+            '}';
   }
 
-  public void setPkNotice(long pkNotice) {
-    this.pkNotice = pkNotice;
+  public long getPk_Notice() {
+    return pk_Notice;
   }
 
-
-  public long getFkUser() {
-    return fkUser;
+  public void setPk_Notice(long pk_Notice) {
+    this.pk_Notice = pk_Notice;
   }
 
-  public void setFkUser(long fkUser) {
-    this.fkUser = fkUser;
+  public long getFk_User() {
+    return fk_User;
   }
 
-
-  public long getFkDepartment() {
-    return fkDepartment;
+  public void setFk_User(long fk_User) {
+    this.fk_User = fk_User;
   }
 
-  public void setFkDepartment(long fkDepartment) {
-    this.fkDepartment = fkDepartment;
+  public long getFk_Department() {
+    return fk_Department;
   }
 
+  public void setFk_Department(long fk_Department) {
+    this.fk_Department = fk_Department;
+  }
 
   public long getTypeId() {
     return typeId;
@@ -59,7 +82,6 @@ public class NoticeList {
     this.typeId = typeId;
   }
 
-
   public long getStatusId() {
     return statusId;
   }
@@ -67,7 +89,6 @@ public class NoticeList {
   public void setStatusId(long statusId) {
     this.statusId = statusId;
   }
-
 
   public String getTitle() {
     return title;
@@ -77,7 +98,6 @@ public class NoticeList {
     this.title = title;
   }
 
-
   public String getDescription() {
     return description;
   }
@@ -85,7 +105,6 @@ public class NoticeList {
   public void setDescription(String description) {
     this.description = description;
   }
-
 
   public String getImagePath() {
     return imagePath;
@@ -95,7 +114,6 @@ public class NoticeList {
     this.imagePath = imagePath;
   }
 
-
   public String getFilePath() {
     return filePath;
   }
@@ -103,7 +121,6 @@ public class NoticeList {
   public void setFilePath(String filePath) {
     this.filePath = filePath;
   }
-
 
   public String getUserList() {
     return userList;
@@ -113,7 +130,6 @@ public class NoticeList {
     this.userList = userList;
   }
 
-
   public String getDepartmentList() {
     return departmentList;
   }
@@ -121,7 +137,6 @@ public class NoticeList {
   public void setDepartmentList(String departmentList) {
     this.departmentList = departmentList;
   }
-
 
   public String getRoleList() {
     return roleList;
@@ -131,7 +146,6 @@ public class NoticeList {
     this.roleList = roleList;
   }
 
-
   public String getUrl() {
     return url;
   }
@@ -140,24 +154,21 @@ public class NoticeList {
     this.url = url;
   }
 
-
-  public java.sql.Timestamp getStartDate() {
+  public Timestamp getStartDate() {
     return startDate;
   }
 
-  public void setStartDate(java.sql.Timestamp startDate) {
+  public void setStartDate(Timestamp startDate) {
     this.startDate = startDate;
   }
 
-
-  public java.sql.Timestamp getEndDate() {
+  public Timestamp getEndDate() {
     return endDate;
   }
 
-  public void setEndDate(java.sql.Timestamp endDate) {
+  public void setEndDate(Timestamp endDate) {
     this.endDate = endDate;
   }
-
 
   public long getIsTop() {
     return isTop;
@@ -167,15 +178,13 @@ public class NoticeList {
     this.isTop = isTop;
   }
 
-
-  public java.sql.Timestamp getCreateDate() {
+  public Timestamp getCreateDate() {
     return createDate;
   }
 
-  public void setCreateDate(java.sql.Timestamp createDate) {
+  public void setCreateDate(Timestamp createDate) {
     this.createDate = createDate;
   }
-
 
   public long getIsRead() {
     return isRead;
@@ -185,13 +194,11 @@ public class NoticeList {
     this.isRead = isRead;
   }
 
-
-  public java.sql.Timestamp getReadDate() {
+  public Timestamp getReadDate() {
     return readDate;
   }
 
-  public void setReadDate(java.sql.Timestamp readDate) {
+  public void setReadDate(Timestamp readDate) {
     this.readDate = readDate;
   }
-
 }

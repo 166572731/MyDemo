@@ -220,7 +220,7 @@
         </div>
         <!--body wrapper start-->
         <div class="wrapper">
-            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:62%;"></iframe>
+            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:75%;"></iframe>
         </div>
         <!--footer section start-->
         <footer class="sticky-footer text-center">
