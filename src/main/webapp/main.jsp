@@ -430,7 +430,7 @@
             <div class="panel-body">
                 <div class="media usr-info">
                     <a href="#" class="pull-left"> <img class="thumb"
-                                                        src="images/photos/user2.png" alt=""/>
+                                                        src="images/head/user2.png" alt=""/>
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">Mila Watson</h4>

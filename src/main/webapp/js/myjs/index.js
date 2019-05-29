@@ -2,6 +2,27 @@ var parentTitle = "桌面";
 var title = "首页";
 var url = "";
 var headhtml="";
+Date.prototype.format = function(fmt) {
+    var o = {
+        "M+" : this.getMonth()+1,                 //月份
+        "d+" : this.getDate(),                    //日
+        "h+" : this.getHours(),                   //小时
+        "m+" : this.getMinutes(),                 //分
+        "s+" : this.getSeconds(),                 //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S"  : this.getMilliseconds()             //毫秒
+    };
+    if(/(y+)/.test(fmt)) {
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
+    for(var k in o) {
+        if(new RegExp("("+ k +")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+    return fmt;
+}
+var newtime=new Date().format("yyyy-MM-dd hh:mm:ss");
 /**
  *创建wensocket连接
  * @type {null}
@@ -50,42 +71,89 @@ layui.use(['laydate', 'layer'], function () {
     var laydate = layui.laydate, layer = layui.layer;
     $(".webchat").click(function () {
         layer.open({
-            area: ['862px', '625px'],
-            closeBtn: 1,
-            title: "微聊 —— 畅享轻聊办公",
+            area: ['862px', '583px'],
+            closeBtn: 0,
+            title: false,
             type: 2,
             shade: 0,
             resize: false,
-            offset: '55px',
+            offset: '70px',
             content: 'page/webchat/webchat.jsp',
             id: "webchat",
             success: function (layero, index) {
+                $(".webchat").addClass("newwebchat");
+                $(".newwebchat").removeClass("webchat");
+                $(".newwebchat").click(function () {
+                    body.find('#talkUser').removeClass("hideinfo");
+                    body.find('#talkUser').addClass("showinfo");
+                    layer.style(index, {
+                        top: '70px',
+                    });
+                });
                 /**
                  * websocket聊天室
                  */
                 var body = layer.getChildFrame('body', index);
                 var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                var loginMan=JSON.parse(sessionStorage.getItem("loginMan"));
+                var talk = body.find('#talkbox');
+                var office_text=body.find('#office_text');
+                body.find(".windows_top").click(function () {
+                    body.find('#talkUser').removeClass("showinfo");
+                    body.find('#talkUser').addClass("hideinfo");
+                    layer.style(index, {
+                        top: '-1000px'
+                    });
+                })
                 //发送消息
                 body.find('#send').click(function () {
-                    var talk = body.find('#talkbox');
+                    var to=body.find('#talkUser').attr("value");
+                    if(to==''||to==undefined){
+                        parent.layer.msg("请指定发送好友");
+                        return false;
+                    }else if(to==loginMan.pk_user){
+                        parent.layer.msg("请指定除自己以外的好友哦");
+                        return false;
+                    }
                     var inputText = body.find('.text').val();
-                    var office_text=body.find('.office_text');
                     if (inputText == '') {
                         return false;
                     } else {
-                        websocket.send(inputText);
+                        var msg={
+                            "message":inputText,
+                            "to":body.find('#talkUser').attr("value"),
+                            "from":{"pk_user":loginMan.pk_user,"headimg":loginMan.ImagePath1},
+                            "time":newtime
+                        };
+                        $.post("addtalk.do",{"talkinfo":JSON.stringify(msg)},function (data) {
+                            if (data>0) {
+                                websocket.send(JSON.stringify(msg));
+                            }
+                        },"text");
                         body.find('.text').val("");
-                        //接收到消息的回调方法
-                        websocket.onmessage = function (event) {
-                            var chat=body.find("#chatbox");
-                            var office_text=body.find("#office_text");
-                            $(chat).append(iframeWin.replyme(iframeWin.AnalyticEmotion(JSON.parse(event.data).message)));
-                            $(office_text).scrollTop($(office_text)[0].scrollHeight);
-                            talk.style.background = "#fff";
-                            body.find('.text')[0].style.background = "#fff";
-                        }
                     };
                 });
+                //接收到消息的回调方法
+                websocket.onmessage = function (event) {
+                    var data=JSON.parse(event.data);
+                    var chat=body.find("#chatbox");
+                    var office_text=body.find(".office_text");
+                    if (data.from.pk_user==loginMan.pk_user){
+                        $(chat).append(iframeWin.replyme(iframeWin.AnalyticEmotion(data)));
+                    } else {
+                        if (body.find('#talkUser').attr("class")=="hideinfo"||body.find('#talkUser').attr("value")!=data.from.pk_user){
+                            layx.notice({
+                                title : "您有一条新的消息！",
+                                message : data.message
+                            });
+                        }else{
+                            $(chat).append(iframeWin.replyother(iframeWin.AnalyticEmotion(data)));
+                        }
+                    }
+                    iframeWin.updatescroll();
+                    $(talk).css({"background-color":"#fff"});
+                    body.find('.text')[0].style.background = "#fff";
+                }
             }
         });
     });
@@ -125,6 +193,7 @@ layui.use(['laydate', 'layer'], function () {
  * 动态加载左侧导航
  * */
 $.post("loadnav.do",function (data) {
+    //保存登录用户
     sessionStorage.setItem("loginMan",JSON.stringify(data));
     $(".headimg").attr("src","images/head/"+data.ImagePath1);
     $(".loginname").text(data.userName);

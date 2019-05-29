@@ -204,7 +204,7 @@ CREATE TABLE `groupuser_list` (
 
 /*Data for the table `groupuser_list` */
 
-insert  into `groupuser_list`(`pk_groupuser`,`fk_user`,`fk_group`,`jointime`) values (1,2,1,'2019-05-25'),(2,2,2,'2019-05-25');
+insert  into `groupuser_list`(`pk_groupuser`,`fk_user`,`fk_group`,`jointime`) values (1,2,1,'2019-05-25'),(2,2,2,'2019-05-25'),(3,1,1,'2019-05-26'),(4,3,2,'2019-05-26');
 
 /*Table structure for table `mail_list` */
 
@@ -386,6 +386,23 @@ CREATE TABLE `sys_typeid` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_typeid` */
+
+/*Table structure for table `talk_list` */
+
+DROP TABLE IF EXISTS `talk_list`;
+
+CREATE TABLE `talk_list` (
+  `pk_talk` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `talk_frominfo` varchar(100) default NULL COMMENT '消息来源信息',
+  `talk_to` varchar(20) default NULL COMMENT '消息目标',
+  `talk_content` text COMMENT '消息内容',
+  `talk_time` date default NULL COMMENT '发送时间',
+  `talk_from` varchar(20) default NULL COMMENT '消息来源',
+  `talk_code` int(11) default NULL COMMENT '读取状态',
+  PRIMARY KEY  (`pk_talk`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `talk_list` */
 
 /*Table structure for table `task_list` */
 

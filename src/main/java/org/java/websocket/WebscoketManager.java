@@ -2,15 +2,18 @@ package org.java.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.java.entity.UserList;
+import org.java.service.WebSocketService;
+import org.java.service.impl.WebSocketImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
-import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 @ServerEndpoint(value = "/websocket", configurator = GetHttpSessionConfigurator.class)
@@ -23,9 +26,8 @@ public class WebscoketManager {
     private String userid;      //用户名
     private HttpSession httpSession;    //request的session
 
-    private static List list = new ArrayList<>();   //在线列表,记录用户名称
+    public static List<String> list = new ArrayList<>();   //在线列表,记录用户名称
     private static Map routetab = new HashMap<>();  //用户名和websocket的session绑定的路由表
-
     /**
      * 连接建立成功调用的方法
      *
@@ -37,7 +39,7 @@ public class WebscoketManager {
         webSocketSet.add(this);     //加入set中
         this.httpSession = getHttpSession(session);
         Map loginUser = getLoginUser(session);
-        this.userid = (String) loginUser.get("Number");
+        this.userid =loginUser.get("pk_user").toString();
         list.add(userid);           //将用户名加入在线列表
         routetab.put(userid, session);   //将用户名和session绑定到路由表
         addOnlineCount();
@@ -68,14 +70,31 @@ public class WebscoketManager {
     @OnMessage
     public void onMessage(String _message, Session session) {
         JSONObject chat = JSON.parseObject(_message);
-        JSONObject message = JSON.parseObject(chat.get("message").toString());
-        if(message.get("to") == null || message.get("to").equals("")){      //如果to为空,则广播;如果不为空,则对指定的用户发送消息
+        String message = chat.get("message").toString();
+        String to=chat.get("to").toString();
+        String frominfo=JSON.toJSONString(chat.get("from"));
+        JSONObject fromuser =JSON.parseObject(frominfo);
+        String from= fromuser.get("pk_user").toString();
+        String time= chat.get("time").toString();
+        if(to == null || to.equals("")){      //如果to为空,则广播;如果不为空,则对指定的用户发送消息
             broadcast(_message);
         }else{
-            String [] userlist = message.get("to").toString().split(",");
-            singleSend(_message, (Session) routetab.get(message.get("from")));      //发送给自己,这个别忘了
+            String [] userlist = to.split(",");
+            singleSend(_message,(Session)routetab.get(from));      //发送给自己,这个别忘了
+            //获得所有指定在线用户
+            List<String> onlineUser=new ArrayList<>();
             for(String user : userlist){
-                if(!user.equals(message.get("from"))){
+                //指定用户是否在线
+              for (String online: list) {
+               if(user.equals(online)){
+                        onlineUser.add(user);
+                        break;
+                    }
+                }
+            }
+            //向指定在线用户发消息
+            for (String user: onlineUser) {
+                if(!user.equals(from)){
                     singleSend(_message, (Session) routetab.get(user));     //分别发送给每个指定用户
                 }
             }
@@ -116,6 +135,8 @@ public class WebscoketManager {
      */
     public void singleSend(String message, Session session){
         try {
+            System.out.println(message);
+            System.out.println(session);
             session.getBasicRemote().sendText(message);
         } catch (IOException e) {
             e.printStackTrace();

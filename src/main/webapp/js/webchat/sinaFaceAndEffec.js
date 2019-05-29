@@ -57,8 +57,9 @@ $(function() {
 });
 
 //替换
-function AnalyticEmotion(s) {
-	if(typeof (s) != "undefined") {
+function AnalyticEmotion(data) {
+	var s=data.message;
+	if(typeof (s) != 'undefined') {
 		var sArr = s.match(/\[.*?\]/g);
 		if(null!=sArr && '' != sArr){
 			for(var i = 0; i < sArr.length; i++){
@@ -68,9 +69,9 @@ function AnalyticEmotion(s) {
 				}
 			}
 		}
-		
+		data['message']=s;
 	}
-	return s;
+	return data;
 }
 
 (function($){

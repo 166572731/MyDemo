@@ -139,20 +139,20 @@
                             <h5 class="title">你有5个新邮件</h5>
                             <ul class="dropdown-list normal-list">
                                 <li class="new"><a href=""> <span class="thumb"><img
-                                        src="images/photos/user1.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user1.png" alt=""/></span> <span class="desc">
 												<span class="name">John Doe <span
                                                         class="badge badge-success">new</span></span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
                                 </a></li>
                                 <li><a href=""> <span class="thumb"><img
-                                        src="images/photos/user2.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user2.png" alt=""/></span> <span class="desc">
 												<span class="name">Jonathan Smith</span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
                                 </a></li>
                                 <li><a href=""> <span class="thumb"><img
-                                        src="images/photos/user3.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user3.png" alt=""/></span> <span class="desc">
 												<span class="name">Jane Doe</span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
@@ -196,7 +196,7 @@
                     </li>
                     <li><a href="#" class="btn btn-default dropdown-toggle"
                            data-toggle="dropdown"> <img
-                            src="images/photos/user-avatar.png" alt="" class="headimg"/><span class="loginname"></span><span
+                            src="images/head/user-avatar.png" alt="" class="headimg"/><span class="loginname"></span><span
                             class="caret"></span>
                     </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
@@ -223,8 +223,8 @@
             <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:62%;"></iframe>
         </div>
         <!--footer section start-->
-        <footer class="sticky-footer text-center"> 2014 &copy;
-            AdminEx by ThemeBucket
+        <footer class="sticky-footer text-center">
+            <span  style="margin-left: -200px;"> 2019 &copy;AdminEx by 酷酷的磊哥哥，哈哈哈！</span>
         </footer>
     </div>
 </section>

@@ -22,7 +22,23 @@ public class WebSocketImpl implements WebSocketService {
     }
 
     @Override
-    public List<Map> loadGroupUser(List list) {
-        return webSocketMapper.loadGroupUser(list);
+    public List<Map> loadGroupUser(Integer fk_group) {
+        return webSocketMapper.loadGroupUser(fk_group);
+    }
+
+    @Override
+    public Integer addtalk(Map map) {
+        System.out.println("1111111111111111111111111111111");
+        return webSocketMapper.addtalk(map);
+    }
+
+    @Override
+    public List<Map> loadTalk(String talk_from, String talk_to) {
+        return webSocketMapper.loadTalk(talk_from, talk_to);
+    }
+
+    @Override
+    public Integer updateTalkCode(String talk_from, String talk_to) {
+        return webSocketMapper.updateTalkCode(talk_from, talk_to);
     }
 }
