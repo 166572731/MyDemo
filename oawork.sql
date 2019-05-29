@@ -2,7 +2,8 @@
 SQLyog Ultimate v8.32 
 MySQL - 5.0.24-community-nt : Database - oawork
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -18,7 +19,6 @@ USE `oawork`;
 
 /*Table structure for table `attachment_list` */
 
-DROP TABLE IF EXISTS `attachment_list`;
 
 CREATE TABLE `attachment_list` (
   `pk_Attachment` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -36,7 +36,6 @@ CREATE TABLE `attachment_list` (
 
 /*Table structure for table `attendance_list` */
 
-DROP TABLE IF EXISTS `attendance_list`;
 
 CREATE TABLE `attendance_list` (
   `pk_Attendance` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -55,7 +54,6 @@ CREATE TABLE `attendance_list` (
 
 /*Table structure for table `calendar_list` */
 
-DROP TABLE IF EXISTS `calendar_list`;
 
 CREATE TABLE `calendar_list` (
   `pk_Calendar` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -79,7 +77,6 @@ CREATE TABLE `calendar_list` (
 
 /*Table structure for table `car_list` */
 
-DROP TABLE IF EXISTS `car_list`;
 
 CREATE TABLE `car_list` (
   `pk_Car` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -112,7 +109,6 @@ CREATE TABLE `car_list` (
 
 /*Table structure for table `car_set` */
 
-DROP TABLE IF EXISTS `car_set`;
 
 CREATE TABLE `car_set` (
   `pk_Set` int(11) NOT NULL auto_increment COMMENT '自增ID',
