@@ -145,7 +145,6 @@ $(".sidestrip_icon a").each(function () {
                         $("#talkUser").attr("value", "group"+group.pk_group);
                         $("#talkUser").text(group.groupName);
                         $.post("../../loadTalk.do",{"talk_from":loginMan.pk_user,"talk_to":"group"+group.pk_group},function (data) {
-                            alert();
                             console.log(JSON.stringify(data));
                             $.each(data,function (index,talk) {
                                 var msg={

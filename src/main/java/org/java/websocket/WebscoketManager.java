@@ -80,7 +80,8 @@ public class WebscoketManager {
             broadcast(_message);
         }else{
             String [] userlist = to.split(",");
-            singleSend(_message,(Session)routetab.get(from));      //发送给自己,这个别忘了
+            System.out.println(to);
+            singleSend(_message,(Session)routetab.get(from));      //发送给自己
             //获得所有指定在线用户
             List<String> onlineUser=new ArrayList<>();
             for(String user : userlist){
@@ -95,6 +96,7 @@ public class WebscoketManager {
             //向指定在线用户发消息
             for (String user: onlineUser) {
                 if(!user.equals(from)){
+                    System.out.println(user);
                     singleSend(_message, (Session) routetab.get(user));     //分别发送给每个指定用户
                 }
             }
