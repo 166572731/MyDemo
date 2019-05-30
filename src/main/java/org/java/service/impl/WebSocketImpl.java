@@ -28,7 +28,6 @@ public class WebSocketImpl implements WebSocketService {
 
     @Override
     public Integer addtalk(Map map) {
-        System.out.println("1111111111111111111111111111111");
         return webSocketMapper.addtalk(map);
     }
 
@@ -40,5 +39,15 @@ public class WebSocketImpl implements WebSocketService {
     @Override
     public Integer updateTalkCode(String talk_from, String talk_to) {
         return webSocketMapper.updateTalkCode(talk_from, talk_to);
+    }
+
+    @Override
+    public Map selectFromUserinfo(String pk_user) {
+        return webSocketMapper.selectFromUserinfo(pk_user);
+    }
+
+    @Override
+    public List<Map> loadGroupTalk(String talk_to) {
+        return webSocketMapper.loadGroupTalk(talk_to);
     }
 }

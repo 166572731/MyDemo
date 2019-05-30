@@ -41,4 +41,10 @@
         WHERE
         `talk_from` = #{talk_from} and `talk_to` = #{talk_to} ;
     </update>
+    <select id="selectFromUserinfo" resultType="map">
+        select * from user_list where pk_user=#{pk_user};
+    </select>
+    <select id="loadGroupTalk" resultType="map">
+        select * from talk_list where talk_to=#{talk_to};
+    </select>
 </mapper>

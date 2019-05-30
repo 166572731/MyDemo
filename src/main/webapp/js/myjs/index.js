@@ -121,12 +121,22 @@ layui.use(['laydate', 'layer'], function () {
                     } else {
                         var msg={
                             "message":inputText,
-                            "to":body.find('#talkUser').attr("value"),
-                            "from":{"pk_user":loginMan.pk_user,"headimg":loginMan.ImagePath1},
+                            "to":to,
+                            "from":{"pk_user":loginMan.pk_user,"headimg":loginMan.ImagePath1,"userName":loginMan.userName},
                             "time":newtime
                         };
                         $.post("addtalk.do",{"talkinfo":JSON.stringify(msg)},function (data) {
                             if (data>0) {
+                                if (msg.to.indexOf("group")!=-1){
+                                    var groupID=msg.to.substring(5);
+                                    var userIDstring='';
+                                    $.post("loadGroupUser.do", {"fk_group": groupID}, function (data) {
+                                        $.each(data, function (index, user) {
+                                            userIDstring += user.fk_user + ",";
+                                        })
+                                        msg.to=userIDstring;
+                                    });
+                                }
                                 websocket.send(JSON.stringify(msg));
                             }
                         },"text");
@@ -143,7 +153,7 @@ layui.use(['laydate', 'layer'], function () {
                     } else {
                         if (body.find('#talkUser').attr("class")=="hideinfo"||body.find('#talkUser').attr("value")!=data.from.pk_user){
                             layx.notice({
-                                title : "您有一条新的消息！",
+                                title : data.from.userName,
                                 message : data.message
                             });
                         }else{

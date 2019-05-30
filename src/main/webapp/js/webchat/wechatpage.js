@@ -136,27 +136,34 @@ $(".sidestrip_icon a").each(function () {
                         '       </li>';
                 });
                 $(".group_list").html(grouphtml + '</ul>');
-                //点击群组聊天并获取群组成员
+                //点击群组聊天并获取群组聊天记录
                 $(".group_list li").each(function () {
                     $(this).click(function () {
                         var groupString = $(this).find("#groupString").text();
                         var group = JSON.parse(groupString);
-                        var msg = "暂无消息";
-                        var userIDstring = '';
-                        $.post("../../loadGroupUser.do", {"fk_group": group.pk_group}, function (data) {
-                            $.each(data, function (index, user) {
-                                userIDstring += user.fk_user + ",";
-                            })
-                            $("#talkUser").attr("value", userIDstring);
-                            $("#talkUser").text(group.groupName);
-                            /*if ($(".talk_list #group" + group.pk_group).attr("value") == undefined) {
-                                addtalkList(group, msg, userIDstring);
-                            } else {
-                                var li = $(".talk_list #group" + group.pk_group).clone();
-                                $(".talk_list #group" + group.pk_group).remove();
-                                $(".talk_list").prepend(li);
-                            }*/
-                        });
+                        $("#chatbox").empty();
+                        $("#talkUser").attr("value", "group"+group.pk_group);
+                        $("#talkUser").text(group.groupName);
+                        $.post("../../loadTalk.do",{"talk_from":loginMan.pk_user,"talk_to":"group"+group.pk_group},function (data) {
+                            alert();
+                            console.log(JSON.stringify(data));
+                            $.each(data,function (index,talk) {
+                                var msg={
+                                    "message":talk.talk_content,
+                                    "to":talk.talk_to,
+                                    "from":JSON.parse(talk.talk_frominfo),
+                                    "time":talk.talk_time
+                                };
+                                if (talk.talk_from==loginMan.pk_user){
+                                    $("#chatbox").append(replyme(AnalyticEmotion(msg)));
+                                }else{
+                                    $("#chatbox").append(replyother(AnalyticEmotion(msg)));
+                                }
+                            });
+                            updatescroll();
+                        },"json");
+                        /*$.post("../../selectFromUserinfo.do",{"talk_from":talk.talk_from},function (data) {
+                        });*/
                     });
                 })
             }, "json");
