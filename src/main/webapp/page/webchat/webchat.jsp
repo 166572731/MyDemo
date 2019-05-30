@@ -30,15 +30,14 @@
         </div>
         <!--三图标-->
         <div class="sidestrip_icon">
-            <a><i id="si_1" class="layui-icon" style="color: #00BA17;">&#xe63a;</i></a>
-            <a><i id="si_2" class="layui-icon">&#xe612;</i></a>
+            <a><i id="si_1" class="layui-icon">&#xe63a;</i></a>
+            <a><i id="si_2" class="layui-icon" style="color: #00BA17;">&#xe612;</i></a>
             <a><i id="si_3" class="layui-icon" style="font-size: 22px;margin-left: -3px;">&#xe613;</i></a>
-            <a><i id="si_4" class="layui-icon">&#xe857;</i></a>
         </div>
     </div>
 
     <!--聊天列表-->
-    <div class="middle layui-show si_1">
+    <div class="middle si_1">
         <div class="wx_search">
             <input type="text" placeholder="搜索"/>
             <button>+</button>
@@ -49,7 +48,7 @@
     </div>
 
     <!--好友列表-->
-    <div class="middle si_2">
+    <div class="layui-show middle si_2">
         <div class="wx_search">
             <input type="text" placeholder="搜索"/>
             <button>+</button>
@@ -67,60 +66,6 @@
         </div>
         <div class="office_text">
             <ul class="group_list"></ul>
-        </div>
-    </div>
-
-    <!--程序列表-->
-    <div class="middle si_4">
-        <div class="wx_search">
-            <input type="text" placeholder="搜索收藏内容"/>
-            <button>+</button>
-        </div>
-        <div class="office_text">
-            <ul class="icon_list">
-                <li class="icon_active">
-                    <div class="icon">
-                        <img src="../../images/icon/icon.png" alt=""/>
-                    </div>
-                    <span>全部收藏</span>
-                </li>
-                <li>
-                    <div class="icon">
-                        <img src="../../images/icon/icon1.png" alt=""/>
-                    </div>
-                    <span>链接</span>
-                </li>
-                <li>
-                    <div class="icon">
-                        <img src="../../images/icon/icon2.png" alt=""/>
-                    </div>
-                    <span>相册</span>
-                </li>
-                <li>
-                    <div class="icon">
-                        <img src="../../images/icon/icon3.png" alt=""/>
-                    </div>
-                    <span>笔记</span>
-                </li>
-                <li>
-                    <div class="icon">
-                        <img src="../../images/icon/icon4.png" alt=""/>
-                    </div>
-                    <span>文件</span>
-                </li>
-                <li>
-                    <div class="icon">
-                        <img src="../../images/icon/icon5.png" alt=""/>
-                    </div>
-                    <span>音乐</span>
-                </li>
-                <li>
-                    <div class="icon">
-                        <img src="../../images/icon/icon6.png" alt=""/>
-                    </div>
-                    <span>标签</span>
-                </li>
-            </ul>
         </div>
     </div>
 

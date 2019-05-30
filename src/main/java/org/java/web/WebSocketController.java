@@ -119,4 +119,13 @@ public class WebSocketController {
         Map map=webSocketService.selectFromUserinfo(talk_from);
         return map;
     }
+    //加载未读信息条数
+    @RequestMapping("selectTalkcode")
+    public @ResponseBody Integer selectTalkcode(Integer pk_user){
+        return  webSocketService.selectTalkcode(pk_user);
+    }
+    @RequestMapping("loadTalkno")
+    public @ResponseBody List<Map> loadTalkno(Integer pk_user){
+        return webSocketService.loadTalkno(pk_user);
+    }
 }

@@ -47,4 +47,10 @@
     <select id="loadGroupTalk" resultType="map">
         select * from talk_list where talk_to=#{talk_to};
     </select>
+    <select id="selectTalkcode" resultType="int">
+        select count(*) from talk_list where talk_to=#{pk_user} and talk_code=0;
+    </select>
+    <select id="loadTalkno" resultType="map">
+        select * from talk_list where talk_to=#{pk_user} and talk_code=0;
+    </select>
 </mapper>

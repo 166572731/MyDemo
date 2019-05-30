@@ -15,4 +15,6 @@ public interface WebSocketMapper {
     Integer updateTalkCode(@Param("talk_from") String talk_from,@Param("talk_to")String talk_to);
     Map selectFromUserinfo(@Param("pk_user") String pk_user);
     List<Map> loadGroupTalk(@Param("talk_to") String talk_to);
+    Integer selectTalkcode(@Param("pk_user") Integer pk_user);
+    List<Map> loadTalkno(@Param("pk_user") Integer pk_user);
 }

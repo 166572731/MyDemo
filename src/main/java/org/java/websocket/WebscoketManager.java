@@ -96,7 +96,6 @@ public class WebscoketManager {
             //向指定在线用户发消息
             for (String user: onlineUser) {
                 if(!user.equals(from)){
-                    System.out.println(user);
                     singleSend(_message, (Session) routetab.get(user));     //分别发送给每个指定用户
                 }
             }
@@ -137,8 +136,6 @@ public class WebscoketManager {
      */
     public void singleSend(String message, Session session){
         try {
-            System.out.println(message);
-            System.out.println(session);
             session.getBasicRemote().sendText(message);
         } catch (IOException e) {
             e.printStackTrace();

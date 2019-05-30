@@ -50,4 +50,14 @@ public class WebSocketImpl implements WebSocketService {
     public List<Map> loadGroupTalk(String talk_to) {
         return webSocketMapper.loadGroupTalk(talk_to);
     }
+
+    @Override
+    public Integer selectTalkcode(Integer pk_user) {
+        return webSocketMapper.selectTalkcode(pk_user);
+    }
+
+    @Override
+    public List<Map> loadTalkno(Integer pk_user) {
+        return webSocketMapper.loadTalkno(pk_user);
+    }
 }

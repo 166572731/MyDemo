@@ -14,4 +14,6 @@ public interface WebSocketService {
     Integer updateTalkCode(String talk_from,String talk_to);
     Map selectFromUserinfo(String pk_user);
     List<Map> loadGroupTalk(String talk_to);
+    Integer selectTalkcode(Integer pk_user);
+    List<Map> loadTalkno(Integer pk_user);
 }
