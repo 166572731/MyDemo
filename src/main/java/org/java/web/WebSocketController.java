@@ -70,12 +70,7 @@ public class WebSocketController {
     //加载聊天记录
     @RequestMapping("loadTalk")
     public @ResponseBody List<Map> loadTalk(String talk_from,String talk_to){
-        System.out.println("aaaaaaaaaaaa");
-        System.out.println(talk_to);
-        System.out.println(talk_to.indexOf("group"));
         if (talk_to.indexOf("group")!=-1){
-            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-            System.out.println(talk_to);
             List<Map> groupList=webSocketService.loadGroupTalk(talk_to);
             //对聊天记录进行排序
             Collections.sort(groupList,new Comparator<Map>() {
@@ -87,7 +82,6 @@ public class WebSocketController {
                     return talk1-talk2;
                 }
             });
-            System.out.println(groupList);
             return groupList;
         }
         List<Map> listme=webSocketService.loadTalk(talk_from, talk_to);
