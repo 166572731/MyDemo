@@ -1,3 +1,4 @@
+<%@ page import="org.apache.shiro.session.Session" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -40,11 +41,11 @@
             <!-- 顶部导航(移动端) -->
             <div class="visible-xs hidden-sm hidden-md hidden-lg">
                 <div class="media logged-user">
-                    <img alt="" src="images/photos/user-avatar.png"
-                         class="media-object">
+                    <img alt="" src="images/head/user-avatar.png"
+                         class="media-object headimg"/>
                     <div class="media-body">
                         <h4>
-                            <a href="#">陈磊</a>
+                            <a href="#" class="loginname"></a>
                         </h4>
                         <span>"我就是我，不一样的烟火..."</span>
                     </div>
@@ -77,18 +78,20 @@
 
             <!--toggle button start-->
             <a class="toggle-btn"><i class="fa fa-bars"></i></a>
-            <!--toggle button end-->
 
             <!--search start-->
             <form class="searchform" action="index.jsp" method="post">
                 <input type="text" class="form-control" name="keyword"
                        placeholder="点击这里搜索 ..."/>
             </form>
-            <!--search end-->
 
             <!--notification menu start -->
             <div class="menu-right">
                 <ul class="notification-menu">
+                    <%-- 聊天室 --%>
+                    <li><a href="#" class="btn info-number dropdown-toggle webchat"> <i
+                            class="fa fa-comment"></i> <span class="badge">4</span>
+                    </a></li>
                     <!-- 顶部代办任务 -->
                     <li><a href="#"
                            class="btn btn-default dropdown-toggle info-number"
@@ -136,20 +139,20 @@
                             <h5 class="title">你有5个新邮件</h5>
                             <ul class="dropdown-list normal-list">
                                 <li class="new"><a href=""> <span class="thumb"><img
-                                        src="images/photos/user1.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user1.png" alt=""/></span> <span class="desc">
 												<span class="name">John Doe <span
                                                         class="badge badge-success">new</span></span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
                                 </a></li>
                                 <li><a href=""> <span class="thumb"><img
-                                        src="images/photos/user2.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user2.png" alt=""/></span> <span class="desc">
 												<span class="name">Jonathan Smith</span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
                                 </a></li>
                                 <li><a href=""> <span class="thumb"><img
-                                        src="images/photos/user3.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user3.png" alt=""/></span> <span class="desc">
 												<span class="name">Jane Doe</span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
@@ -193,7 +196,7 @@
                     </li>
                     <li><a href="#" class="btn btn-default dropdown-toggle"
                            data-toggle="dropdown"> <img
-                            src="images/photos/user-avatar.png" alt=""/> 陈磊 <span
+                            src="images/head/user-avatar.png" alt="" class="headimg"/><span class="loginname"></span><span
                             class="caret"></span>
                     </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
@@ -203,15 +206,9 @@
                                 退出</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" class="btn info-number webchat"> <i
-                            class="fa fa-comment"></i> <span class="badge">4</span>
-                    </a></li>
                 </ul>
             </div>
-            <!--notification menu end -->
-
         </div>
-        <!-- header section end-->
 
         <!-- page heading start-->
         <div class="page-heading">
@@ -221,19 +218,15 @@
                 <li class="active">桌面</li>
             </ul>
         </div>
-        <!-- page heading end-->
         <!--body wrapper start-->
         <div class="wrapper">
-            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:85%;"></iframe>
+            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:75%;"></iframe>
         </div>
-        <!--body wrapper end-->
         <!--footer section start-->
-        <footer class="sticky-footer text-center"> 2014 &copy;
-            AdminEx by ThemeBucket
+        <footer class="sticky-footer text-center">
+            <span  style="margin-left: -200px;"> 2019 &copy;AdminEx by 酷酷的磊哥哥，哈哈哈！</span>
         </footer>
-        <!--footer section end-->
     </div>
-    <!-- main content end-->
 </section>
 <!-- 将js放在文档的末尾，以便页面加载速度更快。 -->
 <script src="js/jquery-1.10.2.min.js"></script>
@@ -246,6 +239,7 @@
 <script src="http://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
 <%--<script type="text/javascript" src="js/webchat/wechat.js"></script>--%>
 <script src="js/myjs/index.js"></script>
+
 <!-- 信息提示框 -->
 <script type="text/javascript" src="js/info/layx.min.js"></script>
 </body>

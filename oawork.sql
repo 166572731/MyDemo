@@ -4,6 +4,7 @@ MySQL - 5.0.24-community-nt : Database - oawork
 *********************************************************************
 */
 
+
 /*!40101 SET NAMES utf8 */;
 
 /*!40101 SET SQL_MODE=''*/;
@@ -18,7 +19,6 @@ USE `oawork`;
 
 /*Table structure for table `attachment_list` */
 
-DROP TABLE IF EXISTS `attachment_list`;
 
 CREATE TABLE `attachment_list` (
   `pk_Attachment` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -36,7 +36,6 @@ CREATE TABLE `attachment_list` (
 
 /*Table structure for table `attendance_list` */
 
-DROP TABLE IF EXISTS `attendance_list`;
 
 CREATE TABLE `attendance_list` (
   `pk_Attendance` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -55,7 +54,6 @@ CREATE TABLE `attendance_list` (
 
 /*Table structure for table `calendar_list` */
 
-DROP TABLE IF EXISTS `calendar_list`;
 
 CREATE TABLE `calendar_list` (
   `pk_Calendar` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -79,7 +77,6 @@ CREATE TABLE `calendar_list` (
 
 /*Table structure for table `car_list` */
 
-DROP TABLE IF EXISTS `car_list`;
 
 CREATE TABLE `car_list` (
   `pk_Car` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -112,7 +109,6 @@ CREATE TABLE `car_list` (
 
 /*Table structure for table `car_set` */
 
-DROP TABLE IF EXISTS `car_set`;
 
 CREATE TABLE `car_set` (
   `pk_Set` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -171,6 +167,40 @@ CREATE TABLE `finance_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `finance_list` */
+
+/*Table structure for table `group_list` */
+
+DROP TABLE IF EXISTS `group_list`;
+
+CREATE TABLE `group_list` (
+  `pk_group` int(11) NOT NULL auto_increment COMMENT '自增列ID',
+  `fk_user` int(11) default NULL COMMENT '创建人ID',
+  `creatTime` date default NULL COMMENT '创建时间',
+  `headUrl` varchar(20) default NULL COMMENT '群头像',
+  `groupName` varchar(20) default NULL COMMENT '群名称',
+  `conmment` varchar(50) default NULL COMMENT '简介',
+  PRIMARY KEY  (`pk_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `group_list` */
+
+insert  into `group_list`(`pk_group`,`fk_user`,`creatTime`,`headUrl`,`groupName`,`conmment`) values (1,2,'2019-05-25','1.jpg','总经办管理群','总经理办公室专用群'),(2,2,'2019-05-25','2.jpg','管理员群','哈哈哈哈哈哈哈');
+
+/*Table structure for table `groupuser_list` */
+
+DROP TABLE IF EXISTS `groupuser_list`;
+
+CREATE TABLE `groupuser_list` (
+  `pk_groupuser` int(11) NOT NULL auto_increment COMMENT '自增',
+  `fk_user` int(11) default NULL COMMENT '用户ID',
+  `fk_group` int(11) default NULL COMMENT '群ID',
+  `jointime` date default NULL COMMENT '加入时间',
+  PRIMARY KEY  (`pk_groupuser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `groupuser_list` */
+
+insert  into `groupuser_list`(`pk_groupuser`,`fk_user`,`fk_group`,`jointime`) values (1,2,1,'2019-05-25'),(2,2,2,'2019-05-25'),(3,1,1,'2019-05-26'),(4,3,2,'2019-05-26');
 
 /*Table structure for table `mail_list` */
 
@@ -283,7 +313,7 @@ CREATE TABLE `role_list` (
 
 /*Data for the table `role_list` */
 
-insert  into `role_list`(`pk_Role`,`pk_Department`,`fk_RoleName`,`fk_Menu`,`role_name`) values (1,1000,3,33,'role:add,role:delete,role:query,role:update,'),(11,1000,3,34,'role:add,role:delete,role:update,role:query,'),(12,1000,3,35,'role:query,role:update,role:delete,role:add,'),(13,1000,3,36,'role:add,role:delete,role:update,role:query,'),(14,1001,4,25,'role:query,'),(15,1001,4,24,'role:query,'),(16,1001,4,23,'role:query,role:update,role:delete,role:add,'),(18,1001,4,4,'role:query,'),(24,1001,5,4,'role:query,'),(25,1000,3,14,'role:add,role:delete,role:update,role:query,'),(26,1000,3,15,'role:query,role:update,role:delete,role:add,'),(27,1000,3,10,'role:add,role:delete,role:update,role:query,'),(28,1000,3,11,'role:query,'),(29,1000,3,20,'role:add,role:delete,role:update,role:query,'),(30,1000,3,29,'role:query,'),(31,1000,3,12,'role:add,role:delete,role:update,role:query,'),(32,1000,1,3,'role:query,'),(33,1000,1,4,'role:query,'),(34,1000,1,6,'role:add,role:delete,role:update,role:query,'),(35,1000,1,7,'role:query,role:update,role:delete,role:add,'),(36,1000,1,8,'role:query,'),(37,1000,1,10,'role:add,role:delete,role:update,role:query,'),(38,1000,1,11,'role:query,'),(39,1000,1,14,'role:add,role:delete,role:update,role:query,'),(40,1000,1,15,'role:query,role:update,role:delete,role:add,'),(41,1000,1,17,'role:add,role:delete,role:update,role:query,'),(42,1000,1,18,'role:query,role:update,role:delete,role:add,'),(43,1000,1,20,'role:add,role:delete,role:update,role:query,'),(44,1000,1,21,'role:query,'),(45,1000,1,23,'role:query,'),(46,1000,1,25,'role:query,'),(47,1000,1,28,'role:add,role:delete,role:update,role:query,'),(48,1000,1,27,'role:query,role:update,role:delete,role:add,'),(49,1000,1,29,'role:query,'),(50,1000,1,32,'role:add,role:delete,role:update,role:query,'),(51,1000,2,2,'role:query,'),(52,1000,2,3,'role:query,'),(53,1000,2,4,'role:query,'),(54,1000,2,6,'role:add,role:query,'),(55,1000,2,7,'role:query,'),(56,1000,2,8,'role:query,'),(57,1000,2,10,'role:query,role:update,role:delete,role:add,'),(58,1000,2,11,'role:query,'),(59,1000,2,14,'role:query,role:update,role:add,role:delete,'),(60,1000,2,15,'role:add,role:update,role:query,role:delete,'),(61,1000,2,20,'role:add,role:delete,role:update,role:query,'),(62,1000,2,21,'role:query,'),(63,1000,2,18,'role:query,role:add,role:delete,role:update,'),(64,1000,2,17,'role:query,role:update,role:delete,role:add,'),(65,1000,2,28,'role:add,role:delete,role:update,role:query,'),(66,1000,2,27,'role:query,'),(67,1000,2,32,'role:add,role:delete,role:update,role:query,'),(68,1000,2,29,'role:query,'),(69,1000,3,17,'role:query,'),(70,1000,3,18,'role:query,role:update,role:delete,role:add,'),(71,1000,3,21,'role:query,'),(74,1000,3,31,'role:add,role:delete,role:update,role:query,'),(75,1000,3,32,'role:query,');
+insert  into `role_list`(`pk_Role`,`pk_Department`,`fk_RoleName`,`fk_Menu`,`role_name`) values (1,1000,3,33,'role:add,role:delete,role:query,role:update,'),(11,1000,3,34,'role:add,role:delete,role:update,role:query,'),(12,1000,3,35,'role:query,role:update,role:delete,role:add,'),(13,1000,3,36,'role:add,role:delete,role:update,role:query,'),(14,1001,4,25,'role:query,'),(15,1001,4,24,'role:query,'),(16,1001,4,23,'role:query,role:update,role:delete,role:add,'),(18,1001,4,4,'role:query,'),(24,1001,5,4,'role:query,'),(25,1000,3,14,'role:add,role:delete,role:update,role:query,'),(26,1000,3,15,'role:query,role:update,role:delete,role:add,'),(27,1000,3,10,'role:add,role:delete,role:update,role:query,'),(28,1000,3,11,'role:query,'),(29,1000,3,20,'role:add,role:delete,role:update,role:query,'),(30,1000,3,29,'role:query,'),(31,1000,3,12,'role:add,role:delete,role:update,role:query,'),(32,1000,1,3,'role:query,role:delete,'),(33,1000,1,4,'role:query,'),(34,1000,1,6,'role:add,role:delete,role:update,role:query,'),(35,1000,1,7,'role:query,role:update,role:delete,role:add,'),(36,1000,1,8,'role:query,'),(37,1000,1,10,'role:add,role:delete,role:update,role:query,'),(38,1000,1,11,'role:query,'),(39,1000,1,14,'role:add,role:delete,role:update,role:query,'),(40,1000,1,15,'role:query,role:update,role:delete,role:add,'),(41,1000,1,17,'role:add,role:delete,role:update,role:query,'),(42,1000,1,18,'role:query,role:update,role:delete,role:add,'),(43,1000,1,20,'role:add,role:delete,role:update,role:query,'),(44,1000,1,21,'role:query,'),(45,1000,1,23,'role:query,'),(46,1000,1,25,'role:query,'),(47,1000,1,28,'role:add,role:delete,role:update,role:query,'),(48,1000,1,27,'role:query,role:update,role:delete,role:add,'),(49,1000,1,29,'role:query,'),(50,1000,1,32,'role:add,role:delete,role:update,role:query,'),(51,1000,2,2,'role:query,'),(52,1000,2,3,'role:query,'),(53,1000,2,4,'role:query,'),(54,1000,2,6,'role:add,role:query,'),(55,1000,2,7,'role:query,'),(56,1000,2,8,'role:query,'),(57,1000,2,10,'role:query,role:update,role:delete,role:add,'),(58,1000,2,11,'role:query,'),(59,1000,2,14,'role:query,role:update,role:add,role:delete,'),(60,1000,2,15,'role:add,role:update,role:query,role:delete,'),(61,1000,2,20,'role:add,role:delete,role:update,role:query,'),(62,1000,2,21,'role:query,'),(63,1000,2,18,'role:query,role:add,role:delete,role:update,'),(64,1000,2,17,'role:query,role:update,role:delete,role:add,'),(65,1000,2,28,'role:add,role:delete,role:update,role:query,'),(66,1000,2,27,'role:query,'),(67,1000,2,32,'role:add,role:delete,role:update,role:query,'),(68,1000,2,29,'role:query,'),(69,1000,3,17,'role:query,'),(70,1000,3,18,'role:query,role:update,role:delete,role:add,'),(71,1000,3,21,'role:query,'),(74,1000,3,31,'role:add,role:delete,role:update,role:query,'),(75,1000,3,32,'role:query,');
 
 /*Table structure for table `role_name` */
 
@@ -299,7 +329,7 @@ CREATE TABLE `role_name` (
 
 /*Data for the table `role_name` */
 
-insert  into `role_name`(`pk_Name`,`RoleName_CHS`,`RoleName_EN`,`pk_Department`) values (1,'总经理','CEO',1000),(2,'助理','ASSISTANT',1000),(3,'超级管理员','ADMIN',1000),(4,'经理','MANAGER',1001),(5,'会计','ACCOUNTANT',1001),(6,'经理','MANAGER',1002),(7,'主管','DIRECTOR',1002),(8,'文员','CLERTK',1002),(9,'经理',NULL,1003),(10,'文员',NULL,1003),(11,'经理',NULL,1004),(17,'组长',NULL,1004);
+insert  into `role_name`(`pk_Name`,`RoleName_CHS`,`RoleName_EN`,`pk_Department`) values (1,'总经理','CEO',1000),(2,'助理','ASSISTANT',1000),(3,'超级管理员','ADMIN',1000),(4,'经理','MANAGER',1001),(5,'会计','ACCOUNTANT',1001),(6,'经理','MANAGER',1002),(7,'主管','DIRECTOR',1002),(8,'文员','CLERTK',1002),(9,'经理',NULL,1003),(10,'文员',NULL,1003),(11,'经理',NULL,1004),(17,'组长',NULL,1004),(18,'文员',NULL,1001);
 
 /*Table structure for table `sys_menu` */
 
@@ -352,6 +382,23 @@ CREATE TABLE `sys_typeid` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `sys_typeid` */
+
+/*Table structure for table `talk_list` */
+
+DROP TABLE IF EXISTS `talk_list`;
+
+CREATE TABLE `talk_list` (
+  `pk_talk` int(11) NOT NULL auto_increment COMMENT '自增ID',
+  `talk_frominfo` varchar(100) default NULL COMMENT '消息来源信息',
+  `talk_to` varchar(20) default NULL COMMENT '消息目标',
+  `talk_content` text COMMENT '消息内容',
+  `talk_time` date default NULL COMMENT '发送时间',
+  `talk_from` varchar(20) default NULL COMMENT '消息来源',
+  `talk_code` int(11) default NULL COMMENT '读取状态',
+  PRIMARY KEY  (`pk_talk`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `talk_list` */
 
 /*Table structure for table `task_list` */
 
@@ -426,12 +473,13 @@ CREATE TABLE `user_department` (
   `Friday` datetime default NULL COMMENT '周五考勤时间',
   `Saturday` datetime default NULL COMMENT '周六考勤时间',
   `Sunday` datetime default NULL COMMENT '周日考勤时间',
+  `headUrl` varchar(20) default NULL COMMENT '部门头像地址',
   PRIMARY KEY  (`pk_Department`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `user_department` */
 
-insert  into `user_department`(`pk_Department`,`DepartmentName`,`Phone`,`Email`,`Address`,`ParentID`,`TypeID`,`Manager`,`LevelID`,`CreateDate`,`Monday`,`Tuesday`,`Wednesday`,`Thursday`,`Friday`,`Saturday`,`Sunday`) values (1000,'总经办','0712-666666',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1001,'财务部','0712-666999',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1002,'行政部','0712-666888',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1003,'人力资源部','0712-666777',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1004,'销售部','0712-666222',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1005,'市场部','0712-666111',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(1006,'营销部','0712-666555',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `user_department`(`pk_Department`,`DepartmentName`,`Phone`,`Email`,`Address`,`ParentID`,`TypeID`,`Manager`,`LevelID`,`CreateDate`,`Monday`,`Tuesday`,`Wednesday`,`Thursday`,`Friday`,`Saturday`,`Sunday`,`headUrl`) values (1000,'总经办','0712-666666',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'1.jpg'),(1001,'财务部','0712-666999',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2.jpg'),(1002,'行政部','0712-666888',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'3.jpg'),(1003,'人力资源部','0712-666777',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'4.jpg'),(1004,'销售部','0712-666222',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'5.jpg'),(1005,'市场部','0712-666111',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'6.jpg'),(1006,'营销部','0712-666555',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'7.jpg');
 
 /*Table structure for table `user_list` */
 
@@ -478,7 +526,7 @@ CREATE TABLE `user_list` (
 
 /*Data for the table `user_list` */
 
-insert  into `user_list`(`pk_user`,`userName`,`password`,`typeId`,`fk_Department`,`RoleValue`,`RoleList`,`Position`,`Number`,`IsLock`,`LastLoginTime`,`FullName`,`Phone`,`Email`,`Wechat`,`QQ`,`ZipCode`,`Place`,`Address`,`Sex`,`Height`,`Weight`,`Birthday`,`Education`,`School`,`ImagePath1`,`IDCardPath`,`ResumePath`,`Wages`,`BankAccount`,`IDNumber`,`Remark`,`EntryTime`,`IsQuit`,`QuitTime`) values (1,'张三','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1000,1,NULL,NULL,'10000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'陈磊','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1000,3,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+insert  into `user_list`(`pk_user`,`userName`,`password`,`typeId`,`fk_Department`,`RoleValue`,`RoleList`,`Position`,`Number`,`IsLock`,`LastLoginTime`,`FullName`,`Phone`,`Email`,`Wechat`,`QQ`,`ZipCode`,`Place`,`Address`,`Sex`,`Height`,`Weight`,`Birthday`,`Education`,`School`,`ImagePath1`,`IDCardPath`,`ResumePath`,`Wages`,`BankAccount`,`IDNumber`,`Remark`,`EntryTime`,`IsQuit`,`QuitTime`) values (1,'张三','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1000,1,NULL,NULL,'10000',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,NULL,NULL,NULL,'4.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'陈磊','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1000,3,NULL,NULL,'10001',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,'5.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(3,'宋江','ab3f511502b1ca973d4e5dddf3bfbf77',NULL,1002,6,NULL,NULL,'10002',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,'6.jpg',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `user_position` */
 

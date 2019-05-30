@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.NoticeListMapper">
+    <insert id="addNotice" parameterType="org.java.entity.NoticeList">
+
+INSERT INTO `oawork`.`notice_list`
+	(`pk_Notice`,
+	`fk_User`,
+	`fk_Department`,
+	`TypeID`,
+	`StatusID`,
+	`Title`,
+	`Description`,
+	`ImagePath`,
+	`FilePath`,
+	`UserList`,
+	`DepartmentList`,
+	`RoleList`,
+	`Url`,
+	`StartDate`,
+	`EndDate`,
+	`IsTop`,
+	`CreateDate`,
+	`IsRead`,
+	`ReadDate`
+	)
+	VALUES
+	(NULL,
+	#{fk_User},
+	#{fk_Department},
+	#{typeId},
+	#{statusId},
+	#{title},
+	#{description},
+	#{imagePath},
+	#{filePath},
+	#{userList},
+	#{departmentList},
+	#{roleList},
+	#{url},
+	#{startDate},
+	#{endDate},
+	#{isTop},
+	#{createDate},
+	#{isRead},
+	#{readDate}
+	);
+
+    </insert>
+
+    <select id="findByUser" parameterType="int" resultType="org.java.entity.NoticeList">
+        SELECT * FROM notice_list   order by CreateDate desc
+    </select>
+
+    <select id="findAll" resultType="org.java.entity.NoticeList" parameterType="int">
+        select *from notice_list WHERE fk_User=#{fk_User} order by CreateDate desc
+    </select>
+    <delete id="delById" parameterType="int">
+        delete from notice_list where pk_Notice=#{pk_Notice}
+    </delete>
+	<select id="findMyNotice" resultType="org.java.entity.NoticeList">
+		SELECT * FROM notice_list   order by CreateDate desc
+	</select>
+	<select id="findById" parameterType="int" resultType="org.java.entity.NoticeList">
+		SELECT * FROM notice_list WHERE pk_Notice=#{pk_Notice}
+	</select>
+</mapper>
