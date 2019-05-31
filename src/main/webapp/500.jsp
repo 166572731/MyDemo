@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
             <h2>服务器异常,请稍后再试...</h2>
             <h3>Something went wrong.</h3>
             <p class="nrml-txt">Why not try refreshing you page? Or you can <a href="#">contact our support</a> if the problem persists.</p>
-            <a class="back-btn" href="index.jsp"> Back To Home</a>
+            <a class="back-btn" href="${pageContext.request.contextPath}/index.jsp"> Back To Home</a>
         </section>
 
     </div>

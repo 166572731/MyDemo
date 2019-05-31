@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
             <h1><img alt="" src="images/404-error.png"></h1>
             <h2>页面被外星人盗走了</h2>
             <h3>We Couldn’t Find This Page</h3>
-            <a class="back-btn" href="index.jsp"> Back To Home</a>
+            <a class="back-btn" href="${pageContext.request.contextPath}/index.jsp"> Back To Home</a>
         </section>
 
     </div>

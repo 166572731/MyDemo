@@ -17,7 +17,7 @@ public class WebSocketController {
     @Autowired
     WebSocketService webSocketService;
 
-    //加载群组列表
+    //加载群组成员
     @RequestMapping("loadGroupUser")
     public @ResponseBody
     List<Map> loadGroupUser(Integer fk_group) {
@@ -25,6 +25,7 @@ public class WebSocketController {
         return list;
     }
 
+    //加载群组列表
     @RequestMapping("loadgroup")
     public @ResponseBody
     List<Map> loadgroup(HttpSession httpSession) {
@@ -72,7 +73,7 @@ public class WebSocketController {
     public @ResponseBody List<Map> loadTalk(String talk_from,String talk_to){
         if (talk_to.indexOf("group")!=-1){
             List<Map> groupList=webSocketService.loadGroupTalk(talk_to);
-            //对聊天记录进行排序
+            //对群聊天记录进行排序
             Collections.sort(groupList,new Comparator<Map>() {
                 @Override
                 public int compare(Map o1, Map o2) {
@@ -124,6 +125,8 @@ public class WebSocketController {
     public @ResponseBody Integer selectTalkcode(Integer pk_user){
         return  webSocketService.selectTalkcode(pk_user);
     }
+
+    //加载未读信息
     @RequestMapping("loadTalkno")
     public @ResponseBody List<Map> loadTalkno(Integer pk_user){
         return webSocketService.loadTalkno(pk_user);

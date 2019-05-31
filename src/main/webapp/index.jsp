@@ -1,7 +1,7 @@
 <%@ page import="org.apache.shiro.session.Session" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html >
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -89,7 +89,7 @@
             <div class="menu-right">
                 <ul class="notification-menu">
                     <%-- 聊天室 --%>
-                    <li><a href="#" class="btn info-number dropdown-toggle webchat"> <i
+                    <li><a href="#" class="btn info-number dropdown-toggle webchat" style="margin-top: -3px;"> <i
                             class="fa fa-comment" style="font-size: 20px;"></i> <span class="badge talkcount"></span>
                     </a></li>
                     <!-- 顶部代办任务 -->
@@ -220,7 +220,7 @@
         </div>
         <!--body wrapper start-->
         <div class="wrapper">
-            <iframe src="main.jsp" id="frame" scrolling="no" frameborder="0" style="width: 100%;"></iframe>
+            <iframe src="main.jsp" id="frame" name="frame" frameborder="0" style="width: 100%;"></iframe>
         </div>
         <!--footer section start-->
         <footer class="sticky-footer text-center">
@@ -237,23 +237,11 @@
 <script src="js/jquery.nicescroll.js"></script>
 <script src="layui/layui.js"></script>
 <script src="http://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<%--<script type="text/javascript" src="js/webchat/wechat.js"></script>--%>
-<script src="js/myjs/index.js"></script>
-
-<!-- 信息提示框 -->
 <script type="text/javascript" src="js/info/layx.min.js"></script>
+<script src="js/myjs/index.js"></script>
 <script type="text/javascript">
-        function reinitIframe(){
-            var iframe = document.getElementById("frame");
-            try{
-                var bHeight = iframe.contentWindow.document.body.scrollHeight;
-                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-                var height = Math.max(bHeight, dHeight);
-                iframe.height = height;
-                console.log(height);
-            }catch (ex){}
-        }
-    window.setInterval("reinitIframe()", 200);
+    //iframe自适应高度
+    $("#frame").height($(".sticky-footer").offset().top-$("#frame").offset().top+5);
 </script>
 </body>
 </html>

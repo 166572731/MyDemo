@@ -26,39 +26,36 @@ Date.prototype.format = function (fmt) {
 }
 var newtime = new Date().format("yyyy-MM-dd hh:mm:ss");
 
+
+/**
+ *创建wensocket连接
+ * @type {null}
+ */
+var websocket = null;
+if ('WebSocket' in window) {
+    websocket = new WebSocket("ws://localhost:8080/websocket");
+}
+else if ('MozWebSocket' in window) {
+    websocket = new MozWebSocket("ws://localhost:8080/websocket");
+}
+else {
+    websocket = new SockJS("http://localhost:8080/websocket");
+}
+//连接成功建立的回调方法
+websocket.onopen = function () {}
+//连接发生错误的回调方法
+websocket.onerror = function () {};
+/**
+ * 退出登录
+ */
+$(".exit").click(function () {
+    websocket.close();
+    location.href = "logout.do";
+});
+
 layui.use(['laydate', 'layer'], function () {
     var laydate = layui.laydate, layer = layui.layer;
-    $(".exit").click(function () {
-        location.href = "logout.do";
-    });
     $(".webchat").click(function () {
-        /**
-         *创建wensocket连接
-         * @type {null}
-         */
-        var websocket = null;
-        if ('WebSocket' in window) {
-            websocket = new WebSocket("ws://localhost:8080/websocket");
-        }
-        else if ('MozWebSocket' in window) {
-            websocket = new MozWebSocket("ws://localhost:8080/websocket");
-        }
-        else {
-            websocket = new SockJS("http://localhost:8080/websocket");
-        }
-        //连接成功建立的回调方法
-        websocket.onopen = function () {}
-        //连接发生错误的回调方法
-        websocket.onerror = function () {};
-        /**
-         * 退出登录
-         */
-        $(".exit").addClass("exitAndsocket");
-        $(".exitAndsocket").removeClass("exit");
-        $(".exitAndsocket").click(function () {
-            websocket.close();
-            location.href = "logout.do";
-        });
         layer.open({
             area: ['862px', '583px'],
             closeBtn: 0,
@@ -215,6 +212,8 @@ layui.use(['laydate', 'layer'], function () {
         }
     });
 });
+
+
 /**
  * 动态加载左侧导航
  * */
@@ -305,4 +304,3 @@ function childPagechange() {
     });
     $(".returnpage").removeAttr("class", "hide");
 }
-

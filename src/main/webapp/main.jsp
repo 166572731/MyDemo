@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
     <link href="layui/css/layui.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
-<body style="background: #eff0f4;overflow-x: hidden;">
+<body style="background: #eff0f4;">
 <!--body wrapper start-->
 <div class="row">
     <div class="col-md-6">
@@ -370,7 +370,7 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <h4>财务收支公示一览</h4>
                         <div class="icheck">
-                            <div class="square-red single-row">
+                            <div class="square-red single-row" style="margin-left: 20px;">
                                 <div class="checkbox ">
                                     <input type="checkbox" checked> <label>Online</label>
                                 </div>
@@ -427,23 +427,23 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel">
-            <div class="panel-body">
+            <div class="panel-body" style="height: 65px;">
                 <div class="media usr-info">
                     <a href="#" class="pull-left"> <img class="thumb"
                                                         src="images/head/user2.png" alt=""/>
                     </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Mila Watson</h4>
-                        <span>Senior UI Designer</span>
-                        <p>I use to design websites and applications for the web.</p>
+                    <div class="media-body row text-center" style="margin-top: 25px;">
+                        <h4 class="media-heading col-md-4"><i class="fa fa-user"> </i><a>用户名</a></h4>
+                        <p class="col-md-4"><i class="fa fa-heart"> </i><a>简介</a></p>
+                        <span class="col-md-4"><i class="fa fa-shield"> </i><a>职位</a></span>
                     </div>
                 </div>
             </div>
-            <div class="panel-footer custom-trq-footer">
+            <div class="panel-footer custom-trq-footer" style="height: 50px;">
                 <ul class="user-states">
-                    <li><i class="fa fa-heart"></i> 127</li>
-                    <li><i class="fa fa-eye"></i> 853</li>
-                    <li><i class="fa fa-user"></i> 311</li>
+                    <li>
+                        <hr class="layui-bg-orange" style="margin-top: -6px;">
+                    </li>
                 </ul>
             </div>
         </div>
@@ -464,5 +464,15 @@
 <script type="text/javascript" src="js/time/time.js"></script>
 <%-- main页面js --%>
 <script src="js/myjs/main.js"></script>
+<script type="text/javascript">
+    //顯示用戶信息
+    window.setTimeout(function () {
+        var loginMan = JSON.parse(sessionStorage.getItem("loginMan"));
+        $(".thumb").attr("src", "images/head/" + loginMan.ImagePath1);
+        $(".media-body h4 a").text(' 用戶名：' + loginMan.userName);
+        $(".media-body span a").text(' 部门：' + loginMan.DepartmentName + ' / ' + loginMan.roleName);
+        $(".media-body p a").text(' 用户编号：' + loginMan.Number);
+    }, 1000);
+</script>
 </body>
 </html>

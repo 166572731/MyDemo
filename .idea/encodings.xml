@@ -2,6 +2,96 @@
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/websocket/GetHttpSessionConfigurator.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/websocket/WebscoketManager.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/fonts/css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/fonts/fonts" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/fonts/less" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/404-error.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/500-error.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/Thumbs.db" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/alert.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/avatar-mini.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/bg.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/details_close.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/details_open.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/error.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/graph.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/1.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/10 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/10.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/11.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/12.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/15.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/2 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/2.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/3 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/3 (2).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/3.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/4 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/4.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/5 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/5.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/6 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/6.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/7 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/7.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/8 (1).jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/8.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/9.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/user-avatar.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/user1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/user2.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/user3.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/user4.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/user5.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/head/userprofile.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_2.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_2_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_3.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_3_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_4.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_4_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/head_5.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon10.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon11.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon13.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon13_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon14.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon14_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon15.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon15_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon16.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon16_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon17.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon17_1.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon18.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon2.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon3.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon4.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon5.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon6.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon7.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon8.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/icon9.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/icon/nv.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/input-spinner.gif" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/invoice-logo.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/lockscreen-bg.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/login-bg.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/login-logo.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/logo.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/logo_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/minus.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/own_head.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/plus-white.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/images/plus.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/index.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/login.jsp" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

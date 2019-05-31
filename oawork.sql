@@ -2,8 +2,7 @@
 SQLyog Ultimate v8.32 
 MySQL - 5.0.24-community-nt : Database - oawork
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -19,6 +18,7 @@ USE `oawork`;
 
 /*Table structure for table `attachment_list` */
 
+DROP TABLE IF EXISTS `attachment_list`;
 
 CREATE TABLE `attachment_list` (
   `pk_Attachment` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -36,6 +36,7 @@ CREATE TABLE `attachment_list` (
 
 /*Table structure for table `attendance_list` */
 
+DROP TABLE IF EXISTS `attendance_list`;
 
 CREATE TABLE `attendance_list` (
   `pk_Attendance` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -54,6 +55,7 @@ CREATE TABLE `attendance_list` (
 
 /*Table structure for table `calendar_list` */
 
+DROP TABLE IF EXISTS `calendar_list`;
 
 CREATE TABLE `calendar_list` (
   `pk_Calendar` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -77,6 +79,7 @@ CREATE TABLE `calendar_list` (
 
 /*Table structure for table `car_list` */
 
+DROP TABLE IF EXISTS `car_list`;
 
 CREATE TABLE `car_list` (
   `pk_Car` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -109,6 +112,7 @@ CREATE TABLE `car_list` (
 
 /*Table structure for table `car_set` */
 
+DROP TABLE IF EXISTS `car_set`;
 
 CREATE TABLE `car_set` (
   `pk_Set` int(11) NOT NULL auto_increment COMMENT '自增ID',
@@ -125,6 +129,47 @@ CREATE TABLE `car_set` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `car_set` */
+
+/*Table structure for table `classification` */
+
+DROP TABLE IF EXISTS `classification`;
+
+CREATE TABLE `classification` (
+  `class_id` int(11) NOT NULL auto_increment,
+  `class_name` varchar(20) default NULL,
+  PRIMARY KEY  (`class_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `classification` */
+
+insert  into `classification`(`class_id`,`class_name`) values (1,'好友'),(14,'家人'),(15,'同学'),(16,'基友');
+
+/*Table structure for table `communication` */
+
+DROP TABLE IF EXISTS `communication`;
+
+CREATE TABLE `communication` (
+  `comm_id` int(11) NOT NULL auto_increment COMMENT '通讯编号',
+  `pk_user` int(11) default NULL COMMENT '外键用户编号',
+  `comm_thedegreeof` int(11) default NULL COMMENT '重要||一般',
+  `comm_typeid` int(11) default NULL COMMENT '类型',
+  `comm_sex` int(11) default NULL COMMENT '性别',
+  `comm_name` varchar(20) default NULL COMMENT '联系人名称',
+  `comm_phone` varchar(11) default NULL COMMENT '联系电话',
+  `comm_landline` varchar(20) default NULL COMMENT '公司电话',
+  `comm_fax` varchar(20) default NULL COMMENT '传真',
+  `comm_email` varchar(20) default NULL COMMENT '邮箱',
+  `comm_address` varchar(50) default NULL COMMENT '地址',
+  `comm_note` varchar(20) default NULL COMMENT '备注',
+  `comm_headportrait` varchar(200) default NULL COMMENT '头像',
+  `comm_class_id` int(11) default NULL COMMENT '外键分类',
+  `comm_Shared` int(11) default NULL,
+  PRIMARY KEY  (`comm_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `communication` */
+
+insert  into `communication`(`comm_id`,`pk_user`,`comm_thedegreeof`,`comm_typeid`,`comm_sex`,`comm_name`,`comm_phone`,`comm_landline`,`comm_fax`,`comm_email`,`comm_address`,`comm_note`,`comm_headportrait`,`comm_class_id`,`comm_Shared`) values (4,2,2,2,2,'马王爷','123456789','324234','','32423','给对方','士大夫但是',NULL,1,NULL),(5,2,2,2,1,'父亲','4561515634','324234','','','','','upload/123.jpg',14,NULL),(6,2,2,1,1,'田老师','123456789','123465789','','','','',NULL,14,NULL),(7,2,2,1,2,'张同学','2342352345','2323','','','','',NULL,15,NULL);
 
 /*Table structure for table `finance_account` */
 
@@ -313,7 +358,7 @@ CREATE TABLE `role_list` (
 
 /*Data for the table `role_list` */
 
-insert  into `role_list`(`pk_Role`,`pk_Department`,`fk_RoleName`,`fk_Menu`,`role_name`) values (1,1000,3,33,'role:add,role:delete,role:query,role:update,'),(11,1000,3,34,'role:add,role:delete,role:update,role:query,'),(12,1000,3,35,'role:query,role:update,role:delete,role:add,'),(13,1000,3,36,'role:add,role:delete,role:update,role:query,'),(14,1001,4,25,'role:query,'),(15,1001,4,24,'role:query,'),(16,1001,4,23,'role:query,role:update,role:delete,role:add,'),(18,1001,4,4,'role:query,'),(24,1001,5,4,'role:query,'),(25,1000,3,14,'role:add,role:delete,role:update,role:query,'),(26,1000,3,15,'role:query,role:update,role:delete,role:add,'),(27,1000,3,10,'role:add,role:delete,role:update,role:query,'),(28,1000,3,11,'role:query,'),(29,1000,3,20,'role:add,role:delete,role:update,role:query,'),(30,1000,3,29,'role:query,'),(31,1000,3,12,'role:add,role:delete,role:update,role:query,'),(32,1000,1,3,'role:query,role:delete,'),(33,1000,1,4,'role:query,'),(34,1000,1,6,'role:add,role:delete,role:update,role:query,'),(35,1000,1,7,'role:query,role:update,role:delete,role:add,'),(36,1000,1,8,'role:query,'),(37,1000,1,10,'role:add,role:delete,role:update,role:query,'),(38,1000,1,11,'role:query,'),(39,1000,1,14,'role:add,role:delete,role:update,role:query,'),(40,1000,1,15,'role:query,role:update,role:delete,role:add,'),(41,1000,1,17,'role:add,role:delete,role:update,role:query,'),(42,1000,1,18,'role:query,role:update,role:delete,role:add,'),(43,1000,1,20,'role:add,role:delete,role:update,role:query,'),(44,1000,1,21,'role:query,'),(45,1000,1,23,'role:query,'),(46,1000,1,25,'role:query,'),(47,1000,1,28,'role:add,role:delete,role:update,role:query,'),(48,1000,1,27,'role:query,role:update,role:delete,role:add,'),(49,1000,1,29,'role:query,'),(50,1000,1,32,'role:add,role:delete,role:update,role:query,'),(51,1000,2,2,'role:query,'),(52,1000,2,3,'role:query,'),(53,1000,2,4,'role:query,'),(54,1000,2,6,'role:add,role:query,'),(55,1000,2,7,'role:query,'),(56,1000,2,8,'role:query,'),(57,1000,2,10,'role:query,role:update,role:delete,role:add,'),(58,1000,2,11,'role:query,'),(59,1000,2,14,'role:query,role:update,role:add,role:delete,'),(60,1000,2,15,'role:add,role:update,role:query,role:delete,'),(61,1000,2,20,'role:add,role:delete,role:update,role:query,'),(62,1000,2,21,'role:query,'),(63,1000,2,18,'role:query,role:add,role:delete,role:update,'),(64,1000,2,17,'role:query,role:update,role:delete,role:add,'),(65,1000,2,28,'role:add,role:delete,role:update,role:query,'),(66,1000,2,27,'role:query,'),(67,1000,2,32,'role:add,role:delete,role:update,role:query,'),(68,1000,2,29,'role:query,'),(69,1000,3,17,'role:query,'),(70,1000,3,18,'role:query,role:update,role:delete,role:add,'),(71,1000,3,21,'role:query,'),(74,1000,3,31,'role:add,role:delete,role:update,role:query,'),(75,1000,3,32,'role:query,');
+insert  into `role_list`(`pk_Role`,`pk_Department`,`fk_RoleName`,`fk_Menu`,`role_name`) values (1,1000,3,33,'role:add,role:delete,role:query,role:update,'),(11,1000,3,34,'role:add,role:delete,role:update,role:query,'),(12,1000,3,35,'role:query,role:update,role:delete,role:add,'),(13,1000,3,36,'role:add,role:delete,role:update,role:query,'),(14,1001,4,25,'role:query,'),(15,1001,4,24,'role:query,'),(16,1001,4,23,'role:query,role:update,role:delete,role:add,'),(18,1001,4,4,'role:query,'),(24,1001,5,4,'role:query,'),(25,1000,3,14,'role:add,role:delete,role:update,role:query,'),(26,1000,3,15,'role:query,role:update,role:delete,role:add,'),(27,1000,3,10,'role:add,role:delete,role:update,role:query,'),(28,1000,3,11,'role:query,'),(29,1000,3,20,'role:add,role:delete,role:update,role:query,'),(30,1000,3,29,'role:query,'),(31,1000,3,12,'role:add,role:delete,role:update,role:query,'),(32,1000,1,3,'role:query,role:delete,'),(33,1000,1,4,'role:query,'),(34,1000,1,6,'role:add,role:delete,role:update,role:query,'),(35,1000,1,7,'role:query,role:update,role:delete,role:add,'),(36,1000,1,8,'role:query,'),(37,1000,1,10,'role:add,role:delete,role:update,role:query,'),(38,1000,1,11,'role:query,'),(39,1000,1,14,'role:add,role:delete,role:update,role:query,'),(40,1000,1,15,'role:query,role:update,role:delete,role:add,'),(41,1000,1,17,'role:add,role:delete,role:update,role:query,'),(42,1000,1,18,'role:query,role:update,role:delete,role:add,'),(43,1000,1,20,'role:add,role:delete,role:update,role:query,'),(44,1000,1,21,'role:query,'),(45,1000,1,23,'role:query,'),(46,1000,1,25,'role:query,'),(47,1000,1,28,'role:add,role:delete,role:update,role:query,'),(48,1000,1,27,'role:query,role:update,role:delete,role:add,'),(49,1000,1,29,'role:query,'),(50,1000,1,32,'role:add,role:delete,role:update,role:query,'),(51,1000,2,2,'role:query,'),(52,1000,2,3,'role:query,'),(53,1000,2,4,'role:query,'),(54,1000,2,6,'role:add,role:query,'),(55,1000,2,7,'role:query,'),(56,1000,2,8,'role:query,'),(57,1000,2,10,'role:query,role:update,role:delete,role:add,'),(58,1000,2,11,'role:query,'),(59,1000,2,14,'role:query,role:update,role:add,role:delete,'),(60,1000,2,15,'role:add,role:update,role:query,role:delete,'),(61,1000,2,20,'role:add,role:delete,role:update,role:query,'),(62,1000,2,21,'role:query,'),(63,1000,2,18,'role:query,role:add,role:delete,role:update,'),(64,1000,2,17,'role:query,role:update,role:delete,role:add,'),(65,1000,2,28,'role:add,role:delete,role:update,role:query,'),(66,1000,2,27,'role:query,'),(67,1000,2,32,'role:add,role:delete,role:update,role:query,'),(68,1000,2,29,'role:query,'),(69,1000,3,17,'role:query,'),(70,1000,3,18,'role:query,role:update,role:delete,role:add,'),(71,1000,3,21,'role:query,'),(74,1000,3,31,'role:add,role:delete,role:update,role:query,'),(75,1000,3,32,'role:query,'),(90,1000,3,2,'role:query,');
 
 /*Table structure for table `role_name` */
 
@@ -349,7 +394,7 @@ CREATE TABLE `sys_menu` (
 
 /*Data for the table `sys_menu` */
 
-insert  into `sys_menu`(`pk_Menu`,`ParentID`,`Name_CHS`,`Name_EN`,`Url`,`Icon`,`SortID`,`LevelID`) values (1,'0','考勤管理','main',NULL,'fa-laptop',1,1001),(2,'1001','考勤管理','child','kaoqin_manager','fa-laptop',NULL,NULL),(3,'1001','考勤周报表','child','kaoqin_weekchart','fa-laptop',NULL,NULL),(4,'1001','考勤月报表','child','kaoqin_monthchart','fa-laptop',NULL,NULL),(5,'0','用户管理','main',NULL,'fa-book',2,1002),(6,'1002','部门管理','child','user_bumen_manager','fa-book',NULL,NULL),(7,'1002','职位管理','child','user_zhiwei_manager','fa-book',NULL,NULL),(8,'1002','用户管理','child','user_yonghu_manager','fa-book',NULL,NULL),(9,'0','公告通知','main',NULL,'fa-cogs',3,1003),(10,'1003','通知管理','child','gonggao_manager','fa-cogs',NULL,NULL),(11,'1003','通知列表','child','gonggao_list','fa-cogs',NULL,NULL),(13,'0','邮件管理','main',NULL,'fa-envelope',5,1005),(14,'1005','邮件管理','child','mail_mymail','fa-envelope',NULL,NULL),(15,'1005','发送邮件','child','mail_sendmail','fa-envelope',NULL,NULL),(16,'0','任务管理','main',NULL,'fa-tasks',6,1006),(17,'1006','任务管理','child','task_manager','fa-tasks',NULL,NULL),(18,'1006','我的任务','child','task_mytask','fa-tasks',NULL,NULL),(19,'0','车辆管理','main',NULL,'fa-bar-chart-o',7,1007),(20,'1007','用车管理','child','car_usemanager','fa-bar-chart-o',NULL,NULL),(21,'1007','车辆管理','child','car_manager','fa-bar-chart-o',NULL,NULL),(22,'0','财务管理','main',NULL,'fa-th-list',8,1008),(23,'1008','账号管理','child','caiwu_numbermanager','fa-th-list',NULL,NULL),(24,'1008','财务管理','child','caiwu_manager','fa-th-list',NULL,NULL),(25,'1008','财务报表','child','caiwu_chart','fa-th-list',NULL,NULL),(26,'0','流程管理','main',NULL,'fa-th-list',9,1009),(27,'1009','流程汇总','child','flow_list','fa-th-list',NULL,NULL),(28,'1009','流程审核','child','flow_shenhe','fa-th-list',NULL,NULL),(29,'0','通讯录','main','phone_number','fa-bullhorn',10,1010),(30,'0','工作流','main',NULL,'fa-file-text',11,1011),(31,'1011','步骤管理','child','workflow_manager','fa-file-text',NULL,NULL),(32,'1011','我的工作','child','workflow_mywork','fa-file-text',NULL,NULL),(33,'0','菜单管理','main','role/role_meun','fa-cogs',12,1012),(34,'0','类型管理','main','role/role_type','fa-cogs',13,1013),(35,'0','状态管理','main','role/role_stauts','fa-cogs',14,1014),(36,'0','权限管理','main','role/role_manager','fa-cogs',15,1015);
+insert  into `sys_menu`(`pk_Menu`,`ParentID`,`Name_CHS`,`Name_EN`,`Url`,`Icon`,`SortID`,`LevelID`) values (1,'0','考勤管理','main',NULL,'fa-laptop',1,1001),(2,'1001','考勤管理','child','kaoqin_manager','fa-laptop',NULL,NULL),(3,'1001','考勤周报表','child','kaoqin_weekchart','fa-laptop',NULL,NULL),(4,'1001','考勤月报表','child','kaoqin_monthchart','fa-laptop',NULL,NULL),(5,'0','用户管理','main',NULL,'fa-book',2,1002),(6,'1002','部门管理','child','user_bumen_manager','fa-book',NULL,NULL),(7,'1002','职位管理','child','user_zhiwei_manager','fa-book',NULL,NULL),(8,'1002','用户管理','child','user_yonghu_manager','fa-book',NULL,NULL),(9,'0','公告通知','main',NULL,'fa-cogs',3,1003),(10,'1003','通知管理','child','gonggao_manager','fa-cogs',NULL,NULL),(11,'1003','通知列表','child','gonggao_list','fa-cogs',NULL,NULL),(13,'0','邮件管理','main',NULL,'fa-envelope',5,1005),(14,'1005','邮件管理','child','mail_mymail','fa-envelope',NULL,NULL),(15,'1005','发送邮件','child','mail_sendmail','fa-envelope',NULL,NULL),(16,'0','任务管理','main',NULL,'fa-tasks',6,1006),(17,'1006','任务管理','child','task_manager','fa-tasks',NULL,NULL),(18,'1006','我的任务','child','task_mytask','fa-tasks',NULL,NULL),(19,'0','车辆管理','main',NULL,'fa-bar-chart-o',7,1007),(20,'1007','用车管理','child','car_usemanager','fa-bar-chart-o',NULL,NULL),(21,'1007','车辆管理','child','car_manager','fa-bar-chart-o',NULL,NULL),(22,'0','财务管理','main',NULL,'fa-th-list',8,1008),(23,'1008','账号管理','child','caiwu_numbermanager','fa-th-list',NULL,NULL),(24,'1008','财务管理','child','caiwu_manager','fa-th-list',NULL,NULL),(25,'1008','财务报表','child','caiwu_chart','fa-th-list',NULL,NULL),(26,'0','流程管理','main',NULL,'fa-th-list',9,1009),(27,'1009','流程汇总','child','flow_list','fa-th-list',NULL,NULL),(28,'1009','流程审核','child','flow_shenhe','fa-th-list',NULL,NULL),(29,'0','通讯录','main','phone_number','fa-bullhorn',10,1010),(30,'0','工作流','main',NULL,'fa-file-text',11,1011),(31,'1011','步骤管理','child','workflow_manager','fa-file-text',NULL,NULL),(32,'1011','我的工作','child','workflow_mywork','fa-file-text',NULL,NULL),(36,'0','权限管理','main','role/role_manager','fa-cogs',15,1015);
 
 /*Table structure for table `sys_statusid` */
 
@@ -400,6 +445,22 @@ CREATE TABLE `talk_list` (
 
 /*Data for the table `talk_list` */
 
+insert  into `talk_list`(`pk_talk`,`talk_frominfo`,`talk_to`,`talk_content`,`talk_time`,`talk_from`,`talk_code`) values (1,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','阿诗丹顿','2019-05-31','2',0),(2,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','是的的v从','2019-05-31','2',0),(3,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','删除','2019-05-31','2',0),(4,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','哈哈哈','2019-05-31','2',0),(5,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','好好','2019-05-31','2',0),(6,'{\"headimg\":\"5.jpg\",\"isgroup\":\"管理员群group2\",\"userName\":\"陈磊\",\"pk_user\":2}','group2','真的呀','2019-05-31','2',0),(7,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','阿萨德','2019-05-31','2',0),(8,'{\"headimg\":\"5.jpg\",\"isgroup\":\"管理员群group2\",\"userName\":\"陈磊\",\"pk_user\":2}','group2','sad','2019-05-31','2',0),(9,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','ad深V','2019-05-31','2',0),(10,'{\"headimg\":\"5.jpg\",\"isgroup\":\"管理员群group2\",\"userName\":\"陈磊\",\"pk_user\":2}','group2','啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2019-05-31','2',0),(11,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表表v           ','2019-05-31','2',0),(12,'{\"headimg\":\"4.jpg\",\"isgroup\":\"陈磊2\",\"userName\":\"张三\",\"pk_user\":1}','2','xcc','2019-05-31','1',0),(13,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','才','2019-05-31','2',0),(14,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','是大V','2019-05-31','2',0),(15,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','dfdgf ','2019-05-31','1',0),(16,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','撒地方规划','2019-05-31','2',0),(17,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','ZXcvb','2019-05-31','1',0),(18,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','qwef ','2019-05-31','1',0),(19,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','asdfgbaaaaaaaaaaaaaa','2019-05-31','1',0),(20,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','撒地方个','2019-05-31','2',0),(21,'{\"headimg\":\"4.jpg\",\"isgroup\":\"陈磊2\",\"userName\":\"张三\",\"pk_user\":1}','2','sadf ','2019-05-31','1',0),(22,'{\"headimg\":\"5.jpg\",\"isgroup\":\"管理员群group2\",\"userName\":\"陈磊\",\"pk_user\":2}','group2','aaaaaa啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2019-05-31','2',0),(23,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2019-05-31','1',0),(24,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊','2019-05-31','1',0),(25,'{\"headimg\":\"4.jpg\",\"isgroup\":\"陈磊2\",\"userName\":\"张三\",\"pk_user\":1}','2','啊啊啊啊啊啊啊','2019-05-31','1',0),(26,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','哒哒哒哒哒','2019-05-31','1',0),(27,'{\"headimg\":\"4.jpg\",\"isgroup\":\"陈磊2\",\"userName\":\"张三\",\"pk_user\":1}','2','大师傅','2019-05-31','1',0),(28,'{\"headimg\":\"4.jpg\",\"isgroup\":\"陈磊2\",\"userName\":\"张三\",\"pk_user\":1}','2','在不在','2019-05-31','1',0),(29,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','阿萨德','2019-05-31','1',0),(30,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','咋的','2019-05-31','2',0),(31,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','地方','2019-05-31','1',0),(32,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','啥','2019-05-31','2',0),(33,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','斯蒂芬','2019-05-31','1',0),(34,'{\"headimg\":\"5.jpg\",\"isgroup\":\"张三1\",\"userName\":\"陈磊\",\"pk_user\":2}','1','撒地方个','2019-05-31','2',0),(35,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','我二哥','2019-05-31','2',0),(36,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','撒地方个','2019-05-31','2',0),(37,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','asdf','2019-05-31','1',0),(38,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','撒旦法','2019-05-31','1',0),(39,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','阿斯顿法国','2019-05-31','1',0),(40,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','撒旦法','2019-05-31','2',0),(41,'{\"headimg\":\"5.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"陈磊\",\"pk_user\":2}','group1','阿萨德','2019-05-31','2',0),(42,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','问问','2019-05-31','1',0),(43,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','asdf','2019-05-31','1',0),(44,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','山东','2019-05-31','1',0),(45,'{\"headimg\":\"4.jpg\",\"isgroup\":\"总经办管理群group1\",\"userName\":\"张三\",\"pk_user\":1}','group1','萨顶顶','2019-05-31','1',0);
+
+/*Table structure for table `task_feedback` */
+
+DROP TABLE IF EXISTS `task_feedback`;
+
+CREATE TABLE `task_feedback` (
+  `id` int(11) NOT NULL COMMENT '编号',
+  `fe_list` varchar(200) default NULL COMMENT '反馈',
+  `fe_type` varchar(200) default NULL COMMENT '状态'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `task_feedback` */
+
+insert  into `task_feedback`(`id`,`fe_list`,`fe_type`) values (10,'我已经接受了','陈磊Tue May 28 06:34:52 CST 2019将状态改为新已接收'),(10,'我去','陈磊Tue May 28 06:46:52 CST 2019将状态改为新已接收'),(10,'快弄好了','陈磊Tue May 28 06:47:56 CST 2019将状态改为进行中'),(10,'已经弄完了','陈磊Tue May 28 06:48:18 CST 2019将状态改为已完成'),(10,'','陈磊Tue May 28 12:33:49 CST 2019将状态改为已完成'),(10,'','陈磊Fri May 31 02:28:16 CST 2019将状态改为已完成');
+
 /*Table structure for table `task_list` */
 
 DROP TABLE IF EXISTS `task_list`;
@@ -413,7 +474,7 @@ CREATE TABLE `task_list` (
   `Title` varchar(20) default NULL COMMENT '标题',
   `Description` text COMMENT '描述',
   `ImagePath` varchar(20) default NULL COMMENT '图片地址',
-  `FilePath` varchar(20) default NULL COMMENT '附件地址',
+  `FilePath` varchar(200) default NULL COMMENT '附件地址',
   `UserList` varchar(20) default NULL COMMENT '相关用户',
   `DepartmentList` varchar(20) default NULL COMMENT '相关部门',
   `RoleList` varchar(20) default NULL COMMENT '相关权限',
@@ -426,11 +487,14 @@ CREATE TABLE `task_list` (
   `CancelDate` datetime default NULL COMMENT '取消时间',
   `IsTop` int(11) default NULL COMMENT '是否置顶',
   `IsDistribution` int(11) default NULL COMMENT '是否分配',
-  `Feedback` text COMMENT '反馈信息',
+  `Feedback_id` int(11) default NULL COMMENT '反馈信息编号',
+  `task_schedule` varchar(20) default NULL COMMENT '任务进度',
   PRIMARY KEY  (`pk_Task`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `task_list` */
+
+insert  into `task_list`(`pk_Task`,`fk_User`,`fk_Department`,`TypeID`,`StatusID`,`Title`,`Description`,`ImagePath`,`FilePath`,`UserList`,`DepartmentList`,`RoleList`,`Url`,`StartDate`,`EndDate`,`IsComplete`,`CompleteDate`,`IsCancel`,`CancelDate`,`IsTop`,`IsDistribution`,`Feedback_id`,`task_schedule`) values (10,2,1000,1,4,'改好发给','回家看了',NULL,'D:\\AO\\OA_Project\\target\\OA_Project\\upload/timg.jpg','张三,陈磊,','null总经办总经办',NULL,NULL,'2019-05-19 00:00:00','2019-06-01 00:00:00',NULL,NULL,0,NULL,1,1,NULL,'100%');
 
 /*Table structure for table `task_receiver` */
 
@@ -450,6 +514,8 @@ CREATE TABLE `task_receiver` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `task_receiver` */
+
+insert  into `task_receiver`(`pk_Receiver`,`fk_Task`,`fk_User`,`fk_Department`,`IsRead`,`ReadDate`,`IsReceive`,`ReceiveDate`,`StatusID`) values (11,10,1,1000,0,NULL,0,NULL,4),(12,10,2,1000,0,NULL,0,NULL,4);
 
 /*Table structure for table `user_department` */
 

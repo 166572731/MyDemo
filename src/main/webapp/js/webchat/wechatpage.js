@@ -20,6 +20,8 @@ if (loginMan.Sex == 0) {
 }
 $(".own_numb").text("员工编号 : " + loginMan.Number);
 $("#headImg").attr("src", "../../images/head/" + loginMan.ImagePath1);
+
+//点击聊天记录事件
 function talklist(){
     $(".talk_list li").each(function (index) {
         var li=$(this);
@@ -272,5 +274,3 @@ function replyother(content) {
 function updatescroll() {
     $(office_text).scrollTop($("#office_text")[0].scrollHeight);
 }
-
-
