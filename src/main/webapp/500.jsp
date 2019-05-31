@@ -28,9 +28,9 @@
         <section class="error-wrapper text-center">
             <h1><img alt="" src="images/500-error.png"></h1>
             <h2>服务器异常,请稍后再试...</h2>
-            <h3>Something went wrong.</h3>
-            <p class="nrml-txt">Why not try refreshing you page? Or you can <a href="#">contact our support</a> if the problem persists.</p>
-            <a class="back-btn" href="${pageContext.request.contextPath}/index.jsp"> Back To Home</a>
+            <h3>500</h3>
+            <p class="nrml-txt">你可以尝试刷新页面！问题未解决.<a href="#">联系系统管理员</a> </p>
+            <a class="back-btn" href="${pageContext.request.contextPath}/index.jsp"> 回到首页</a>
         </section>
 
     </div>
