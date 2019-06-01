@@ -45,7 +45,12 @@ public class RoleController {
     @RequestMapping("deleteDepartRole")
     public @ResponseBody
     Integer deleteDepartRole(Integer pkName) {
-        int n = rolemanagerService.deleteDepartmentRole(pkName);
+        Integer count=rolemanagerService.roleValueisUse(pkName);
+        System.out.println(count);
+        int n=0;
+        if (count<=0){
+            n = rolemanagerService.deleteDepartmentRole(pkName);
+        }
         return n;
     }
 

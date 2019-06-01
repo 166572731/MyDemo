@@ -24,6 +24,7 @@ public interface RolemanagerService {
     /**
      * 删除角色权限
      * */
+    Integer roleValueisUse(Integer pk_Name);
     Integer deleteDepartmentRole(Integer pk_Name);
 
     List<Map> loadRoleName(Integer pk_name,Integer pk_department);

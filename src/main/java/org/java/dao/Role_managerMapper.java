@@ -21,10 +21,10 @@ public interface Role_managerMapper {
      * 修改权限角色
      * */
     Integer updateDepartmentRole(@Param("roleName") String roleName,@Param("pk_Name") Integer pk_Name);
-
     /**
      * 删除权限角色
      * */
+    Integer roleValueisUse(@Param("pk_Name") Integer pk_Name);
     Integer deleteDepartmentRole(@Param("pk_Name") Integer pk_Name);
     /**
      * 加载所有角色权限

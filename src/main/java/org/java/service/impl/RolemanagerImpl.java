@@ -36,6 +36,11 @@ public class RolemanagerImpl implements RolemanagerService {
     }
 
     @Override
+    public Integer roleValueisUse(Integer pk_Name) {
+        return role_manager.roleValueisUse(pk_Name);
+    }
+
+    @Override
     public Integer deleteDepartmentRole(Integer pk_Name) {
         return role_manager.deleteDepartmentRole(pk_Name);
     }

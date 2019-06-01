@@ -96,7 +96,7 @@
                     <li><a href="#"
                            class="btn btn-default dropdown-toggle info-number"
                            data-toggle="dropdown"> <i class="fa fa-tasks"></i> <span
-                            class="badge">8</span>
+                            class="badge"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                             <h5 class="title">您有8个待办任务</h5>
@@ -133,7 +133,7 @@
                     <li><a href="#"
                            class="btn btn-default dropdown-toggle info-number"
                            data-toggle="dropdown"> <i class="fa fa-envelope-o"></i> <span
-                            class="badge">5</span>
+                            class="badge"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                             <h5 class="title">你有5个新邮件</h5>
@@ -165,7 +165,7 @@
                     <li><a href="#"
                            class="btn btn-default dropdown-toggle info-number"
                            data-toggle="dropdown"> <i class="fa fa-bell-o"></i> <span
-                            class="badge">4</span>
+                            class="badge"></span>
                     </a>
                         <div class="dropdown-menu dropdown-menu-head pull-right">
                             <h5 class="title">通知</h5>

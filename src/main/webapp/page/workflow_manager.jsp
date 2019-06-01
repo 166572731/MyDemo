@@ -23,9 +23,6 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
-<%-- 隐藏域 --%>
-<div class="layui-hide"></div>
-
 <!--body wrapper start-->
 <div>
     <blockquote class="layui-elem-quote " style="margin-left: -1px;background-color: white;">
