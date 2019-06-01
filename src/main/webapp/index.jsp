@@ -89,8 +89,8 @@
             <div class="menu-right">
                 <ul class="notification-menu">
                     <%-- 聊天室 --%>
-                    <li><a href="#" class="btn info-number dropdown-toggle webchat"> <i
-                            class="fa fa-comment"></i> <span class="badge">4</span>
+                    <li><a href="#" class="btn info-number dropdown-toggle webchat" style="margin-top: -3px;"> <i
+                            class="fa fa-comment" style="font-size: 20px;"></i> <span class="badge talkcount"></span>
                     </a></li>
                     <!-- 顶部代办任务 -->
                     <li><a href="#"
@@ -139,20 +139,20 @@
                             <h5 class="title">你有5个新邮件</h5>
                             <ul class="dropdown-list normal-list">
                                 <li class="new"><a href=""> <span class="thumb"><img
-                                        src="images/photos/user1.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user1.png" alt=""/></span> <span class="desc">
 												<span class="name">John Doe <span
                                                         class="badge badge-success">new</span></span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
                                 </a></li>
                                 <li><a href=""> <span class="thumb"><img
-                                        src="images/photos/user2.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user2.png" alt=""/></span> <span class="desc">
 												<span class="name">Jonathan Smith</span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
                                 </a></li>
                                 <li><a href=""> <span class="thumb"><img
-                                        src="images/photos/user3.png" alt=""/></span> <span class="desc">
+                                        src="images/head/user3.png" alt=""/></span> <span class="desc">
 												<span class="name">Jane Doe</span> <span class="msg">Lorem
 													ipsum dolor sit amet...</span>
 										</span>
@@ -196,13 +196,13 @@
                     </li>
                     <li><a href="#" class="btn btn-default dropdown-toggle"
                            data-toggle="dropdown"> <img
-                            src="images/photos/user-avatar.png" alt="" class="headimg"/><span class="loginname"></span><span
+                            src="images/head/user-avatar.png" alt="" class="headimg"/><span class="loginname"></span><span
                             class="caret"></span>
                     </a>
                         <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                             <li><a href="#"><i class="fa fa-user"></i> 个人资料</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i> 系统设置</a></li>
-                            <li><a href="#" id="exit"><i class="fa fa-sign-out"></i>
+                            <li><a href="#" class="exit exitAndsocket"><i class="fa fa-sign-out"></i>
                                 退出</a></li>
                         </ul>
                     </li>
@@ -220,11 +220,11 @@
         </div>
         <!--body wrapper start-->
         <div class="wrapper">
-            <iframe src="main.jsp" id="frame" frameborder="0" style="width: 100%; height:62%;"></iframe>
+            <iframe src="main.jsp" id="frame" name="frame" frameborder="0" style="width: 100%;"></iframe>
         </div>
         <!--footer section start-->
-        <footer class="sticky-footer text-center"> 2014 &copy;
-            AdminEx by ThemeBucket
+        <footer class="sticky-footer text-center">
+            <span  style="margin-left: -200px;"> 2019 &copy;AdminEx by 酷酷的磊哥哥，哈哈哈！</span>
         </footer>
     </div>
 </section>
@@ -237,10 +237,11 @@
 <script src="js/jquery.nicescroll.js"></script>
 <script src="layui/layui.js"></script>
 <script src="http://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-<%--<script type="text/javascript" src="js/webchat/wechat.js"></script>--%>
-<script src="js/myjs/index.js"></script>
-
-<!-- 信息提示框 -->
 <script type="text/javascript" src="js/info/layx.min.js"></script>
+<script src="js/myjs/index.js"></script>
+<script type="text/javascript">
+    //iframe自适应高度
+    $("#frame").height($(".sticky-footer").offset().top-$("#frame").offset().top+5);
+</script>
 </body>
 </html>

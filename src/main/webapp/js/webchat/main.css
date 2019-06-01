@@ -361,6 +361,8 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .office_text{
+	overflow-x: hidden;
+	overflow-y: auto;
     width: 100%;
 	height:calc(100% - 62px);
     position: relative;
@@ -484,7 +486,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .windows_input{
-	margin-top: -45px;
+	margin-top: 5px;
 	border-top: 1px solid #ececec;
 	height: 145px;
 	width: 97%;
@@ -492,7 +494,8 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .windows_body{
-	height: 420px;
+	overflow: hidden;
+	height: 370px;
 	width: 100%;
 }
 
@@ -596,7 +599,6 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	clear: both;
 	word-wrap: break-word;
 	word-break: break-all;
-	overflow: hidden;
 }
 
 .me img{
