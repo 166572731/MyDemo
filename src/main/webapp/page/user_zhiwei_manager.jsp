@@ -24,6 +24,7 @@
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 <!--body wrapper start-->
+<button class="layui-btn" data-type="reload" id="insert">新增职位</button>
 <div>
 	<table class="layui-hide" id="Bumen" lay-filter="user"></table>
 </div>
@@ -79,6 +80,34 @@
                 });
             }
         };
+
+        $("#insert").on('click', function() {
+
+            location = "insertzhiwei.jsp";
+
+        })
+
+        //监听行工具事件
+        table.on('tool(user)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的DOM对象
+
+            if (layEvent === 'edit') { //修改
+                location = "/selectzhiwei/"+data["pk_Position"]+".do";
+
+            } else if (layEvent === 'del') { //删除
+                layer.confirm('真的删除行么', function(index) {
+                    //	obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                    location ="/delzhiwei/"+data["pk_Position"]+".do";
+                    //	layer.close(index);
+
+
+                });
+            }
+
+        });
 
     });
 </script>

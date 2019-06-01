@@ -24,6 +24,7 @@
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 <!--body wrapper start-->
+	<button class="layui-btn" data-type="reload" id="insert">新增部门</button>
 <div>
     <table class="layui-hide" id="Bumen" lay-filter="user"></table>
 </div>
@@ -39,8 +40,8 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
 <script>
@@ -81,20 +82,26 @@
             }
         };
 
+        $("#insert").on('click', function() {
+
+            location = "insertbumen.jsp";
+
+        })
+
         //监听行工具事件
-        table.on('tool(test)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+        table.on('tool(user)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             var tr = obj.tr; //获得当前行 tr 的DOM对象
 
             if (layEvent === 'edit') { //修改
-                alert(111)
-                location = "updatebumen.jsp" ;
+                location = "/selectone/"+data["pk_Department"]+".do";
 
             } else if (layEvent === 'del') { //删除
                 layer.confirm('真的删除行么', function(index) {
                     //	obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                    location = "login_del?dict_id=" + data.dict_id ;
+                    location ="/delbumen/"+data["pk_Department"]+".do";
                     //	layer.close(index);
 
 
