@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.ZhiweiMapper">
+
+    <select id="ShowZhiwei" resultType="map">
+        select  * from  user_position
+    </select>
+
+    <select id="selectzhiwei" resultType="map" >
+        SELECT * FROM user_position WHERE pk_Position=#{pk_Position}
+    </select>
+    
+    <delete id="delzhiwei">
+        DELETE FROM user_position WHERE pk_Position=#{pk_Position}
+    </delete>
+
+    <update id="updatezhiwei" parameterType="map">
+        UPDATE user_position
+                  SET PositionName=#{PositionName}
+                        WHERE pk_Position=#{pk_Position}
+    </update>
+
+    <insert id="insertzhiwei" parameterType="map">
+        INSERT user_position VALUES(NULL,#{PositionName},NULL,NULL,NULL)
+    </insert>
+
+</mapper>

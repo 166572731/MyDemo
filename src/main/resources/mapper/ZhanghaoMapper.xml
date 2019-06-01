@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.ZhanghaoMapper">
+
+    <select id="ShowZhanghao" resultType="map">
+        SELECT * FROM  Finance_Account
+    </select>
+
+    <delete id="delzhanghao">
+        DELETE FROM Finance_Account WHERE pk_Account=#{pk_Account}
+    </delete>
+
+    <insert id="insertzhanghao" parameterType="map">
+        INSERT finance_account VALUES
+                  (NULL,NULL,NULL,#{TypeID},NULL,#{AccountName},#{Owner},#{Title},NULL,NULL,NOW())
+    </insert>
+
+</mapper>
