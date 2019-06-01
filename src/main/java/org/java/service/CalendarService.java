@@ -14,4 +14,12 @@ public interface CalendarService {
     //添加日程
     public void addCalendar(Map<String,Object> map);
 
+    //修改日程
+    public  void  updateCalendar (Map<String,Object> map);
+
+    //获得日程
+    public  Map<String,Object>  getOne(int id);
+
+
+
 }

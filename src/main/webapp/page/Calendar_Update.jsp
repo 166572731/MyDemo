@@ -27,17 +27,20 @@
 <p>&nbsp;</p>
 
 	<form class="layui-form" action="">
+
+		<input id="pk_Calendar2" type="hidden">
+
 		<div class="layui-form-item">
 			<label class="layui-form-label">标题</label>
 			<div class="layui-input-block" >
-				<input type="text" id="Title" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+				<input type="text" id="Title2" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 
 		<div class="layui-form-item">
 			<label class="layui-form-label">类型</label>
 			<div class="layui-input-block">
-				<select id="TypeID" name="city" lay-verify="required" style="width:30px">
+				<select id="TypeID2" name="city" lay-verify="required" style="width:30px">
 					<option value="一般">一般</option>
 					<option value="重要">重要</option>
 				</select>
@@ -49,7 +52,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label" style="width: auto">开始时间</label>
 			<div class="layui-input-inline">
-				<input class="layui-input" id="StartDate"  placeholder="yyyy-MM-dd HH:mm:ss">
+				<input class="layui-input" id="StartDate2"  placeholder="yyyy-MM-dd HH:mm:ss">
 			</div>
 		</div>
 
@@ -57,27 +60,20 @@
 		<div class="layui-inline">
 			<label class="layui-form-label" style="width: auto">结束时间</label>
 			<div class="layui-input-inline">
-				<input class="layui-input" id="EndDate"  placeholder="yyyy-MM-dd HH:mm:ss">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label" style="width: auto">是否通知</label>
-			<div class="layui-input-block">
-				<input type="checkbox" id="IsRemind" name="switch" lay-skin="switch">
+				<input class="layui-input" id="EndDate2"  placeholder="yyyy-MM-dd HH:mm:ss">
 			</div>
 		</div>
 
 		<div class="layui-form-item layui-form-text">
 			<label class="layui-form-label">内容</label>
 			<div class="layui-input-block" style="width: 400px">
-				<textarea name="desc" id="Description" placeholder="请输入内容" class="layui-textarea"></textarea>
+				<textarea name="desc" id="Description2" placeholder="请输入内容" class="layui-textarea"></textarea>
 			</div>
 		</div>
-		<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+		<p>&nbsp;</p><p>&nbsp;</p>
 		<div class="layui-form-item" style="text-align:center;">
 			<div class="layui-input-block">
-				<button class="layui-btn" id="tij" >立即提交</button>
+				<button class="layui-btn" id="tij2" >修改</button>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 			</div>
 		</div>
@@ -97,16 +93,15 @@
 <script src="../js/scripts.js"></script>
 
 <script>
-	$('#tij').click(function () {
-		var Title=$('#Title').val();//标题
-		var TypeID=$('#TypeID').val();//类型
-		var StartDate=$("#StartDate").val();
-		var EndDate=$("#EndDate").val();
-		var Description=$("#Description").val();
-		var IsRemind=$("#IsRemind").val();
-
-        $.post('../addCalendar.do',{'Title':Title,'TypeID':TypeID,'StartDate':StartDate,'EndDate':EndDate,'Description':Description,'IsRemind':IsRemind}, function(str) {
-            layer.msg("添加成功");
+	$('#tij2').click(function () {
+		var Title=$('#Title2').val();//标题
+		var TypeID=$('#TypeID2').val();//类型
+		var StartDate=$("#StartDate2").val();
+		var EndDate=$("#EndDate2").val();
+		var Description=$("#Description2").val();
+        var pk_Calendar=$("#pk_Calendar2").val();
+        $.post('../updateCalendar.do', {'Title':Title,'TypeID':TypeID,'StartDate':StartDate,'EndDate':EndDate,'Description':Description,'IsRemind':IsRemind,'pk_Calendar':pk_Calendar}, function(str) {
+            layer.msg("修改成功");
 
         });
     })

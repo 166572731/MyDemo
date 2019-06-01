@@ -30,20 +30,36 @@
 	VALUES
 	(null,
 	#{fk_User},
-	'fk_Department',
-	#{TypeID},
+	null ,
+	'日程通知',
 	#{StatusID},
 	#{Title},
 	#{Description},
-	'ImagePath',
-	'UserList',
-	'DepartmentList',
+	null ,
+	null ,
+	null ,
 	#{StartDate},
 	#{EndDate},
-	'IsRemind',
+	#{IsRemind},
 	now()
 	);
 	</insert>
+
+	<update id="updateCalendar" parameterType="map">
+	UPDATE `oawork`.`calendar_list`
+	SET
+	`StatusID` = #{StatusID} ,
+	`Title` = #{Title} ,
+	`Description` = #{Description} ,
+	`StartDate` = #{StartDate} ,
+	`EndDate` = #{EndDate} ,
+	WHERE
+	`pk_Calendar` = #{pk_Calendar} ;
+	</update>
+
+	<select id="getOne" resultType="map">
+		SELECT * FROM calendar_list WHERE pk_Calendar=#{pk_Calendar}
+	</select>
 
 
 

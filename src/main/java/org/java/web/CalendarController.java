@@ -4,7 +4,6 @@ import org.java.service.CalendarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,15 +46,84 @@ public class CalendarController {
     {
             int id=Integer.parseInt(request.getParameter("id"));
             System.out.println(id);
-           // calendarService.delete(id);
+           calendarService.delete(id);
             return id;
     }
 
     @RequestMapping("/addCalendar")
-    public void add(HttpServletRequest request, @RequestParam Map<String,Object> map)
+    public @ResponseBody int add(HttpServletRequest request)
     {
+        /*
+        var Title=$('#Title').val();//标题
+		var TypeID=$('#TypeID').val();//类型
+		var StartDate=$("#StartDate").val();
+		var EndDate=$("#EndDate").val();
+		var Description=$("#Description").val();
+		var IsRemind=$("#IsRemind").val();
+        * */
+        Map<String,Object> map=new HashMap<String,Object>();
+        String fk_User=byAdminName(request);
+        String Title=request.getParameter("Title");
+        String TypeID=request.getParameter("TypeID");
+        String StartDate=request.getParameter("StartDate");
+        String EndDate=request.getParameter("EndDate");
+        String Description=request.getParameter("Description");
+        String IsRemind=request.getParameter("IsRemind");
+        map.put("fk_User", fk_User);
+        map.put("Title", Title);
+        map.put("StatusID", TypeID);
+        map.put("StartDate", StartDate);
+        map.put("EndDate", EndDate);
+        map.put("Description", Description);
+        if (IsRemind.equals("no")){
+            map.put("IsRemind", 0);
+        }else {
+            map.put("IsRemind", 1);
+        }
         calendarService.addCalendar(map);
+        return 1;
     }
 
+    @RequestMapping("/updateCalendar")
+    public  @ResponseBody Integer update(HttpServletRequest request) {
+
+        Map<String,Object> map=new HashMap<String,Object>();
+        String fk_User=byAdminName(request);
+        String Title=request.getParameter("Title");
+        String TypeID=request.getParameter("TypeID");
+        String StartDate=request.getParameter("StartDate");
+        String EndDate=request.getParameter("EndDate");
+        String Description=request.getParameter("Description");
+        String pk_Calendar=request.getParameter("pk_Calendar");
+
+        map.put("Title", Title);
+        map.put("StatusID", TypeID);
+        map.put("StartDate", StartDate);
+        map.put("EndDate", EndDate);
+        map.put("Description", Description);
+        map.put("pk_Calendar", pk_Calendar);
+        System.out.println(map);
+
+      //  calendarService.updateCalendar(map);
+        return 1;
+    }
+
+    @RequestMapping("/getCalendar")
+    public  @ResponseBody Map<String,Object> getone(HttpServletRequest request)
+    {
+        int id=Integer.parseInt(request.getParameter("pk_Calendar"));
+         Map<String,Object> map= calendarService.getOne(id);
+        return map;
+    }
+
+    @RequestMapping("/getRic")
+    public  @ResponseBody List<Map<String,Object>> ric(HttpServletRequest request)
+    {
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++");
+        String admin=byAdminName(request);
+
+        List<Map<String,Object>> list= calendarService.showCalendar(admin);
+        return list;
+    }
 
 }

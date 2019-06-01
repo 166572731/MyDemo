@@ -96,4 +96,8 @@ INSERT INTO `oawork`.`mail_list`
         SELECT COUNT(*) FROM mail_list WHERE StatusID='未读' AND MailTo=#{mailto}
     </select>
 
+	<select id="showHfu" resultType="map">
+		SELECT * FROM mail_list JOIN reply_list ON reply_list.pk_Mail=mail_list.pk_Mail WHERE fk_Account=#{MailTo}
+	</select>
+
 </mapper>

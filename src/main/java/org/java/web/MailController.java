@@ -148,5 +148,20 @@ public class MailController {
         return count;
     }
 
+    @RequestMapping("/showHfu")
+    public  @ResponseBody Map<String,Object> showHfu(HttpServletRequest request)
+    {
+
+        HttpSession session=request.getSession();
+        Map<String,Object> userName= (Map<String, Object>) session.getAttribute("loginMan");//获得登录的用户名
+        String name=userName.get("userName").toString();
+        List<Map<String,Object>> list=mailServiec.showHfu(name);
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("code", 0);		//必须规定的  返回数据的格式
+        map.put("msg", "");		//所返回的信息  可有可无
+        map.put("count",list.size());
+        map.put("data", list);
+        return map;
+    }
 
 }

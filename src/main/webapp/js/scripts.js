@@ -132,7 +132,6 @@
             el.slideUp(200);
         }else if($(this).hasClass("fa-bars")){//日常管理
 
-
             layer.open({
                 title :'日程管理',
                 offset: '0px',

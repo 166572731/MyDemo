@@ -27,4 +27,6 @@ public interface MailMapper {
 
   public  int wdu(@Param("mailto") String mailto);
 
+  public List<Map<String,Object>> showHfu(@Param("MailTo") String mailto);
+
 }

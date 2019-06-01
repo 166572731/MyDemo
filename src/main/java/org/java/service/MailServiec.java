@@ -30,7 +30,12 @@ public interface MailServiec {
 
     //邮件回复
     public void  hfMail(Map<String,Object> map);
+
     //有多少个未读
     public int wdu(String mailto);
+
+    //查看邮件回复
+    public List<Map<String,Object>> showHfu(String name);
+
 
 }

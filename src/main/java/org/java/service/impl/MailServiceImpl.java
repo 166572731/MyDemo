@@ -52,7 +52,6 @@ public class MailServiceImpl implements MailServiec {
 
     @Override
     public int wdu(String mailto) {
-
         return mailMapper.wdu(mailto);
     }
 
@@ -64,5 +63,11 @@ public class MailServiceImpl implements MailServiec {
     @Override
     public void hfMail(Map<String, Object> map) {
         mailMapper.hfMail(map);
+    }
+
+    @Override
+    public List<Map<String, Object>> showHfu(String name) {
+
+        return mailMapper.showHfu(name);
     }
 }

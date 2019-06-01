@@ -34,7 +34,9 @@
 </div>
 </script>
 
+
 <button class="layui-btn layui-btn-radius" id="addRc" onclick="add()">添加日程</button>
+<button class="layui-btn layui-btn-radius layui-btn-warm" id="sx" >刷新</button>
 <table id="demo" lay-filter="demo"></table>
 
 <!--body wrapper end-->
@@ -45,7 +47,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
-<script src="../layui/layui.js"></script>
+<script src="../layuiOld/layui.js"></script>
 
 <script>
     var table;
@@ -113,6 +115,35 @@
 
                 });
             }else if(obj.event === 'select'){
+                 var pk_Calendar=data.pk_Calendar;
+
+					//点击修改事件
+				$.post('../getCalendar.do',{'pk_Calendar':pk_Calendar},function (data) {
+
+                    layer.open({
+                        area: ['650px', '540px'],
+                        type: 2,
+                        content: '/page/Calendar_Update.jsp', //这里content是一个普通的String
+                        success:function (layero, index) {
+                            var body = layer.getChildFrame('body', index);
+                            var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                            console.log(body.html()) //得到iframe页的body内容
+                            body.find('#Title2').val(data.Title);
+                            body.find('#TypeID2').val(data.StatusID);
+                            body.find('#StartDate2').val( layui.util.toDateString(data.StartDate,'yyyy-MM-dd HH:mm:ss'));
+                            body.find('#EndDate2').val(layui.util.toDateString(data.EndDate,'yyyy-MM-dd HH:mm:ss'));
+                            body.find('#Description2').val(data.Description);
+                            body.find('#pk_Calendar2').val(data.pk_Calendar);
+                        }
+                    });
+                })
+         /*     layer.open({
+                    title :'修改日程',
+                    offset: '0px',
+                    area: ['650px', '540px'],
+                    type: 2,
+                    content: '/page/Calendar_Update.jsp' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                });*/
 
 			}
 
@@ -132,9 +163,15 @@
             content: 'Calendar_ADD.jsp'
         });
     }
+
+    $("#sx").click(function () {
+        window.location.reload();
+    })
     //Demo
 
+
 </script>
+
 
 
 <script id="barDemo" type="text/html">

@@ -13,4 +13,9 @@ public interface CalendarMapper {
 
    public void addCalendar(Map<String,Object> map);
 
+   public void updateCalendar(Map<String,Object> map);
+
+   public Map<String,Object> getOne(@Param("pk_Calendar") int pk_Calendar);
+
+
 }

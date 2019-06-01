@@ -28,4 +28,14 @@ public class CalendarServiceImpl implements CalendarService {
     public void addCalendar(Map<String, Object> map) {
         calendarMapper.addCalendar(map);
     }
+
+    @Override
+    public void updateCalendar(Map<String, Object> map) {
+        calendarMapper.updateCalendar(map);
+    }
+
+    @Override
+    public Map<String,Object> getOne(int id) {
+       return calendarMapper.getOne(id);
+    }
 }
