@@ -1536,8 +1536,8 @@ ul.user-states {
 
 ul.user-states li {
     text-align: center;
-    float: left;
-    width: 33%;
+    float: right;
+    width: 94%;
     font-size: 18px;
 }
 

@@ -40,41 +40,41 @@
 	<!-- 配置事务驱动 -->
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
-	<!--&lt;!&ndash; 工作流引擎配置bean &ndash;&gt;
+	<!-- 工作流引擎配置bean -->
 	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
-		&lt;!&ndash; 数据源 &ndash;&gt;
+		<!-- 数据源 -->
 		<property name="dataSource" ref="dataSource" />
-		&lt;!&ndash; 使用spring事务管理器 &ndash;&gt;
+		<!-- 使用spring事务管理器 -->
 		<property name="transactionManager" ref="transactionManager" />
-		&lt;!&ndash; 数据库策略 &ndash;&gt;
+		<!-- 数据库策略 -->
 		<property name="databaseSchemaUpdate" value="true" />
-		&lt;!&ndash; activiti的定时任务关闭 &ndash;&gt;
+		<!-- activiti的定时任务关闭 -->
 		<property name="jobExecutorActivate" value="false" />
 
 	</bean>
 
-	&lt;!&ndash; 流程引擎 &ndash;&gt;
+	<!-- 流程引擎 -->
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
 	</bean>
 
-	&lt;!&ndash; 资源服务service &ndash;&gt;
+	<!-- 资源服务service -->
 	<bean id="repositoryService" factory-bean="processEngine"
 		  factory-method="getRepositoryService" />
-	&lt;!&ndash; 流程运行service &ndash;&gt;
+	<!-- 流程运行service -->
 	<bean id="runtimeService" factory-bean="processEngine"
 		  factory-method="getRuntimeService" />
-	&lt;!&ndash; 任务管理service &ndash;&gt;
-	<bean id="taskService" factory-bean="processEngine"
+	<!-- 任务管理service -->
+	<bean id="taskactService" factory-bean="processEngine"
 		  factory-method="getTaskService" />
-	&lt;!&ndash; 历史管理service &ndash;&gt;
+	<!-- 历史管理service -->
 	<bean id="historyService" factory-bean="processEngine"
 		  factory-method="getHistoryService" />
-	&lt;!&ndash; 用户管理service &ndash;&gt;
+	<!-- 用户管理service -->
 	<bean id="identityService" factory-bean="processEngine"
 		  factory-method="getIdentityService" />
-	&lt;!&ndash; 引擎管理service &ndash;&gt;
+	<!-- 引擎管理service -->
 	<bean id="managementService" factory-bean="processEngine"
-		  factory-method="getManagementService" />-->
+		  factory-method="getManagementService" />
 
 </beans>

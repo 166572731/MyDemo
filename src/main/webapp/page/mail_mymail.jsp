@@ -32,7 +32,7 @@
 		<header class="header"> <h4>Mailbox</h4> </header>
 		<div class="mail-nav-body">
 			<div class="text-center">
-				<a class="btn btn-compose" href="#" onclick="myframe.src='../500.html'">
+				<a class="btn btn-compose" href="#" onclick="myframe.src='../500.jsp'">
 					发邮件
 				</a>
 			</div>
