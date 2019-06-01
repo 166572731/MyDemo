@@ -203,14 +203,6 @@
             <version>2.9.8</version>
         </dependency>
 
-        <!--echart的依赖-->
-        <!-- https://mvnrepository.com/artifact/org.webjars.bower/echarts -->
-        <dependency>
-            <groupId>org.webjars.bower</groupId>
-            <artifactId>echarts</artifactId>
-            <version>4.2.1</version>
-        </dependency>
-
     </dependencies>
 
     <build>
