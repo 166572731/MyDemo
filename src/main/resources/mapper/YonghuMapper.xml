@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.YonghuMapper">
+
+    <select id="ShowYonghu" resultType="map">
+      SELECT L.pk_user, L.userName, D.DepartmentName,p.PositionName, L.Phone, L.Wages
+	          FROM User_List L ,user_department D ,user_position p
+		            WHERE L.fk_Department=D.pk_Department AND p.pk_Position =l.Position
+    </select>
+
+    <delete id="delyuangong">
+        DELETE FROM user_list WHERE pk_user=#{pk_user}
+    </delete>
+
+    <insert id="insertyonghu" parameterType="map">
+        INSERT user_list VALUES
+          (NULL,#{userName},'ab3f511502b1ca973d4e5dddf3bfbf77',
+            NULL,#{pk_Department},6,NULL,#{Position},NULL,NULL,NULL,NULL,#{phone},NULL,NULL,NULL,NULL,NULL,NULL,#{Sex},
+              NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,#{Wages},NULL,NULL,NULL,NULL,NULL,NULL)
+    </insert>
+
+    <select id="selectyonghu" resultType="map">
+        SELECT * FROM user_list WHERE pk_user=#{pk_user}
+    </select>
+
+    <update id="updateyonghu" parameterType="map">
+        UPDATE User_List SET
+	              userName=#{userName} , fk_Department=#{fk_Department} , POSITION=#{Position} , Phone=#{Phone} ,Sex=#{Sex} ,Wages=#{Wages}
+		            WHERE pk_user=#{pk_user}
+    </update>
+
+</mapper>

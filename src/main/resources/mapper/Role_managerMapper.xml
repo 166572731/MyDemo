@@ -29,6 +29,9 @@
         WHERE
         `pk_Name` = #{pk_Name};
     </update>
+    <select id="roleValueisUse" resultType="int">
+        SELECT COUNT(*) FROM user_list WHERE RoleValue=#{pk_Name};
+    </select>
     <delete id="deleteDepartmentRole">
         DELETE FROM `oawork`.`role_name`
 	    WHERE

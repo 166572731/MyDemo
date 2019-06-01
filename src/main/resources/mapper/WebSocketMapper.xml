@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.java.dao.WebSocketMapper">
+    <select id="loadgroup" resultType="map">
+        SELECT * FROM group_list WHERE pk_group IN
+        (SELECT fk_group FROM `oawork`.`groupuser_list` WHERE fk_user=#{fk_user});
+    </select>
+    <select id="loadfriend" resultType="map">
+        SELECT user_list.*,user_department.DepartmentName FROM user_list,user_department WHERE user_department.pk_Department=user_list.fk_Department;
+    </select>
+    <select id="loadGroupUser" resultType="map">
+        SELECT * FROM groupuser_list WHERE fk_group=#{fk_group};
+    </select>
+    <insert id="addtalk" parameterType="map">
+        INSERT INTO `oawork`.`talk_list`
+            (`pk_talk`,
+            `talk_frominfo`,
+            `talk_to`,
+            `talk_content`,
+            `talk_time`,
+            `talk_from`,
+            `talk_code`
+            )
+            VALUES
+            (null,
+            #{talk_frominfo},
+            #{talk_to},
+            #{talk_content},
+            #{talk_time},
+            #{talk_from},
+            #{talk_code}
+            );
+    </insert>
+    <select id="loadTalk" resultType="map">
+        select * from talk_list where talk_from=#{talk_from} and talk_to=#{talk_to};
+    </select>
+    <update id="updateTalkCode">
+        UPDATE `oawork`.`talk_list`
+        SET
+        `talk_code` = 1
+        WHERE
+        `talk_from` = #{talk_from} and `talk_to` = #{talk_to} ;
+    </update>
+    <select id="selectFromUserinfo" resultType="map">
+        select * from user_list where pk_user=#{pk_user};
+    </select>
+    <select id="loadGroupTalk" resultType="map">
+        select * from talk_list where talk_to=#{talk_to};
+    </select>
+    <select id="selectTalkcode" resultType="int">
+        select count(*) from talk_list where talk_to=#{pk_user} and talk_code=0;
+    </select>
+    <select id="loadTalkno" resultType="map">
+        select * from talk_list where talk_to=#{pk_user} and talk_code=0;
+    </select>
+</mapper>

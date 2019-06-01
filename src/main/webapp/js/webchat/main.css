@@ -54,7 +54,7 @@ ul li{
 .wechat{
 	margin:auto;
     width:860px;
-    height:630px;
+    height:580px;
     background: #fff;
     overflow: hidden;
 }
@@ -106,9 +106,8 @@ ul li{
 }
 
 .own_name > img{
-	width: 14px;
-	margin-left: 8px;
-	margin-top:3px;
+	width:24px;
+	margin-left: 30px;
 }
 
 .own_numb{
@@ -148,18 +147,6 @@ ul li{
 	margin-left:20px;
 }
 
-#si_1{
-	background: url(../../images/icon/head_2.png) no-repeat;
-}
-
-#si_2{
-	background: url(../../images/icon/head_3.png) no-repeat;
-}
-
-#si_3{
-	background: url(../../images/icon/head_4.png) no-repeat;
-}
-
 .sidestrip_icon{
 	margin-top: 30px;
 	padding: 0 18px;
@@ -168,11 +155,15 @@ ul li{
 
 .sidestrip_icon a{
 	width: 100%;
+	font-size:25px;
 	height:24px;
 	display: block;
 	margin-bottom: 30px;
 }
-
+.sidestrip_icon a i{
+	color:#C9C9C9;
+	font-size:25px;
+}
 .active{
 	background: url(../../images/icon/head_2_1.png) no-repeat !important;
 }
@@ -231,7 +222,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	display:block;
 }
 
-.user_list, .friends_list, .icon_list{
+.user_list, .friends_list, .icon_list .group_list{
 	width: 100%;
 }
 
@@ -276,6 +267,12 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .friends_list li{
+	width: 100%;
+	padding-top: 12px;
+	border-bottom:1px solid #dddbdb;
+}
+
+.group_list li{
 	width: 100%;
 	padding-top: 12px;
 	border-bottom:1px solid #dddbdb;
@@ -364,6 +361,8 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .office_text{
+	overflow-x: hidden;
+	overflow-y: auto;
     width: 100%;
 	height:calc(100% - 62px);
     position: relative;
@@ -377,6 +376,12 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	padding-left: 12px;
 }
 
+.group_list li > p{
+	font-size: 12px;
+	color: #999;
+	line-height: 26px;
+	padding-left: 12px;
+}
 .friends_box{
 	padding: 12px 0;
 	width: 100%;
@@ -481,6 +486,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .windows_input{
+	margin-top: 5px;
 	border-top: 1px solid #ececec;
 	height: 145px;
 	width: 97%;
@@ -488,13 +494,14 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 }
 
 .windows_body{
-	height: 420px;
+	overflow: hidden;
+	height: 370px;
 	width: 100%;
 }
 
 .input_icon{
 	height: 42px;
-	padding:0 28px;
+	padding:0 10px;
 }
 
 .input_icon a{
@@ -522,22 +529,6 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	background: url(../../images/icon/icon14_1.png) no-repeat center center;
 }
 
-.input_icon a:nth-child(3){
-	background: url(../../images/icon/icon15.png) no-repeat center center;
-}
-
-.input_icon a:nth-child(3):hover{
-	background: url(../../images/icon/icon15_1.png) no-repeat center center;
-}
-
-.input_icon a:nth-child(4){
-	background: url(../../images/icon/icon16.png) no-repeat center center;
-}
-
-.input_icon a:nth-child(4):hover{
-	background: url(../../images/icon/icon16_1.png) no-repeat center center;
-}
-
 .input_icon a img{
 	position: absolute;
 	left: 50%;
@@ -552,7 +543,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	outline: 0;
 	background:#f5f5f5;
 	resize:none;
-	margin-left: 28px;
+	margin-left: 10px;
 	font-size: 14px;
 	line-height: 20px;
 }
@@ -608,7 +599,6 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover{
 	clear: both;
 	word-wrap: break-word;
 	word-break: break-all;
-	overflow: hidden;
 }
 
 .me img{

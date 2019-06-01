@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
     @RequestMapping("login")
     public String login(HttpServletRequest request) {
-        System.out.println("11111111111");
         String errname=(String)request.getAttribute("shiroLoginFailure");
         if(errname==null){
             request.setAttribute("msg", "您还未登录，请您先登录！");
@@ -19,4 +18,6 @@ public class LoginController {
         }
         return "login";
     }
+
+
 }
