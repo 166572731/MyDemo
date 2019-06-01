@@ -66,7 +66,15 @@
             ,cols: [[
                 {checkbox: true, fixed: true}
                 ,{field:'pk_Account', title: 'ID',align: 'center', width:100, sort: true, fixed: true}
-                ,{field:'TypeID', title: '类型',align: 'center',templet : '#aa', width:150}
+                ,{field:'TypeID', title: '类型',align: 'center', width:150,templet : function (d) {
+					if (d.TypeID==1){
+					    return "微信"
+					} else if (d.TypeID==2){
+					    return "支付宝"
+					} 	else {
+					    return "银联"
+					}
+                    }}
                 ,{field:'Title', title: '标题',align: 'center', width:200 }
                 ,{field:'AccountName', title: '账号',align: 'center', width:200}
                 ,{field:'Owner', title: '开户人',align: 'center'}

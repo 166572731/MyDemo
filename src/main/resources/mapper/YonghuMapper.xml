@@ -19,4 +19,14 @@
               NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,#{Wages},NULL,NULL,NULL,NULL,NULL,NULL)
     </insert>
 
+    <select id="selectyonghu" resultType="map">
+        SELECT * FROM user_list WHERE pk_user=#{pk_user}
+    </select>
+
+    <update id="updateyonghu" parameterType="map">
+        UPDATE User_List SET
+	              userName=#{userName} , fk_Department=#{fk_Department} , POSITION=#{Position} , Phone=#{Phone} ,Sex=#{Sex} ,Wages=#{Wages}
+		            WHERE pk_user=#{pk_user}
+    </update>
+
 </mapper>
