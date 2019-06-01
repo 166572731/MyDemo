@@ -87,14 +87,12 @@ $.post("../../loadfriend.do", function (data) {
     //点击好友聊天并获取个人信息
     $(".friends_box").each(function () {
         $(this).click(function () {
-            alert();
             var friendString = $(this).find("#friendString").text();
             var friend = JSON.parse(friendString);
             if (friend.pk_user!=loginMan.pk_user){
                 if (friend.pk_user!=$("#talkUser").attr("value")){
                     $("#chatbox").empty();
                     $("#talkUser").attr("value", friend.pk_user);
-                    alert(friend.pk_user);
                     $("#talkUser").text(friend.userName);
                     $.post("../../loadTalk.do",{"talk_from":loginMan.pk_user,"talk_to":friend.pk_user},function (data) {
                         console.log(JSON.stringify(data));

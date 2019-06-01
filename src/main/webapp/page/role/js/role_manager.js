@@ -76,12 +76,14 @@ layui.use(['layer'],function () {
                     btn: ['确认', '取消'],
                     icon:3
                 }, function(index, layero){
+                    layer.close(index);
                     $.post("../../deleteDepartRole.do",{pkName:pkName},function (data) {
                         if(data>0){
-                            parent.layer.msg("成功删除权限角色");
+                            layer.msg("成功删除权限角色");
                             location.reload();
                         }else{
-                            parent.layer.msg("删除权限角色失败");
+                            layer.msg("删除权限角色失败,可能已存在正在使用该角色用户");
+
                         }
                     },"text");
                 });
@@ -118,10 +120,10 @@ layui.use(['layer'],function () {
             $.post("../../updateDepartRole.do",$("form").serialize(),function (data) {
                 $('#myModal').modal('hide');
                 if(data>0){
-                    parent.layer.msg("成功修改权限角色");
+                    layer.msg("成功修改权限角色");
                     location.reload();
                 }else{
-                    parent.layer.msg("修改权限角色失败");
+                    layer.msg("修改权限角色失败");
                 }
             },"text");
             return false;
@@ -129,10 +131,10 @@ layui.use(['layer'],function () {
         $.post("../../addDepartRole.do",$("form").serialize(),function (data) {
             $('#myModal').modal('hide');
             if(data>0){
-                parent.layer.msg("成功添加权限角色");
+                layer.msg("成功添加权限角色");
                 location.reload();
             }else{
-                parent.layer.msg("添加权限角色失败");
+                layer.msg("添加权限角色失败");
             }
         },"text");
     });
