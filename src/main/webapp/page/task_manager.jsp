@@ -131,7 +131,16 @@ var g=1;
                         }
                     }
                 }
-                ,{field: 'FilePath', title: '附件',  sort: true,align: 'center'}
+                ,{field: 'FilePath', title: '附件',  sort: true,align: 'center',templet:function (d) {
+                            if(d.FilePath==''){
+                                return '';
+                            }else if(d.FilePath==null){
+                                return '';
+                            }else{
+                                return "<a href='#' onclick='openImg(\""+d.FilePath+"\")'>查看</a>"
+                                //"<img src='../"+d.FilePath+"'/>"
+                            }
+                }}
                 ,{title:'操作', toolbar: '#barDemo1',align:'center'}
             ]]
         });
@@ -239,6 +248,17 @@ var g=1;
 
 
     });
+    function openImg(FilePath){
+        layer.open({
+            area: ['100%', '100%'],
+            type: 1,
+            content: '<img src="../'+FilePath+'" style=\'width:100%;height:100%;\'/>' ,
+            success:function(){
+
+            }
+        })
+    }
+
 </script>
 </body>
 </html>
