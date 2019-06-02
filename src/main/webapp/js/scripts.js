@@ -147,7 +147,17 @@
         if ($(this).hasClass("fa-chevron-down")) {
             $(this).removeClass("fa-chevron-down").addClass("fa-chevron-up");
             el.slideUp(200);
-        } else {
+        }else if($(this).hasClass("fa-bars")){//日常管理
+
+            layer.open({
+                title :'日程管理',
+                offset: '0px',
+                area: ['950px', '680px'],
+                type: 2,
+                content: '/page/Calendar.jsp' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            });
+
+        }else {
             $(this).removeClass("fa-chevron-up").addClass("fa-chevron-down");
             el.slideDown(200);
         }
