@@ -15,7 +15,7 @@ public class CalenderServiceImpl implements CalenderService {
     private CalenderMapper calenderMapper;
 
     @Override
-    public List<Map> load(String departmentId, Integer userId) {
+    public List<Map> load(Integer departmentId, String userId) {
         return calenderMapper.load(departmentId,userId );
     }
 }

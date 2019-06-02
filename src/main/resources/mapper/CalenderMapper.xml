@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.java.dao.CalenderMapper">
-   <select id="load" parameterType="int" resultType="list" >
-       select * from calendar_list where fk_Department = #{departmentId} and  fk_User = #{ userId}
-   </select>
+   <select id="load" parameterType="int" resultType="map" >
+     select * from calendar_list c,user_list u,user_department d where c.fk_User=u.pk_user and c.fk_Department=d.pk_Department  and d.pk_Department=#{departmentId} and u.userName like #{userId}  </select>
 </mapper>

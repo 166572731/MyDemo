@@ -5,5 +5,5 @@ import java.util.Map;
 
 public interface CalenderService {
 
-    List<Map> load(String departmentId,Integer userId);
+    List<Map> load(Integer departmentId,String userId);
 }

@@ -11,5 +11,5 @@ import java.util.Map;
 
 public interface CalenderMapper {
 
-    public List<Map> load(@Param("departmentId") String departmentId,@Param("userId") Integer userId);
+    public List<Map> load(@Param("departmentId") Integer departmentId,@Param("userId") String userId);
 }

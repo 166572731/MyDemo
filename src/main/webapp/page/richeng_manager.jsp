@@ -5,7 +5,8 @@
   Time: 9:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,30 +20,37 @@
 	<link rel="shortcut icon" href="#" type="../image/png">
 	<title>OA办公自动化系统</title>
 	<!--common-->
-	<link href="../layui/css/layui.css" rel="stylesheet">
+	<link href="../layuiold/css/layui.css" rel="stylesheet">
 	<link href="../css/style.css" rel="stylesheet">
 	<link href="../css/style-responsive.css" rel="stylesheet">
 <body style="background: #eff0f4;">
 <!--body wrapper start-->
-<form class="layui-form" action="" >
+<form class="layui-form" action="load.do" >
 	<div class="layui-form-item">
 		<label class="layui-form-label">姓名</label>
 		<div class="layui-input-inline" style="width: 400px;">
-			<input type="text" name="title"  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+			<input type="text" name="userId"  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
 		</div>
 
 		<label class="layui-form-label">选择部门</label>
 		<div class="layui-input-inline" style="width: 400px;">
-			<select name="city" lay-verify="required">
+			<select name="departmentId" lay-verify="required">
 				<option value="">请选择部门</option>
-				<option value="0">北京</option>
-				<option value="1">上海</option>
-				<option value="2">广州</option>
-				<option value="3">深圳</option>
-				<option value="4">杭州</option>
+				<option value="1000">总经办</option>
+				<option value="1001">财务部</option>
+				<option value="1002">行政部</option>
+				<option value="1003">人力资源部</option>
+				<option value="1004">销售部</option>
+				<option value="1005">市场部</option>
+				<option value="1006">营销部</option>
 			</select>
 		</div>
-
+		<div class="layui-form-item">
+		  <label class="layui-form-label">日期</label>
+		   <div class="layui-input-inline" style="width: 400px;">
+			<input type="text" name="date"  lay-verify="required" placeholder="请输入日期" autocomplete="off" class="layui-input">
+		    </div>
+		</div>
 
 	</div>
 	<div class="layui-form-item">
@@ -52,6 +60,22 @@
 		</div>
 	</div>
 </form>
+       <table class="layui-table">
+		    <tr>
+				<td>人员姓名</td>
+                <td>星期</td>
+			</tr>
+           <c:forEach items="${list}" var="k">
+			   <tr>
+				   <td>${k.userName}</td>
+                   <td>${k.DepartmentName}</td>
+
+			   </tr>
+
+		   </c:forEach>
+
+
+	   </table>
 
 <script>
     //Demo
@@ -112,8 +136,8 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/modernizr.min.js"></script>
 <script src="../js/jquery.nicescroll.js"></script>
-<script src="../layui/layui.js"></script>
-<script src="../layui/layui.all.js" ></script>
+<script src="../layuiold/layui.js"></script>
+<script src="../layuiold/layui.all.js" ></script>
 <!--所有页面的通用脚本-->
 <script src="../js/scripts.js"></script>
 <script type="text/javascript">
