@@ -2,7 +2,7 @@ var parentTitle = "桌面";
 var title = "首页";
 var url = "";
 var headhtml = "";
-var loginMan = JSON.parse(sessionStorage.getItem("loginMan"));
+var loginMan ="";
 //格式化当前时间
 Date.prototype.format = function (fmt) {
     var o = {
@@ -32,6 +32,7 @@ var newtime = new Date().format("yyyy-MM-dd hh:mm:ss");
 $.post("loadnav.do", function (data) {
     //保存登录用户
     sessionStorage.setItem("loginMan", JSON.stringify(data));
+    loginMan=JSON.parse(sessionStorage.getItem("loginMan"));
     $(".headimg").attr("src", "images/head/" + data.ImagePath1);
     $(".loginname").text(data.userName);
     var lihtml = '';

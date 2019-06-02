@@ -112,7 +112,7 @@
                 , {
                     field: 'StatusID', title: '状态', sort: true, align: 'center',
                     templet: function (d) {
-                        if (d.StatusID == '1') {
+                            if (d.StatusID == '1') {
                             return '<span style="color: #cc0000;">' + '新任务' + '</span>';
                         } else if (d.StatusID == '2') {
                             return '<span style="color: #33FFFF;">' + '已接收' + '</span>';

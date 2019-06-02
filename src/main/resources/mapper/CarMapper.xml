@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.java.dao.CarMapper">
+   <select id="getList" resultType="map" >
+       select * from car_set c,sys_statusid s,sys_typeid t where c.TypeID = t.pk_TypeID and  c.StatusID = s.pk_StatusID
+   </select>
+
+    <select id="selectCarById" resultType="map" parameterType="int">
+        select * from car_set where pk_Set=#{pk_Set}
+
+    </select>
+
+    <select id="getList2" resultType="map">
+        select * from car_list c,car_set cs,user_list u,user_department d,sys_statusid s,sys_typeid t where c.fk_User = u.pk_user and
+      c.fk_Department = d.pk_Department and c.fk_Set = cs.pk_Set AND c.StatusID = s.pk_StatusID and c.TypeID = t.pk_TypeID
+
+    </select>
+
+    <delete id="del" parameterType="int">
+        delete  from car_set where pk_Set = #{pk_Set}
+    </delete>
+
+    <delete id="del2" parameterType="int">
+        delete  from car_list where pk_Car = #{pk_Car}
+    </delete>
+
+    <insert id="add" parameterType="map" >
+        insert into car_set values (null,#{TypeID},#{StatusID},#{Title},#{Description},null,null,null,null,null)
+    </insert>
+
+    <update id="update" parameterType="map">
+         UPDATE car_set
+                  SET Title=#{Title},TypeID=#{TypeID},StatusID=#{StatusID},Description=#{Description}
+                        WHERE pk_Set=#{pk_Set}
+
+    </update>
+
+</mapper>
