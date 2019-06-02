@@ -1,5 +1,6 @@
 package org.java.web;
 
+import org.java.dao.User_listMapper;
 import org.java.entity.NoticeList;
 import org.java.service.NoticeListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class NoticeContorller {
     @Autowired
     NoticeListService service;
+    @Autowired
+    User_listMapper userListMapper;
 
 //    User_listMapper userListMapper;
 
@@ -34,9 +37,12 @@ public class NoticeContorller {
     public  String addNotice(NoticeList notice, HttpSession session, MultipartFile file,HttpServletRequest request)throws Exception{
         System.out.println("进入添加方法================================");
         Map<String,Object> mpp= (Map<String, Object>) session.getAttribute("loginMan");
+        String userName= (String) mpp.get("userName");
+        System.out.println(userName);
         Integer id= (Integer) mpp.get("pk_user");
         Integer department= (Integer) mpp.get("fk_Department");
         notice.setFk_User(id);
+        notice.setUserName(userName);
         notice.setFk_Department(department);
 //        //设置相对路径
 //        String realPath = request.getSession().getServletContext().getRealPath("/upload");
@@ -82,9 +88,11 @@ public class NoticeContorller {
     @RequestMapping("findByUser")
     public String findByUser(HttpSession session, HttpServletRequest request){
         Map<String,Object> mpp= (Map<String, Object>) session.getAttribute("loginMan");
+        String name= (String) mpp.get("userName");
         Integer pk_user= (Integer) mpp.get("pk_user");
         List<NoticeList> list= service.findMyNotice();
         request.setAttribute("mlist",list );
+        request.setAttribute("userName", name);
         return "/page/gonggao_list";
     }
     @RequestMapping("showById/{pk_Notice}")

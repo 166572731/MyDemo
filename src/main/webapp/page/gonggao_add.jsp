@@ -77,7 +77,7 @@
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label14">开始日期</span></label>
-                                <input name="startDate" type="text" value="2019-05-23" id="ctl00_cphMain_txtStartDate" class="form-control"  />
+                                <input name="startDate" type="text" value="2019-05-23 12:00:00" id="ctl00_cphMain_txtStartDate" class="form-control"  />
                             </div>
 
 
@@ -85,7 +85,7 @@
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label4">结束日期</span></label>
-                                <input name="endDate" type="text" value="2019-05-30" id="ctl00_cphMain_txtEndDate" class="form-control" />
+                                <input name="endDate" type="text" value="2019-05-30 12:00:00" id="ctl00_cphMain_txtEndDate" class="form-control" />
                             </div>
 
                             <div class="col-md-6 form-group">
@@ -93,10 +93,10 @@
                                 <input name="title" type="text" id="ctl00_cphMain_txtTitle" class="form-control" />
                             </div>
 
-                            <div class="col-md-6 form-group">
-                                <label><span id="ctl00_cphMain_Label7">链接</span></label>
-                                <input name="url" type="text" id="ctl00_cphMain_txtUrl" class="form-control" />
-                            </div>
+                            <%--<div class="col-md-6 form-group">--%>
+                                <%--<label><span id="ctl00_cphMain_Label7">链接</span></label>--%>
+                                <%--<input name="url" type="text" id="ctl00_cphMain_txtUrl" class="form-control" />--%>
+                            <%--</div>--%>
 
                             <div class="col-md-6 form-group">
                                 <label><span id="ctl00_cphMain_Label3">描述</span></label>
@@ -104,11 +104,11 @@
                                 </textarea>
                             </div>
 
-                            <div class="col-md-6 form-group">
-                                <label><span id="ctl00_cphMain_Label6">置顶</span></label>
-                                <br />
-                                <input id="ctl00_cphMain_cbTop"  type="checkbox" name="isTop" />
-                            </div>
+                            <%--<div class="col-md-6 form-group">--%>
+                                <%--<label><span id="ctl00_cphMain_Label6">置顶</span></label>--%>
+                                <%--<br />--%>
+                                <%--<input id="ctl00_cphMain_cbTop"  type="checkbox" name="isTop" />--%>
+                            <%--</div>--%>
 
                         </div>
 

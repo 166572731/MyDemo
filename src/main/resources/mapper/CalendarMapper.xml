@@ -3,15 +3,15 @@
 <mapper namespace="org.java.dao.CalendarMapper">
 
 	<select id="showCalendar" resultType="map">
-		SELECT * FROM calendar_list WHERE fk_User=#{MailTo}
+		SELECT * FROM calendar_list2 WHERE fk_User=#{MailTo}
 	</select>
 
 	<update id="delete" parameterType="int">
-		DELETE FROM calendar_list WHERE pk_Calendar=#{id}
+		DELETE FROM calendar_list2 WHERE pk_Calendar=#{id}
 	</update>
 
 	<insert id="addCalendar" parameterType="map">
-		INSERT INTO `oawork`.`calendar_list`
+		INSERT INTO `oawork`.`calendar_list2`
 	(`pk_Calendar`,
 	`fk_User`,
 	`fk_Department`,
@@ -46,7 +46,7 @@
 	</insert>
 
 	<update id="updateCalendar" parameterType="map">
-	UPDATE `oawork`.`calendar_list`
+	UPDATE `oawork`.`calendar_list2`
 	SET
 	`StatusID` = #{StatusID} ,
 	`Title` = #{Title} ,
@@ -58,7 +58,7 @@
 	</update>
 
 	<select id="getOne" resultType="map">
-		SELECT * FROM calendar_list WHERE pk_Calendar=#{pk_Calendar}
+		SELECT * FROM calendar_list2 WHERE pk_Calendar=#{pk_Calendar}
 	</select>
 
 

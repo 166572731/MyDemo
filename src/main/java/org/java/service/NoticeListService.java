@@ -10,5 +10,5 @@ public interface NoticeListService {
     NoticeList findByUser(Integer user);
     void delById(Integer pk_Notice);
     List<NoticeList> findMyNotice();
-    NoticeList findById (Integer pk_Notice);
+    NoticeList findById(Integer pk_Notice);
 }

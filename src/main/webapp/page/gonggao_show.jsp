@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			<div class="box-footer">
-				<input type="submit" name="ctl00$cphMain$btnBack" value="返回" id="ctl00_cphMain_btnBack" class="btn btn-default" />
+				<input type="submit" name="ctl00$cphMain$btnBack" value="返回" id="ctl00_cphMain_btnBack" class="btn btn-default" onclick="javascript:history.back(-1);" />
 			</div>
 
 		</section>

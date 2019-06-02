@@ -24,24 +24,7 @@
     <link href="layui/css/layui.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
-<body style="background: #eff0f4;overflow-x: hidden;">
-
-<script id="ric" type="text/html" >
-    <h1 id="bt">标题</h1>
-    <%--<p id="sjr">发件人</p>--%>
-    <p id="sj">时间</p>
-    <p id="nr">内容</p>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">内容</label>
-        <div class="layui-input-block">
-            <textarea style="width: 400px;height: 200px" id="nrr" name="Body" placeholder="请输入内容" class="layui-textarea"></textarea>
-        </div>
-    </div>
-    <br>
-    <div style="text-align:center;">
-        <button class="layui-btn " id="hfu">回复</button>
-    </div>
-</script>
+<body style="background: #eff0f4;">
 <!--body wrapper start-->
 <div class="row">
     <div class="col-md-6">
@@ -146,7 +129,7 @@
                         <i class="fa fa-eye"></i>
                     </div>
                     <div class="state-value">
-                        <div class="value">日程管理</div>
+                        <div class="value">日程提醒</div>
                         <div class="title">Schedule Reminder</div>
                     </div>
                 </div>
@@ -387,7 +370,7 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <h4>财务收支公示一览</h4>
                         <div class="icheck">
-                            <div class="square-red single-row">
+                            <div class="square-red single-row" style="margin-left: 20px;">
                                 <div class="checkbox ">
                                     <input type="checkbox" checked> <label>Online</label>
                                 </div>
@@ -444,23 +427,23 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel">
-            <div class="panel-body">
+            <div class="panel-body" style="height: 65px;">
                 <div class="media usr-info">
                     <a href="#" class="pull-left"> <img class="thumb"
-                                                        src="images/photos/user2.png" alt=""/>
+                                                        src="images/head/user2.png" alt=""/>
                     </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Mila Watson</h4>
-                        <span>Senior UI Designer</span>
-                        <p>I use to design websites and applications for the web.</p>
+                    <div class="media-body row text-center" style="margin-top: 25px;">
+                        <h4 class="media-heading col-md-4"><i class="fa fa-user"> </i><a>用户名</a></h4>
+                        <p class="col-md-4"><i class="fa fa-heart"> </i><a>简介</a></p>
+                        <span class="col-md-4"><i class="fa fa-shield"> </i><a>职位</a></span>
                     </div>
                 </div>
             </div>
-            <div class="panel-footer custom-trq-footer">
+            <div class="panel-footer custom-trq-footer" style="height: 50px;">
                 <ul class="user-states">
-                    <li><i class="fa fa-heart"></i> 127</li>
-                    <li><i class="fa fa-eye"></i> 853</li>
-                    <li><i class="fa fa-user"></i> 311</li>
+                    <li>
+                        <hr class="layui-bg-orange" style="margin-top: -6px;">
+                    </li>
                 </ul>
             </div>
         </div>
@@ -481,5 +464,15 @@
 <script type="text/javascript" src="js/time/time.js"></script>
 <%-- main页面js --%>
 <script src="js/myjs/main.js"></script>
+<script type="text/javascript">
+    //顯示用戶信息
+    window.setTimeout(function () {
+        var loginMan = JSON.parse(sessionStorage.getItem("loginMan"));
+        $(".thumb").attr("src", "images/head/" + loginMan.ImagePath1);
+        $(".media-body h4 a").text(' 用戶名：' + loginMan.userName);
+        $(".media-body span a").text(' 部门：' + loginMan.DepartmentName + ' / ' + loginMan.roleName);
+        $(".media-body p a").text(' 用户编号：' + loginMan.Number);
+    }, 1000);
+</script>
 </body>
 </html>

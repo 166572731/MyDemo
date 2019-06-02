@@ -2,5 +2,25 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/dao/NoticeListMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/entity/NoticeList.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/service/NoticeListService.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/service/impl/NoticeListServiceImpl.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/org/java/web/NoticeContorller.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/myjs/index.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/amazeui.min.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/amazeui.min.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/main.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/sinaFaceAndEffec.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/sinaFaceAndEffec.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/wechatpage.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/js/webchat/zUI.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/main.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/main.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/page/gonggao_add.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/page/gonggao_list.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/page/gonggao_manager.jsp" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/page/gonggao_show.jsp" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
   </component>
 </project>
